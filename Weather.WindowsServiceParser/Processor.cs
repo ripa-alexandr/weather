@@ -20,7 +20,8 @@ namespace Weather.WindowsServiceParser
 {
     public class Processor
     {
-        private readonly CityRepository repository;
+        private readonly LinkRepository linkRepository;
+        private readonly WeatherDataRepository weatherDataRepository;
         private readonly SinoptikProvider sinoptikProvider;
         private readonly GismeteoProvider gismeteoProvider;
         private readonly Rp5Provider rp5Provider;
@@ -30,7 +31,8 @@ namespace Weather.WindowsServiceParser
         {
             var kernel = Kernel.Initialize();
 
-            this.repository = kernel.Get<CityRepository>();
+            this.linkRepository = kernel.Get<LinkRepository>();
+            this.weatherDataRepository = kernel.Get<WeatherDataRepository>();
             this.sinoptikProvider = kernel.Get<SinoptikProvider>();
             this.gismeteoProvider = kernel.Get<GismeteoProvider>();
             this.rp5Provider = kernel.Get<Rp5Provider>();
@@ -66,41 +68,57 @@ namespace Weather.WindowsServiceParser
 
         private void ProcessWeatherData()
         {
-            var cities = this.repository.Get().Include(i => i.Links);
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+            var links = this.linkRepository.Get().ToList();
+            stopWatch.Stop();
+            this.logger.Info("{0}, потрачено {1:g}", "Get Links", stopWatch.Elapsed);
+            stopWatch.Reset();
 
-            Parallel.ForEach(cities, this.ProcessCity);
-            
+            stopWatch.Start();
+            var weatherData = links.AsParallel().SelectMany(this.ProcessLink).ToList();
+            stopWatch.Stop();
+            this.logger.Info("{0}, потрачено {1:g}", "Get weatherData", stopWatch.Elapsed);
+            stopWatch.Reset();
+
+            stopWatch.Start();
+            this.weatherDataRepository.AddOrUpdate(weatherData);
+            stopWatch.Stop();
+            this.logger.Info("{0}, потрачено {1:g}", "AddOrUpdate", stopWatch.Elapsed);
+            stopWatch.Reset();
+
+            stopWatch.Start();
             this.logger.Info("Save data to the database");
-            this.repository.Save();
-        }
-
-        private void ProcessCity(City city)
-        {
-            var weatherData = city.Links.AsParallel().SelectMany(this.ProcessLink).ToArray();
-
-            var lockObj = new object();
-
-            lock (lockObj)
-            {
-                this.repository.AddOrUpdateWeatherData(city, weatherData);
-            }
+            this.weatherDataRepository.Save();
+            stopWatch.Stop();
+            this.logger.Info("{0}, потрачено {1:g}", "weatherDataRepository.Save()", stopWatch.Elapsed);
         }
 
         private IEnumerable<WeatherData> ProcessLink(Link link)
         {
+            var result = Enumerable.Empty<WeatherData>();
+
             switch (link.TypeProvider)
             {
                 case TypeProvider.Gismeteo:
-                    return this.gismeteoProvider.Fetch(link.Url);
-                    
+                    result = this.gismeteoProvider.Fetch(link.Url);
+                    break;
+
                 case TypeProvider.Sinoptik:
-                    return this.sinoptikProvider.Fetch(link.Url);
-                    
+                    result = this.sinoptikProvider.Fetch(link.Url);
+                    break;
+
                 case TypeProvider.Rp5:
-                    return this.rp5Provider.Fetch(link.Url);
+                    result = this.rp5Provider.Fetch(link.Url);
+                    break;
             }
 
-            throw new NotImplementedException();
+            foreach (var item in result)
+            {
+                item.CityId = link.CityId;
+            }
+
+            return result;
         }
     }
 }

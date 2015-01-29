@@ -1,6 +1,10 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+
+using AutoMapper;
 
 using Weather.DAL.Repository.Interface;
 using Weather.Data.Interfaces;
@@ -44,6 +48,19 @@ namespace Weather.DAL.Repository.Abstract
         public void Save()
         {
             this.context.SaveChanges();
+        }
+
+        protected void AddOrUpdate(IEnumerable<T> source, IEnumerable<T> destination, Func<T, T, bool> same)
+        {
+            var insert = source.Where(x => !destination.Any(y => same(x, y))).ToArray();
+            var update = source.Except(insert).ToArray();
+
+            this.context.Set<T>().AddRange(insert);
+
+            foreach (var item in update)
+            {
+                Mapper.Map(item, destination.First(x => same(item, x)));
+            }
         }
     }
 }
