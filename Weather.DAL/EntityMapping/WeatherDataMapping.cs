@@ -20,7 +20,7 @@ namespace Weather.DAL.EntityMapping
             // Relationships
             this.HasRequired(l => l.City)
                 .WithMany(t => t.WeatherData)
-                .Map(m => m.MapKey("CityId"));
+                .HasForeignKey(k => k.CityId);
 
             this.HasRequired(wd => wd.WeatherDescription)
                 .WithRequiredPrincipal(wd => wd.WeatherData);

@@ -15,8 +15,10 @@ namespace Weather.Data.Entities
 
         public DateTime DateTime { get; set; }
 
-        public virtual WeatherDescription WeatherDescription { get; set; }
+        public int CityId { get; set; }
 
         public virtual City City { get; set; }
+
+        public virtual WeatherDescription WeatherDescription { get; set; }
     }
 }

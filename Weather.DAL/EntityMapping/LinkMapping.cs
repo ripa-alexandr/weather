@@ -17,7 +17,7 @@ namespace Weather.DAL.EntityMapping
             // Relationships
             this.HasRequired(l => l.City)
                 .WithMany(t => t.Links)
-                .Map(m => m.MapKey("CityId"))
+                .HasForeignKey(k => k.CityId)
                 .WillCascadeOnDelete(false);
         }
     }

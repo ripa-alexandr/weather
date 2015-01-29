@@ -11,6 +11,8 @@ namespace Weather.Data.Entities
 
         public TypeProvider TypeProvider { get; set; }
 
+        public int CityId { get; set; }
+
         public virtual City City { get; set; }
     }
 }
