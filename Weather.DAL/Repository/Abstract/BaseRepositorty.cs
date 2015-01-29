@@ -52,8 +52,8 @@ namespace Weather.DAL.Repository.Abstract
 
         protected void AddOrUpdate(IEnumerable<T> source, IEnumerable<T> destination, Func<T, T, bool> same)
         {
-            var insert = source.Where(x => !destination.Any(y => same(x, y))).ToArray();
-            var update = source.Except(insert).ToArray();
+            var insert = source.Where(x => !destination.Any(y => same(x, y)));
+            var update = source.Except(insert);
 
             this.context.Set<T>().AddRange(insert);
 
