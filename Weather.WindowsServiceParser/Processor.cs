@@ -68,30 +68,12 @@ namespace Weather.WindowsServiceParser
 
         private void ProcessWeatherData()
         {
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
             var links = this.linkRepository.Get().ToList();
-            stopWatch.Stop();
-            this.logger.Info("{0}, потрачено {1:g}", "Get Links", stopWatch.Elapsed);
-            stopWatch.Reset();
-
-            stopWatch.Start();
             var weatherData = links.AsParallel().SelectMany(this.ProcessLink).ToList();
-            stopWatch.Stop();
-            this.logger.Info("{0}, потрачено {1:g}", "Get weatherData", stopWatch.Elapsed);
-            stopWatch.Reset();
-
-            stopWatch.Start();
             this.weatherDataRepository.AddOrUpdate(weatherData);
-            stopWatch.Stop();
-            this.logger.Info("{0}, потрачено {1:g}", "AddOrUpdate", stopWatch.Elapsed);
-            stopWatch.Reset();
-
-            stopWatch.Start();
+            
             this.logger.Info("Save data to the database");
             this.weatherDataRepository.Save();
-            stopWatch.Stop();
-            this.logger.Info("{0}, потрачено {1:g}", "weatherDataRepository.Save()", stopWatch.Elapsed);
         }
 
         private IEnumerable<WeatherData> ProcessLink(Link link)
