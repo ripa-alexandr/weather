@@ -1,8 +1,5 @@
 
-using System.Linq;
-
-using Weather.DAL.Repository;
-using Weather.Data.Entities;
+using Weather.Common.Entities;
 
 namespace Weather.DAL.Migrations
 {

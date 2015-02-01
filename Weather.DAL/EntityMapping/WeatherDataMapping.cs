@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-using Weather.Data.Entities;
+using Weather.Common.Entities;
 
 namespace Weather.DAL.EntityMapping
 {

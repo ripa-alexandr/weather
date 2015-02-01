@@ -68,13 +68,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Weather.Common\Weather.Common.csproj">
+      <Project>{3AC353A6-0B82-4715-84C0-E6A121875598}</Project>
+      <Name>Weather.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Weather.DAL\Weather.DAL.csproj">
       <Project>{B4BC38CD-7EFA-422D-8101-CDB27C8E34E3}</Project>
       <Name>Weather.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Weather.Data\Weather.Data.csproj">
-      <Project>{c6f4c76f-198b-41cb-98c9-6af5d355084b}</Project>
-      <Name>Weather.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Weather.Parser\Weather.Parser.csproj">
       <Project>{196287BA-530F-494E-840B-FA2D483B6110}</Project>

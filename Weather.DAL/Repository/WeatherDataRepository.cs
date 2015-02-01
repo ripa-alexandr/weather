@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
+using Weather.Common.Entities;
 using Weather.DAL.Repository.Abstract;
-using Weather.Data.Entities;
 
 namespace Weather.DAL.Repository
 {

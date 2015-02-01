@@ -3,8 +3,6 @@ using HtmlAgilityPack;
 
 using NUnit.Framework;
 
-using Weather.Data.Enums;
-
 namespace Weather.Parser.Tests
 {
     [TestFixture]

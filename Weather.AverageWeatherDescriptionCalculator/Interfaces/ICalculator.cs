@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-using Weather.Data.Entities;
+using Weather.Common.Entities;
 
 namespace Weather.AverageWeatherDescriptionCalculator.Interfaces
 {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Weather.AverageWeatherDescriptionCalculator.Interfaces;
-using Weather.Data.Entities;
+using Weather.Common.Entities;
 
 namespace Weather.AverageWeatherDescriptionCalculator
 {

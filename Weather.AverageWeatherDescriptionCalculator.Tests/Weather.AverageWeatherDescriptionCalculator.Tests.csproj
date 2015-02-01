@@ -53,9 +53,9 @@
       <Project>{daca131a-fffa-41ab-9bcf-644e291af917}</Project>
       <Name>Weather.AverageWeatherDescriptionCalculator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Weather.Data\Weather.Data.csproj">
-      <Project>{c6f4c76f-198b-41cb-98c9-6af5d355084b}</Project>
-      <Name>Weather.Data</Name>
+    <ProjectReference Include="..\Weather.Common\Weather.Common.csproj">
+      <Project>{3AC353A6-0B82-4715-84C0-E6A121875598}</Project>
+      <Name>Weather.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

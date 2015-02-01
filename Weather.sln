@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Data", "Weather.Data\Weather.Data.csproj", "{C6F4C76F-198B-41CB-98C9-6AF5D355084B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4FBD8D2D-EF24-464F-9C1D-159D110F8D7E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionSettings", "SolutionSettings", "{877E1FFA-1924-4B2E-987D-45AECE67ECC9}"
@@ -33,6 +31,8 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Weather.WindowsServiceParse
 		{221A3750-FD5B-4389-8614-3946C310DC25} = {221A3750-FD5B-4389-8614-3946C310DC25}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Common", "Weather.Common\Weather.Common.csproj", "{3AC353A6-0B82-4715-84C0-E6A121875598}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -42,16 +42,6 @@ Global
 		SingleImage|Any CPU = SingleImage|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{C6F4C76F-198B-41CB-98C9-6AF5D355084B}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{B4BC38CD-7EFA-422D-8101-CDB27C8E34E3}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{B4BC38CD-7EFA-422D-8101-CDB27C8E34E3}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{B4BC38CD-7EFA-422D-8101-CDB27C8E34E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -132,6 +122,16 @@ Global
 		{A055BEA1-E60D-4090-91B2-E36DC6D70779}.Release|Any CPU.Build.0 = SingleImage
 		{A055BEA1-E60D-4090-91B2-E36DC6D70779}.SingleImage|Any CPU.ActiveCfg = SingleImage
 		{A055BEA1-E60D-4090-91B2-E36DC6D70779}.SingleImage|Any CPU.Build.0 = SingleImage
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{3AC353A6-0B82-4715-84C0-E6A121875598}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

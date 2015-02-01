@@ -1,19 +1,17 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 using Ninject;
 
 using NLog;
 
 using Weather.Bootstrap;
+using Weather.Common.Entities;
+using Weather.Common.Exceptions;
 using Weather.DAL.Repository;
-using Weather.Data.Entities;
-using Weather.Data.Exceptions;
 using Weather.Parser;
 
 namespace Weather.WindowsServiceParser

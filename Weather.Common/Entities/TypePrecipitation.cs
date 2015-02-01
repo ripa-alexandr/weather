@@ -1,5 +1,5 @@
 ﻿
-namespace Weather.Data.Entities
+namespace Weather.Common.Entities
 {
     public enum TypePrecipitation
     {

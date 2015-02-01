@@ -4,7 +4,7 @@ using System;
 using NUnit.Framework;
 
 using Weather.AverageWeatherDescriptionCalculator.Interfaces;
-using Weather.Data.Entities;
+using Weather.Common.Entities;
 
 namespace Weather.AverageWeatherDescriptionCalculator.Tests
 {

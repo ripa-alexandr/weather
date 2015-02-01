@@ -1,5 +1,5 @@
 ﻿
-namespace Weather.Data.Interfaces
+namespace Weather.Common.Interfaces
 {
     public interface IBaseEntity
     {

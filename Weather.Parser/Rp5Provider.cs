@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
 
-using Weather.Data.Entities;
-using Weather.Data.Enums;
-using Weather.Data.Exceptions;
+using Weather.Common.Entities;
+using Weather.Common.Enums;
+using Weather.Common.Exceptions;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser

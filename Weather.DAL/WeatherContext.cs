@@ -1,8 +1,8 @@
 ﻿
 using System.Data.Entity;
 
+using Weather.Common.Entities;
 using Weather.DAL.EntityMapping;
-using Weather.Data.Entities;
 
 namespace Weather.DAL
 {

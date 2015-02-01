@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
 
-using Weather.Data.Entities;
+using Weather.Common.Entities;
 
 namespace Weather.Bootstrap
 {

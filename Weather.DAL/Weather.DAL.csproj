@@ -85,15 +85,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Weather.Data\Weather.Data.csproj">
-      <Project>{c6f4c76f-198b-41cb-98c9-6af5d355084b}</Project>
-      <Name>Weather.Data</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201411290006093_Initialize.resx">
       <DependentUpon>201411290006093_Initialize.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Weather.Common\Weather.Common.csproj">
+      <Project>{3AC353A6-0B82-4715-84C0-E6A121875598}</Project>
+      <Name>Weather.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />

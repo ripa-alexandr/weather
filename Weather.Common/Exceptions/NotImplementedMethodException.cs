@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Weather.Data.Exceptions
+namespace Weather.Common.Exceptions
 {
     public class NotImplementedMethodException : Exception
     {

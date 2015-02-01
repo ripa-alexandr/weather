@@ -1,5 +1,5 @@
 ﻿
-namespace Weather.Data.Enums
+namespace Weather.Common.Enums
 {
     public enum TimeOfDay
     {

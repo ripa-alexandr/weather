@@ -1,5 +1,5 @@
 ﻿
-using Weather.Data.Enums;
+using Weather.Common.Enums;
 
 namespace Weather.Parser
 {

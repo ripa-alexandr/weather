@@ -1,7 +1,7 @@
 ﻿
-using Weather.Data.Interfaces;
+using Weather.Common.Interfaces;
 
-namespace Weather.Data.Entities
+namespace Weather.Common.Entities
 {
     public class Link : IBaseEntity
     {

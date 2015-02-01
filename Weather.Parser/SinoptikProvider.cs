@@ -6,8 +6,8 @@ using System.Linq;
 
 using HtmlAgilityPack;
 
-using Weather.Data.Entities;
-using Weather.Data.Enums;
+using Weather.Common.Entities;
+using Weather.Common.Enums;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser

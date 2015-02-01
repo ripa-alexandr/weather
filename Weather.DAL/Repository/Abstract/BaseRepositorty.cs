@@ -6,8 +6,8 @@ using System.Linq;
 
 using AutoMapper;
 
+using Weather.Common.Interfaces;
 using Weather.DAL.Repository.Interface;
-using Weather.Data.Interfaces;
 
 namespace Weather.DAL.Repository.Abstract
 {
