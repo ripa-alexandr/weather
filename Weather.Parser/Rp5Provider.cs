@@ -39,10 +39,10 @@ namespace Weather.Parser
 
         protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
-            var cloudy = string.Format("//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/img", parseInfo.TimeOfDay);
+            var cloudy = string.Format("//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div", parseInfo.TimeOfDay);
 
             // In one time of day two description
-            var description = string.Format("//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]/img", parseInfo.TimeOfDay * 2 - 2);
+            var description = string.Format("//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]/div", parseInfo.TimeOfDay * 2 - 2);
             var airTemp = string.Format("//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]/b", parseInfo.TimeOfDay);
             var realFeel = string.Format("//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]", parseInfo.TimeOfDay);
             var isRealFeel = string.Format("//*[@id='forecastTable']/tr[6]/td[{0}]", parseInfo.TimeOfDay);
