@@ -77,20 +77,22 @@ namespace Weather.WindowsServiceParser
 
         private IEnumerable<WeatherData> ProcessLink(Link link)
         {
+            var request = new ProviderRequest { Url = link.Url };
+
             var result = Enumerable.Empty<WeatherData>();
 
             switch (link.TypeProvider)
             {
                 case TypeProvider.Gismeteo:
-                    result = this.gismeteoProvider.Fetch(new ProviderRequest { Url = link.Url }).WeatherData;
+                    result = this.gismeteoProvider.Fetch(request).WeatherData;
                     break;
 
                 case TypeProvider.Sinoptik:
-                    result = this.sinoptikProvider.Fetch(new ProviderRequest { Url = link.Url }).WeatherData;
+                    result = this.sinoptikProvider.Fetch(request).WeatherData;
                     break;
 
                 case TypeProvider.Rp5:
-                    result = this.rp5Provider.Fetch(new ProviderRequest { Url = link.Url }).WeatherData;
+                    result = this.rp5Provider.Fetch(request).WeatherData;
                     break;
             }
 
