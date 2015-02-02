@@ -1,17 +1,16 @@
 ﻿
-using System.Collections.Generic;
-
-using Weather.Common.Entities;
+using Weather.Common.Message.Request;
+using Weather.Common.Message.Response;
 
 namespace Weather.Parser
 {
     public interface IWeatherProvider
     {
         /// <summary>
-        /// Parse web page and get data from this one
+        /// Get weather data
         /// </summary>
-        /// <param name="url"></param>
+        /// <param name="request"></param>
         /// <returns></returns>
-        IEnumerable<WeatherData> Fetch(string url);
+        ProviderResponse Fetch(ProviderRequest request);
     }
 }

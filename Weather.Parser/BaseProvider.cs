@@ -1,6 +1,5 @@
 ﻿
 using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
@@ -8,6 +7,8 @@ using HtmlAgilityPack;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
+using Weather.Common.Message.Request;
+using Weather.Common.Message.Response;
 
 namespace Weather.Parser
 {
@@ -42,7 +43,7 @@ namespace Weather.Parser
             this.HtmlWeb = htmlWeb;
         }
 
-        public virtual IEnumerable<WeatherData> Fetch(string url)
+        public virtual ProviderResponse Fetch(ProviderRequest request)
         {
             return null;
         }

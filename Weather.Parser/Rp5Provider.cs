@@ -10,6 +10,8 @@ using HtmlAgilityPack;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
+using Weather.Common.Message.Request;
+using Weather.Common.Message.Response;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser
@@ -22,9 +24,9 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override IEnumerable<WeatherData> Fetch(string url)
+        public override ProviderResponse Fetch(ProviderRequest request)
         {
-            var htmlDocument = this.HtmlWeb.Load(url);
+            var htmlDocument = this.HtmlWeb.Load(request.Url);
             var result = new Collection<WeatherData>();
 
             var parseInfo = this.InitializeParseInfo(htmlDocument);
@@ -34,7 +36,10 @@ namespace Weather.Parser
                 result.Add(this.Fetch(htmlDocument, item));
             }
 
-            return result;
+            return new ProviderResponse
+            {
+                WeatherData = result
+            };
         }
 
         protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
