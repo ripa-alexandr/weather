@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -41,37 +42,71 @@ namespace Weather.WindowsServiceParser
 
         public void Process()
         {
+            var stopWatch = new Stopwatch();
+
             try
             {
-                var stopWatch = new Stopwatch();
                 stopWatch.Start();
 
                 this.ProcessWeatherData();
-                
+
                 stopWatch.Stop();
                 this.logger.Info("Parse end, spend {0:g} for parsing", stopWatch.Elapsed);
             }
-            catch (NotImplementedMethodException ex)
+            catch (AggregateException ae)
             {
-                this.logger.Error(ex.Message);
-                this.logger.Error(ex.MethodArgs);
-                this.logger.Error(ex.StackTrace);
+                stopWatch.Stop();
+                this.logger.Info("Parse end, spend {0:g} for parsing", stopWatch.Elapsed);
+                this.HandleException(ae);
             }
-            catch (Exception ex)
+        }
+
+        private void HandleException(AggregateException ae)
+        {
+            foreach (var ex in ae.InnerExceptions)
             {
-                this.logger.Error(ex.Message);
-                this.logger.Error(ex.StackTrace);
+                var exception = ex as NotImplementedMethodException;
+
+                if (exception != null)
+                {
+                    this.logger.Error(exception.Message);
+                    this.logger.Error(exception.MethodArgs);
+                    this.logger.Error(exception.StackTrace);
+                }
+                else
+                {
+                    this.logger.Error(ex.Message);
+                    this.logger.Error(ex.StackTrace);
+                }
             }
         }
 
         private void ProcessWeatherData()
         {
+            var exceptions = new ConcurrentQueue<Exception>();
+
             var links = this.linkRepository.Get().ToList();
-            var weatherData = links.AsParallel().SelectMany(this.ProcessLink).ToList();
+            var weatherData = links.AsParallel().SelectMany(
+                i =>
+                {
+                    try
+                    {
+                        return this.ProcessLink(i);
+                    }
+                    catch (Exception e)
+                    {
+                        exceptions.Enqueue(e);
+                        return Enumerable.Empty<WeatherData>();
+                    }
+                }).ToList();
+
             this.weatherDataRepository.AddOrUpdate(weatherData);
-            
-            this.logger.Info("Save data to the database");
             this.weatherDataRepository.Save();
+
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions);
+            }
         }
 
         private IEnumerable<WeatherData> ProcessLink(Link link)
