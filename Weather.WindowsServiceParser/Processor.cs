@@ -11,7 +11,6 @@ using NLog;
 using Weather.Bootstrap;
 using Weather.Common.Entities;
 using Weather.Common.Exceptions;
-using Weather.Common.Message.Request;
 using Weather.DAL.Repository;
 using Weather.Parser;
 
@@ -77,22 +76,20 @@ namespace Weather.WindowsServiceParser
 
         private IEnumerable<WeatherData> ProcessLink(Link link)
         {
-            var request = new ProviderRequest { Url = link.Url };
-
             var result = Enumerable.Empty<WeatherData>();
 
             switch (link.TypeProvider)
             {
                 case TypeProvider.Gismeteo:
-                    result = this.gismeteoProvider.Fetch(request).WeatherData;
+                    result = this.gismeteoProvider.Fetch(link.Url);
                     break;
 
                 case TypeProvider.Sinoptik:
-                    result = this.sinoptikProvider.Fetch(request).WeatherData;
+                    result = this.sinoptikProvider.Fetch(link.Url);
                     break;
 
                 case TypeProvider.Rp5:
-                    result = this.rp5Provider.Fetch(request).WeatherData;
+                    result = this.rp5Provider.Fetch(link.Url);
                     break;
             }
 

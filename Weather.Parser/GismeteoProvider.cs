@@ -10,8 +10,6 @@ using HtmlAgilityPack;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
-using Weather.Common.Message.Request;
-using Weather.Common.Message.Response;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser
@@ -24,7 +22,7 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override ProviderResponse Fetch(ProviderRequest request)
+        public override IEnumerable<WeatherData> Fetch(string url)
         {
             var result = new Collection<WeatherData>();
 
@@ -33,7 +31,7 @@ namespace Weather.Parser
             foreach (var items in parseInfo.GroupBy(i => i.Url))
             {
                 // Need initialize new url for other days
-                var newUrl = this.BuildUrl(request.Url, items.First().Url);
+                var newUrl = this.BuildUrl(url, items.First().Url);
                 var htmlDocument = this.HtmlWeb.Load(newUrl);
 
                 foreach (var item in items)
@@ -42,10 +40,7 @@ namespace Weather.Parser
                 }
             }
 
-            return new ProviderResponse
-            {
-                WeatherData = result
-            };
+            return result;
         }
 
         protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
