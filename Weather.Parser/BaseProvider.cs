@@ -42,11 +42,8 @@ namespace Weather.Parser
             this.HtmlWeb = htmlWeb;
         }
 
-        public virtual IEnumerable<WeatherData> Fetch(string url)
-        {
-            return null;
-        }
-
+        public abstract IEnumerable<WeatherData> Fetch(string url);
+        
         protected string BuildUrl(string oldUrl, string addUrl)
         {
             if (!string.IsNullOrWhiteSpace(addUrl))

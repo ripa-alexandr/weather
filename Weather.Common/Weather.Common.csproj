@@ -54,6 +54,7 @@
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\TimeOfDay.cs" />
     <Compile Include="Exceptions\NotImplementedMethodException.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Interfaces\IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

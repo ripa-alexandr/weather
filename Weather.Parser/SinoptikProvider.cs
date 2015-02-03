@@ -8,6 +8,7 @@ using HtmlAgilityPack;
 
 using Weather.Common.Entities;
 using Weather.Common.Enums;
+using Weather.Common.Extensions;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser
@@ -51,7 +52,7 @@ namespace Weather.Parser
             var windSpeed = this.Format("//*[@id='bd{0}c']/div/div[2]/table/tbody/*[@class='gray']/td[{1}]/div", parseInfo.Day, parseInfo.TimeOfDay);
             var humidity = this.Format("//*[@id='bd{0}c']/div/div[2]/table/tbody/tr[6]/td[{1}]", parseInfo.Day, parseInfo.TimeOfDay);
             var chancePrecipitation = this.Format("//*[@id='bd{0}c']/div/div[2]/table/tbody/tr[8]/td[{1}]", parseInfo.Day, parseInfo.TimeOfDay);
-            var date = string.Format("//*[@id='bd{0}']/p/a", parseInfo.Day);
+            var date = "//*[@id='bd{0}']/p/a".F(parseInfo.Day);
 
             return new WeatherData
             {

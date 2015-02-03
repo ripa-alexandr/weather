@@ -10,6 +10,7 @@ using HtmlAgilityPack;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
+using Weather.Common.Extensions;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser
@@ -39,24 +40,24 @@ namespace Weather.Parser
 
         protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
-            var cloudy = string.Format("//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div", parseInfo.TimeOfDay);
+            var cloudy = "//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay);
 
             // In one time of day two description
-            var description = string.Format("//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]/div", parseInfo.TimeOfDay * 2 - 2);
-            var airTemp = string.Format("//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]/b", parseInfo.TimeOfDay);
-            var realFeel = string.Format("//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]", parseInfo.TimeOfDay);
-            var isRealFeel = string.Format("//*[@id='forecastTable']/tr[6]/td[{0}]", parseInfo.TimeOfDay);
+            var description = "//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay * 2 - 2);
+            var airTemp = "//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay);
+            var realFeel = "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay);
+            var isRealFeel = "//*[@id='forecastTable']/tr[6]/td[{0}]".F(parseInfo.TimeOfDay);
             var pressure = this.GetAvailablePath(
                 htmlDocument,
-                string.Format("//*[@id='forecastTable']/tr[7]/td[{0}]/div[1]/b", parseInfo.TimeOfDay),
-                string.Format("//*[@id='forecastTable']/tr[7]/td[{0}]/div[1]", parseInfo.TimeOfDay));
-            var windDirection = string.Format("//*[@id='forecastTable']/tr[10]/td[{0}]", parseInfo.TimeOfDay);
+                "//*[@id='forecastTable']/tr[7]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay),
+                "//*[@id='forecastTable']/tr[7]/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
+            var windDirection = "//*[@id='forecastTable']/tr[10]/td[{0}]".F(parseInfo.TimeOfDay);
             var windSpeed = this.GetAvailablePath(
                 htmlDocument, 
-                string.Format("//*[@id='forecastTable']/tr[9]/td[{0}]/div[1]", parseInfo.TimeOfDay), 
-                string.Format("//*[@id='forecastTable']/tr[9]/td[{0}]", parseInfo.TimeOfDay));
-            var humidity = string.Format("//*[@id='forecastTable']/tr[8]/td[{0}]", parseInfo.TimeOfDay);
-            var date = string.Format("//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]", parseInfo.Day);
+                "//*[@id='forecastTable']/tr[9]/td[{0}]/div[1]".F(parseInfo.TimeOfDay), 
+                "//*[@id='forecastTable']/tr[9]/td[{0}]".F(parseInfo.TimeOfDay));
+            var humidity = "//*[@id='forecastTable']/tr[8]/td[{0}]".F(parseInfo.TimeOfDay);
+            var date = "//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]".F(parseInfo.Day);
             
             return new WeatherData
             {

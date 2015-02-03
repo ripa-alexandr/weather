@@ -10,6 +10,7 @@ using HtmlAgilityPack;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
+using Weather.Common.Extensions;
 using Weather.Parser.Extensions;
 
 namespace Weather.Parser
@@ -45,14 +46,14 @@ namespace Weather.Parser
 
         protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
-            var description = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='cltext']", parseInfo.Day, parseInfo.TimeOfDay);
-            var airTemp = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='temp']/*[@class='value m_temp c']", parseInfo.Day, parseInfo.TimeOfDay);
-            var realFeel = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td[7]/*[@class='value m_temp c']", parseInfo.Day, parseInfo.TimeOfDay);
-            var pressure = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td/*[@class='value m_press torr']", parseInfo.Day, parseInfo.TimeOfDay);
-            var windDirection = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td/dl[@class='wind']/dt", parseInfo.Day, parseInfo.TimeOfDay);
-            var windSpeed = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td/dl/dd/*[@class='value m_wind ms']", parseInfo.Day, parseInfo.TimeOfDay);
-            var humidity = this.Format("//*[@id='tbwdaily{0}']/tr[{1}]/td[6]", parseInfo.Day, parseInfo.TimeOfDay);
-            var date = string.Format("//*[@id='tbwdaily{0}']/tr[1]", parseInfo.Day);
+            var description = "//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='cltext']".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var airTemp = "//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='temp']/*[@class='value m_temp c']".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var realFeel = "//*[@id='tbwdaily{0}']/tr[{1}]/td[7]/*[@class='value m_temp c']".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var pressure = "//*[@id='tbwdaily{0}']/tr[{1}]/td/*[@class='value m_press torr']".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var windDirection = "//*[@id='tbwdaily{0}']/tr[{1}]/td/dl[@class='wind']/dt".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var windSpeed = "//*[@id='tbwdaily{0}']/tr[{1}]/td/dl/dd/*[@class='value m_wind ms']".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var humidity = "//*[@id='tbwdaily{0}']/tr[{1}]/td[6]".F(parseInfo.Day, parseInfo.TimeOfDay);
+            var date = "//*[@id='tbwdaily{0}']/tr[1]".F(parseInfo.Day);
 
             return new WeatherData
             {
@@ -87,7 +88,7 @@ namespace Weather.Parser
             Snow = @"[Сс]нег";
             Light = @"небольшой";
             Heavy = @"сильный";
-            Fog = @"[Тт]уман|^$|[Дд]ымка";
+            Fog = @"[Тт]уман|[Дд]ымка";
             Thunderstorm = @"гроз";
             North = @"\bС\b";
             NorthEast = @"СВ";
@@ -152,11 +153,6 @@ namespace Weather.Parser
             }
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), day.ToString());
-        }
-
-        private string Format(string str, int day, int timeOfDay)
-        {
-            return string.Format(str, day, timeOfDay);
         }
 
         #region Converters
