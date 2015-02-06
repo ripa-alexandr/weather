@@ -53,7 +53,9 @@
     <Compile Include="Entities\World.cs" />
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\TimeOfDay.cs" />
+    <Compile Include="Exceptions\HtmlDocumentNotExistAttributeException.cs" />
     <Compile Include="Exceptions\NotImplementedMethodException.cs" />
+    <Compile Include="Exceptions\HtmlDocumentNotExistXPathException.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Interfaces\IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

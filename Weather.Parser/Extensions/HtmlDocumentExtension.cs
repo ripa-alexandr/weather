@@ -1,7 +1,10 @@
 ﻿
+using System.Collections.Generic;
 using System.Linq;
 
 using HtmlAgilityPack;
+
+using Weather.Common.Exceptions;
 
 namespace Weather.Parser.Extensions
 {
@@ -9,16 +12,19 @@ namespace Weather.Parser.Extensions
     {
         public static string GetInnerText(this HtmlDocument htmlDocument, string xPath)
         {
-            var node = htmlDocument.DocumentNode.SelectNodes(xPath).FirstOrDefault();
-            
-            return node == null ? string.Empty : node.InnerText;
+            return GetNodes(htmlDocument, xPath).First().InnerText;
         }
 
-        public static string GetAttribute(this HtmlDocument htmlDocument, string xPath, string attribute)
+        public static string GetAttribute(this HtmlDocument htmlDocument, string xPath, string attributeName)
         {
-            var node = htmlDocument.DocumentNode.SelectNodes(xPath).FirstOrDefault();
+            var attribute = GetNodes(htmlDocument, xPath).First().Attributes.FirstOrDefault(i => i.Name == attributeName);
 
-            return node == null ? string.Empty : node.Attributes[attribute].Value;
+            if (attribute == null)
+            {
+                throw new HtmlDocumentNotExistAttributeException(xPath, attributeName);
+            }
+
+            return attribute.Value;
         }
 
         public static bool IsInnerText(this HtmlDocument htmlDocument, string xPath)
@@ -28,11 +34,23 @@ namespace Weather.Parser.Extensions
             return node != null;
         }
 
-        public static bool IsAttribute(this HtmlDocument htmlDocument, string xPath, string attribute)
+        public static bool IsAttribute(this HtmlDocument htmlDocument, string xPath, string attributeName)
         {
-            var node = htmlDocument.DocumentNode.SelectNodes(xPath).First().Attributes.FirstOrDefault(i => i.Name == attribute);
+            var node = GetNodes(htmlDocument, xPath).First().Attributes.FirstOrDefault(i => i.Name == attributeName);
 
             return node != null;
+        }
+
+        private static IEnumerable<HtmlNode> GetNodes(HtmlDocument htmlDocument, string xPath)
+        {
+            var nodes = htmlDocument.DocumentNode.SelectNodes(xPath);
+
+            if (nodes == null)
+            {
+                throw new HtmlDocumentNotExistXPathException(xPath);
+            }
+
+            return nodes;
         }
     }
 }
