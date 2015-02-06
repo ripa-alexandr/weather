@@ -12,6 +12,7 @@ using NLog;
 using Weather.Bootstrap;
 using Weather.Common.Entities;
 using Weather.Common.Exceptions;
+using Weather.Common.Extensions;
 using Weather.DAL.Repository;
 using Weather.Parser;
 
@@ -69,14 +70,13 @@ namespace Weather.WindowsServiceParser
 
                 if (exception != null)
                 {
-                    this.logger.Error(exception.Message);
-                    this.logger.Error(exception.MethodArgs);
-                    this.logger.Error(exception.StackTrace);
+                    var msg = "Message: {0}\r\nMethodArgs: {1}\r\nStackTrace: {2}\r\n".F(exception.Message, exception.MethodArgs, exception.StackTrace);
+                    this.logger.Error(msg);
                 }
                 else
                 {
-                    this.logger.Error(ex.Message);
-                    this.logger.Error(ex.StackTrace);
+                    var msg = "Message: {0}\r\nStackTrace: {1}\r\n".F(ex.Message, ex.StackTrace);
+                    this.logger.Error(msg);
                 }
             }
         }
