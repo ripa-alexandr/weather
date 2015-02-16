@@ -66,16 +66,16 @@ namespace Weather.WindowsServiceParser
         {
             foreach (var ex in ae.InnerExceptions)
             {
-                var exception = ex as NotImplementedMethodException;
+                var nime = ex as NotImplementedMethodException;
 
-                if (exception != null)
+                if (nime != null)
                 {
-                    var msg = "Message: {0}\r\nMethodArgs: {1}\r\nStackTrace: {2}\r\n".F(exception.Message, exception.MethodArgs, exception.StackTrace);
+                    var msg = "TypeException: {0}\r\nMessage: {1}\r\nMethodArgs: {2}\r\nStackTrace: {3}\r\n".F(nime.GetType().Name, nime.Message, nime.MethodArgs, nime.StackTrace);
                     this.logger.Error(msg);
                 }
                 else
                 {
-                    var msg = "Message: {0}\r\nStackTrace: {1}\r\n".F(ex.Message, ex.StackTrace);
+                    var msg = "TypeException: {0}\r\nMessage: {1}\r\nStackTrace: {2}\r\n".F(ex.GetType().Name, ex.Message, ex.StackTrace);
                     this.logger.Error(msg);
                 }
             }
