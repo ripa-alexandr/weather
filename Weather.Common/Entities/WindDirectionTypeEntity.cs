@@ -1,7 +1,7 @@
 ﻿
 namespace Weather.Common.Entities
 {
-    public enum TypeWindDirection
+    public enum WindDirectionTypeEntity
     {
         North = 0,
         NorthEast = 45,

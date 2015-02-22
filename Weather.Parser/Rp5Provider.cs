@@ -23,10 +23,10 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override IEnumerable<WeatherData> Fetch(string url)
+        public override IEnumerable<WeatherDataEntity> Fetch(string url)
         {
             var htmlDocument = this.HtmlWeb.Load(url);
-            var result = new Collection<WeatherData>();
+            var result = new Collection<WeatherDataEntity>();
 
             var parseInfo = this.InitializeParseInfo(htmlDocument);
 
@@ -38,7 +38,7 @@ namespace Weather.Parser
             return result;
         }
 
-        protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
+        protected WeatherDataEntity Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
             var cloudy = "//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay);
 
@@ -59,15 +59,15 @@ namespace Weather.Parser
             var humidity = "//*[@id='forecastTable']/tr[8]/td[{0}]".F(parseInfo.TimeOfDay);
             var date = "//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]".F(parseInfo.Day);
             
-            return new WeatherData
+            return new WeatherDataEntity
             {
-                TypeProvider = TypeProvider.Rp5,
-                NameProvider = "Rp5",
+                Provider = ProviderTypeEntity.Rp5,
+                ProviderName = "Rp5",
                 DateTime = this.GetDateInTable(htmlDocument.GetInnerText(date), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescription
+                WeatherDescription = new WeatherDescriptionEntity
                 {
                     Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(cloudy, "onmouseover")),
-                    TypePrecipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
+                    Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
                     StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
                     IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "onmouseover")),
                     IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "onmouseover")),

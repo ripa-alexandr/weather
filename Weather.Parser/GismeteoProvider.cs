@@ -23,9 +23,9 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override IEnumerable<WeatherData> Fetch(string url)
+        public override IEnumerable<WeatherDataEntity> Fetch(string url)
         {
-            var result = new Collection<WeatherData>();
+            var result = new Collection<WeatherDataEntity>();
 
             var parseInfo = this.InitializeParseInfo();
 
@@ -44,7 +44,7 @@ namespace Weather.Parser
             return result;
         }
 
-        protected WeatherData Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
+        protected WeatherDataEntity Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
             var description = "//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='cltext']".F(parseInfo.Day, parseInfo.TimeOfDay);
             var airTemp = "//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='temp']/*[@class='value m_temp c']".F(parseInfo.Day, parseInfo.TimeOfDay);
@@ -55,15 +55,15 @@ namespace Weather.Parser
             var humidity = "//*[@id='tbwdaily{0}']/tr[{1}]/td[6]".F(parseInfo.Day, parseInfo.TimeOfDay);
             var date = "//*[@id='tbwdaily{0}']/tr[1]".F(parseInfo.Day);
 
-            return new WeatherData
+            return new WeatherDataEntity
             {
-                TypeProvider = TypeProvider.Gismeteo,
-                NameProvider = "Gismeteo",
+                Provider = ProviderTypeEntity.Gismeteo,
+                ProviderName = "Gismeteo",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "id"), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescription
+                WeatherDescription = new WeatherDescriptionEntity
                 {
                     Cloudy = this.ConvertCloudy(htmlDocument.GetInnerText(description)),
-                    TypePrecipitation = this.ConvertTypePrecipitation(htmlDocument.GetInnerText(description)),
+                    Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetInnerText(description)),
                     StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetInnerText(description)),
                     IsFog = this.ConvertFog(htmlDocument.GetInnerText(description)),
                     IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetInnerText(description)),
@@ -157,19 +157,19 @@ namespace Weather.Parser
 
         #region Converters
 
-        protected override TypeCloudy ConvertCloudy(string input)
+        protected override CloudyTypeEntity ConvertCloudy(string input)
         {
             if (Regex.IsMatch(input, Fair))
-                return TypeCloudy.Fair;
+                return CloudyTypeEntity.Fair;
 
             if (Regex.IsMatch(input, PartlyCloudy))
-                return TypeCloudy.PartlyCloudy;
+                return CloudyTypeEntity.PartlyCloudy;
 
             if (Regex.IsMatch(input, MainlyCloudy))
-                return TypeCloudy.MainlyCloudy;
+                return CloudyTypeEntity.MainlyCloudy;
 
             if (Regex.IsMatch(input, Overcast) || this.ConvertFog(input))
-                return TypeCloudy.Overcast;
+                return CloudyTypeEntity.Overcast;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }

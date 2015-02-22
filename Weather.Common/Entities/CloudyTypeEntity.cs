@@ -1,7 +1,7 @@
 ﻿
 namespace Weather.Common.Entities
 {
-    public enum TypeCloudy
+    public enum CloudyTypeEntity
     {
         Fair = 0,
         PartlyCloudy = 25,

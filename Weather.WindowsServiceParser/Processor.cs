@@ -84,7 +84,7 @@ namespace Weather.WindowsServiceParser
         {
             var exceptions = new ConcurrentQueue<Exception>();
 
-            var links = this.repository.Get<Link>(i => true).ToList();
+            var links = this.repository.Get<LinkEntity>(i => true).ToList();
             var weatherData = links.AsParallel().SelectMany(
                 i =>
                 {
@@ -95,7 +95,7 @@ namespace Weather.WindowsServiceParser
                     catch (Exception e)
                     {
                         exceptions.Enqueue(e);
-                        return Enumerable.Empty<WeatherData>();
+                        return Enumerable.Empty<WeatherDataEntity>();
                     }
                 }).ToList();
 
@@ -107,21 +107,21 @@ namespace Weather.WindowsServiceParser
             }
         }
 
-        private IEnumerable<WeatherData> ProcessLink(Link link)
+        private IEnumerable<WeatherDataEntity> ProcessLink(LinkEntity link)
         {
-            var result = Enumerable.Empty<WeatherData>();
+            var result = Enumerable.Empty<WeatherDataEntity>();
 
-            switch (link.TypeProvider)
+            switch (link.Provider)
             {
-                case TypeProvider.Gismeteo:
+                case ProviderTypeEntity.Gismeteo:
                     result = this.gismeteoProvider.Fetch(link.Url);
                     break;
 
-                case TypeProvider.Sinoptik:
+                case ProviderTypeEntity.Sinoptik:
                     result = this.sinoptikProvider.Fetch(link.Url);
                     break;
 
-                case TypeProvider.Rp5:
+                case ProviderTypeEntity.Rp5:
                     result = this.rp5Provider.Fetch(link.Url);
                     break;
             }
@@ -134,12 +134,12 @@ namespace Weather.WindowsServiceParser
             return result;
         }
 
-        private void SaveWeatherData(IEnumerable<WeatherData> weatherData)
+        private void SaveWeatherData(IEnumerable<WeatherDataEntity> weatherData)
         {
             var time = weatherData.Min(t => t.DateTime);
             this.repository.AddOrUpdate(
                 weatherData,
-                (x, y) => x.DateTime == y.DateTime && x.TypeProvider == y.TypeProvider && x.CityId == y.CityId,
+                (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
                 x => x.DateTime >= time);
             this.repository.Save();
         }

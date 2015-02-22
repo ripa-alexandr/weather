@@ -6,7 +6,7 @@ using Weather.Common.Entities;
 
 namespace Weather.DAL.EntityMapping
 {
-    public class CountryMapping : EntityTypeConfiguration<Country>
+    public class CountryMapping : EntityTypeConfiguration<CountryEntity>
     {
         public CountryMapping()
         {

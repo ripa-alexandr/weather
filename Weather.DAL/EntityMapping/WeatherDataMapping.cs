@@ -6,7 +6,7 @@ using Weather.Common.Entities;
 
 namespace Weather.DAL.EntityMapping
 {
-    public class WeatherDataMapping : EntityTypeConfiguration<WeatherData>
+    public class WeatherDataMapping : EntityTypeConfiguration<WeatherDataEntity>
     {
         public WeatherDataMapping()
         {

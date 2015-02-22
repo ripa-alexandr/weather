@@ -7,6 +7,6 @@ namespace Weather.AverageWeatherDescriptionCalculator.Interfaces
 {
     public interface ICalculator
     {
-        WeatherDescription GetAvgWeatherDescription(IEnumerable<WeatherDescription> weatherDescriptions);
+        WeatherDescriptionEntity GetAvgWeatherDescription(IEnumerable<WeatherDescriptionEntity> weatherDescriptions);
     }
 }

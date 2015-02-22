@@ -1,16 +1,16 @@
 ﻿
 using System.Collections.Generic;
 
-using Weather.Common.Interfaces;
-
 namespace Weather.Common.Entities
 {
-    public class World : IBaseEntity
+    public class RegionEntity
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public virtual ICollection<Country> Countries { get; set; }
+        public virtual CountryEntity Country { get; set; }
+
+        public virtual ICollection<CityEntity> Cities { get; set; }
     }
 }

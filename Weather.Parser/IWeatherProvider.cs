@@ -12,6 +12,6 @@ namespace Weather.Parser
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        IEnumerable<WeatherData> Fetch(string url);
+        IEnumerable<WeatherDataEntity> Fetch(string url);
     }
 }

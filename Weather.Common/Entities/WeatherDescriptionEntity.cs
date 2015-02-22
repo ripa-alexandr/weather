@@ -1,17 +1,15 @@
 ﻿
-using Weather.Common.Interfaces;
-
 namespace Weather.Common.Entities
 {
-    public class WeatherDescription : IBaseEntity
+    public class WeatherDescriptionEntity
     {
         public int Id { get; set; }
 
-        public TypeCloudy Cloudy { get; set; }
+        public CloudyTypeEntity Cloudy { get; set; }
 
-        public TypePrecipitation TypePrecipitation { get; set; }
+        public PrecipitationTypeEntity Precipitation { get; set; }
 
-        public TypeStrengthPrecipitation StrengthPrecipitation { get; set; }
+        public StrengthPrecipitationTypeEntity StrengthPrecipitation { get; set; }
 
         public bool IsFog { get; set; }
 
@@ -23,7 +21,7 @@ namespace Weather.Common.Entities
 
         public double Pressure { get; set; }
 
-        public TypeWindDirection WindDirection { get; set; }
+        public WindDirectionTypeEntity WindDirection { get; set; }
 
         public double WindSpeed { get; set; }
 
@@ -31,6 +29,6 @@ namespace Weather.Common.Entities
 
         public double? ChancePrecipitation { get; set; }
 
-        public virtual WeatherData WeatherData { get; set; }
+        public virtual WeatherDataEntity WeatherData { get; set; }
     }
 }

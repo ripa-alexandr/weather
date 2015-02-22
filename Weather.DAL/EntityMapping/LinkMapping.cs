@@ -6,7 +6,7 @@ using Weather.Common.Entities;
 
 namespace Weather.DAL.EntityMapping
 {
-    public class LinkMapping : EntityTypeConfiguration<Link>
+    public class LinkMapping : EntityTypeConfiguration<LinkEntity>
     {
         public LinkMapping()
         {

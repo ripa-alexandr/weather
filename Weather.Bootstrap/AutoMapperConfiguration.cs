@@ -9,11 +9,11 @@ namespace Weather.Bootstrap
     {
         public static void Configure()
         {
-            Mapper.CreateMap<WeatherData, WeatherData>()
+            Mapper.CreateMap<WeatherDataEntity, WeatherDataEntity>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.City, opt => opt.Ignore());
 
-            Mapper.CreateMap<WeatherDescription, WeatherDescription>()
+            Mapper.CreateMap<WeatherDescriptionEntity, WeatherDescriptionEntity>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.WeatherData, opt => opt.Ignore());
         }

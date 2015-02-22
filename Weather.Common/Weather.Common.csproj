@@ -39,26 +39,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\City.cs" />
-    <Compile Include="Entities\Country.cs" />
-    <Compile Include="Entities\Link.cs" />
-    <Compile Include="Entities\Region.cs" />
-    <Compile Include="Entities\TypeCloudy.cs" />
-    <Compile Include="Entities\TypePrecipitation.cs" />
-    <Compile Include="Entities\TypeProvider.cs" />
-    <Compile Include="Entities\TypeStrengthPrecipitation.cs" />
-    <Compile Include="Entities\TypeWindDirection.cs" />
-    <Compile Include="Entities\WeatherData.cs" />
-    <Compile Include="Entities\WeatherDescription.cs" />
-    <Compile Include="Entities\World.cs" />
+    <Compile Include="Entities\CityEntity.cs" />
+    <Compile Include="Entities\CountryEntity.cs" />
+    <Compile Include="Entities\LinkEntity.cs" />
+    <Compile Include="Entities\RegionEntity.cs" />
+    <Compile Include="Entities\CloudyTypeEntity.cs" />
+    <Compile Include="Entities\PrecipitationTypeEntity.cs" />
+    <Compile Include="Entities\ProviderTypeEntity.cs" />
+    <Compile Include="Entities\StrengthPrecipitationTypeEntity.cs" />
+    <Compile Include="Entities\WindDirectionTypeEntity.cs" />
+    <Compile Include="Entities\WeatherDataEntity.cs" />
+    <Compile Include="Entities\WeatherDescriptionEntity.cs" />
+    <Compile Include="Entities\WorldEntity.cs" />
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\TimeOfDay.cs" />
     <Compile Include="Exceptions\HtmlDocumentNotExistAttributeException.cs" />
     <Compile Include="Exceptions\NotImplementedMethodException.cs" />
     <Compile Include="Exceptions\HtmlDocumentNotExistXPathException.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
-    <Compile Include="Interfaces\IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

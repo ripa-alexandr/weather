@@ -65,6 +65,10 @@
     <Compile Include="Migrations\201411290006093_Initialize.Designer.cs">
       <DependentUpon>201411290006093_Initialize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502222303512_UpdatedEntityPropertyNames.cs" />
+    <Compile Include="Migrations\201502222303512_UpdatedEntityPropertyNames.Designer.cs">
+      <DependentUpon>201502222303512_UpdatedEntityPropertyNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repositorty.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201411290006093_Initialize.resx">
       <DependentUpon>201411290006093_Initialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502222303512_UpdatedEntityPropertyNames.resx">
+      <DependentUpon>201502222303512_UpdatedEntityPropertyNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

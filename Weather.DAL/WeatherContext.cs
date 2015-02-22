@@ -18,19 +18,19 @@ namespace Weather.DAL
         {
         }
 
-        public DbSet<City> Cities { get; set; }
+        public DbSet<CityEntity> Cities { get; set; }
 
-        public DbSet<Country> Countries { get; set; }
+        public DbSet<CountryEntity> Countries { get; set; }
 
-        public DbSet<Link> Links { get; set; }
+        public DbSet<LinkEntity> Links { get; set; }
 
-        public DbSet<Region> Regions { get; set; }
+        public DbSet<RegionEntity> Regions { get; set; }
 
-        public DbSet<WeatherData> WeatherData { get; set; }
+        public DbSet<WeatherDataEntity> WeatherData { get; set; }
 
-        public DbSet<WeatherDescription> WeatherDescription { get; set; }
+        public DbSet<WeatherDescriptionEntity> WeatherDescription { get; set; }
 
-        public DbSet<World> Worlds { get; set; }
+        public DbSet<WorldEntity> Worlds { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
