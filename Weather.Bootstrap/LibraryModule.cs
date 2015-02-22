@@ -22,13 +22,7 @@ namespace Weather.Bootstrap
         private void InitializeRepositories()
         {
             Bind<DbContext>().To<WeatherContext>();
-            Bind<CityRepository>().ToSelf();
-            Bind<CountryRepository>().ToSelf();
-            Bind<LinkRepository>().ToSelf();
-            Bind<RegionRepository>().ToSelf();
-            Bind<WeatherDataRepository>().ToSelf();
-            Bind<WeatherDescriptionRepository>().ToSelf();
-            Bind<WorldRepository>().ToSelf();
+            Bind<Repository>().ToSelf();
         }
 
         private void InitializeProviders()

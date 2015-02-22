@@ -67,15 +67,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\CityRepository.cs" />
-    <Compile Include="Repository\CountryRepository.cs" />
-    <Compile Include="Repository\LinkRepository.cs" />
-    <Compile Include="Repository\Abstract\BaseRepositorty.cs" />
-    <Compile Include="Repository\Interface\IBaseRepository.cs" />
-    <Compile Include="Repository\RegionRepository.cs" />
-    <Compile Include="Repository\WeatherDataRepository.cs" />
-    <Compile Include="Repository\WeatherDescriptionRepository.cs" />
-    <Compile Include="Repository\WorldRepository.cs" />
+    <Compile Include="Repository\Repositorty.cs" />
+    <Compile Include="Repository\Interface\IRepository.cs" />
     <Compile Include="WeatherContext.cs" />
   </ItemGroup>
   <ItemGroup>
