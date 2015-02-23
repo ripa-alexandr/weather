@@ -85,7 +85,7 @@ namespace Weather.WindowsServiceParser
         {
             var exceptions = new ConcurrentQueue<Exception>();
 
-            var links = this.repository.Get<LinkEntity>(i => true).ToList();
+            var links = this.repository.Get<LinkEntity>().ToList();
             var weatherData = links.AsParallel().SelectMany(
                 i =>
                 {

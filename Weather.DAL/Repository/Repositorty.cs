@@ -20,6 +20,11 @@ namespace Weather.DAL.Repository
             this.context = context;
         }
 
+        public IQueryable<T> Get<T>() where T : class
+        {
+            return this.Get<T>(i => true);
+        }
+
         public IQueryable<T> Get<T>(Expression<Func<T, bool>> where) where T : class
         {
             return this.context.Set<T>().Where(where);
@@ -32,7 +37,7 @@ namespace Weather.DAL.Repository
 
         public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where = null) where T : class
         {
-            var destination = where == null ? this.Get<T>(i => true).ToList() : this.Get(where).ToList();
+            var destination = where == null ? this.Get<T>().ToList() : this.Get(where).ToList();
             var insert = source.Where(x => !destination.Any(y => same(x, y)));
             var update = source.Except(insert);
 

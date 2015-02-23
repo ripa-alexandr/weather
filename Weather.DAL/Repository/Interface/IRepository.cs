@@ -9,7 +9,13 @@ namespace Weather.DAL.Repository.Interface
     public interface IRepository
     {
         /// <summary>
-        /// Get one entity from database with id 
+        /// Get all entities from database 
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<T> Get<T>() where T : class;
+
+        /// <summary>
+        /// Get entities from database with where 
         /// </summary>
         /// <param name="where"></param>
         /// <returns></returns>
