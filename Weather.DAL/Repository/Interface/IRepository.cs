@@ -28,12 +28,19 @@ namespace Weather.DAL.Repository.Interface
         void Add<T>(T data) where T : class;
 
         /// <summary>
-        /// Add or update entity to database
+        /// Add or update entities to database for all entities in database
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="same"></param>
+        void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same) where T : class;
+
+        /// <summary>
+        /// Add or update entities to database for some entities in database
         /// </summary>
         /// <param name="source"></param>
         /// <param name="same"></param>
         /// <param name="where"></param>
-        void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where = null) where T : class;
+        void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where) where T : class;
 
         /// <summary>
         /// Delete entity from database

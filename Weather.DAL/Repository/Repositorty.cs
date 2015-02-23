@@ -35,9 +35,14 @@ namespace Weather.DAL.Repository
             this.context.Set<T>().Add(data);
         }
 
-        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where = null) where T : class
+        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same) where T : class
         {
-            var destination = where == null ? this.Get<T>().ToList() : this.Get(where).ToList();
+            AddOrUpdate(source, same, i => true);
+        }
+
+        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where) where T : class
+        {
+            var destination = this.Get(where).ToList();
             var insert = source.Where(x => !destination.Any(y => same(x, y)));
             var update = source.Except(insert);
 
