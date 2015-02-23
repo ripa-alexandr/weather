@@ -1,13 +1,15 @@
 ﻿
 using System;
 
+using Weather.Common.Enums;
+
 namespace Weather.Common.Entities
 {
     public class WeatherDataEntity
     {
         public int Id { get; set; }
 
-        public ProviderTypeEntity Provider { get; set; }
+        public ProviderType Provider { get; set; }
 
         public string ProviderName { get; set; }
 

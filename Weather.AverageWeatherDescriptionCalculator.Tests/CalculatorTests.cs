@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 using Weather.AverageWeatherDescriptionCalculator.Interfaces;
 using Weather.Common.Entities;
+using Weather.Common.Enums;
 
 namespace Weather.AverageWeatherDescriptionCalculator.Tests
 {
@@ -19,13 +20,13 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             this.calculator = new Calculator();
         }
 
-        [TestCase(WindDirectionTypeEntity.North, WindDirectionTypeEntity.East, WindDirectionTypeEntity.NorthEast)]
-        [TestCase(WindDirectionTypeEntity.East, WindDirectionTypeEntity.South, WindDirectionTypeEntity.SouthEast)]
-        [TestCase(WindDirectionTypeEntity.South, WindDirectionTypeEntity.West, WindDirectionTypeEntity.SouthWest)]
-        [TestCase(WindDirectionTypeEntity.West, WindDirectionTypeEntity.North, WindDirectionTypeEntity.NorthWest)]
+        [TestCase(WindDirectionType.North, WindDirectionType.East, WindDirectionType.NorthEast)]
+        [TestCase(WindDirectionType.East, WindDirectionType.South, WindDirectionType.SouthEast)]
+        [TestCase(WindDirectionType.South, WindDirectionType.West, WindDirectionType.SouthWest)]
+        [TestCase(WindDirectionType.West, WindDirectionType.North, WindDirectionType.NorthWest)]
         [Test]
         public void GetAvgWeatherDescription_CalculateAverageDirectionEveryFourthWithSameSpeed_AverageDirection(
-            WindDirectionTypeEntity direction1, WindDirectionTypeEntity direction2, WindDirectionTypeEntity result)
+            WindDirectionType direction1, WindDirectionType direction2, WindDirectionType result)
         {
             // Arrange
             var weatherDescription = new[]
@@ -41,11 +42,11 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             Assert.AreEqual(averageWeatherDescription.WindDirection, result);
         }
 
-        [TestCase(WindDirectionTypeEntity.North, WindDirectionTypeEntity.West, WindDirectionTypeEntity.NorthWest)]
-        [TestCase(WindDirectionTypeEntity.North, WindDirectionTypeEntity.East, WindDirectionTypeEntity.NorthEast)]
+        [TestCase(WindDirectionType.North, WindDirectionType.West, WindDirectionType.NorthWest)]
+        [TestCase(WindDirectionType.North, WindDirectionType.East, WindDirectionType.NorthEast)]
         [Test]
         public void GetAvgWeatherDescription_CalculateAverageDirectionNearZerroWithSameSpeed_AverageDirection(
-            WindDirectionTypeEntity direction1, WindDirectionTypeEntity direction2, WindDirectionTypeEntity result)
+            WindDirectionType direction1, WindDirectionType direction2, WindDirectionType result)
         {
             // Arrange
             var weatherDescription = new[]
@@ -67,25 +68,25 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.West, WindSpeed = 0 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 20 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.West, WindSpeed = 0 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 20 },
             };
 
             // Act
             var averageWeatherDescription = this.calculator.GetAvgWeatherDescription(weatherDescription);
 
             // Assert
-            Assert.AreEqual(averageWeatherDescription.WindDirection, WindDirectionTypeEntity.North);
+            Assert.AreEqual(averageWeatherDescription.WindDirection, WindDirectionType.North);
         }
 
-        [TestCase(WindDirectionTypeEntity.North, WindDirectionTypeEntity.South)]
-        [TestCase(WindDirectionTypeEntity.NorthEast, WindDirectionTypeEntity.SouthWest)]
-        [TestCase(WindDirectionTypeEntity.East, WindDirectionTypeEntity.West)]
-        [TestCase(WindDirectionTypeEntity.SouthEast, WindDirectionTypeEntity.NorthWest)]
-        [TestCase(WindDirectionTypeEntity.South, WindDirectionTypeEntity.North)]
+        [TestCase(WindDirectionType.North, WindDirectionType.South)]
+        [TestCase(WindDirectionType.NorthEast, WindDirectionType.SouthWest)]
+        [TestCase(WindDirectionType.East, WindDirectionType.West)]
+        [TestCase(WindDirectionType.SouthEast, WindDirectionType.NorthWest)]
+        [TestCase(WindDirectionType.South, WindDirectionType.North)]
         [Test]
         public void GetAvgWeatherDescription_CalculateAverageDirectionWithCrosswindAndDifferentSpeed_DirectionWhereMoreSpeed(
-            WindDirectionTypeEntity direction1, WindDirectionTypeEntity direction2)
+            WindDirectionType direction1, WindDirectionType direction2)
         {
             // Arrange
             var weatherDescription = new[]
@@ -107,8 +108,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 0 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.East, WindSpeed = 20 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 0 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.East, WindSpeed = 20 },
             };
 
             // Act
@@ -118,14 +119,14 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             Assert.AreEqual(averageWeatherDescription.WindSpeed, 10);
         }
 
-        [TestCase(WindDirectionTypeEntity.North, WindDirectionTypeEntity.South, 10, 11)]
-        [TestCase(WindDirectionTypeEntity.NorthEast, WindDirectionTypeEntity.SouthWest, 10, 16)]
-        [TestCase(WindDirectionTypeEntity.East, WindDirectionTypeEntity.West, 2, 1)]
-        [TestCase(WindDirectionTypeEntity.SouthEast, WindDirectionTypeEntity.NorthWest, 17, 8)]
-        [TestCase(WindDirectionTypeEntity.South, WindDirectionTypeEntity.North, 5, 4)]
+        [TestCase(WindDirectionType.North, WindDirectionType.South, 10, 11)]
+        [TestCase(WindDirectionType.NorthEast, WindDirectionType.SouthWest, 10, 16)]
+        [TestCase(WindDirectionType.East, WindDirectionType.West, 2, 1)]
+        [TestCase(WindDirectionType.SouthEast, WindDirectionType.NorthWest, 17, 8)]
+        [TestCase(WindDirectionType.South, WindDirectionType.North, 5, 4)]
         [Test]
         public void GetAvgWeatherDescription_CalculateAverageSpeedWithCrosswindAndDifferentSpeed_AverageSpeed(
-            WindDirectionTypeEntity direction1, WindDirectionTypeEntity direction2, double speed1, double speed2)
+            WindDirectionType direction1, WindDirectionType direction2, double speed1, double speed2)
         {
             // Arrange
             var weatherDescription = new[]
@@ -147,9 +148,9 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.South, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 21 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 2 }
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 20 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 21 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 2 }
             };
 
             // Act
@@ -165,10 +166,10 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.South, WindSpeed = 10 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.East, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.West, WindSpeed = 20 }
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 10 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.East, WindSpeed = 20 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.West, WindSpeed = 20 }
             };
 
             // Act
@@ -184,11 +185,11 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.South, WindSpeed = 10 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.NorthWest, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.SouthEast, WindSpeed = 20 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.West, WindSpeed = 5 }
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 10 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.NorthWest, WindSpeed = 20 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.SouthEast, WindSpeed = 20 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.West, WindSpeed = 5 }
             };
 
             // Act
@@ -204,10 +205,10 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.South, WindSpeed = 10 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.North, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionTypeEntity.South, WindSpeed = 20 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 10 },
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 20 }, 
+                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 20 },
             };
 
             // Act

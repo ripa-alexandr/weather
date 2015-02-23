@@ -1,4 +1,6 @@
 ﻿
+using Weather.Common.Enums;
+
 namespace Weather.Common.Entities
 {
     public class LinkEntity
@@ -7,7 +9,7 @@ namespace Weather.Common.Entities
 
         public string Url { get; set; }
 
-        public ProviderTypeEntity Provider { get; set; }
+        public ProviderType Provider { get; set; }
 
         public int CityId { get; set; }
 

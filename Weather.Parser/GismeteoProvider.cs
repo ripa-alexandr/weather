@@ -57,7 +57,7 @@ namespace Weather.Parser
 
             return new WeatherDataEntity
             {
-                Provider = ProviderTypeEntity.Gismeteo,
+                Provider = ProviderType.Gismeteo,
                 ProviderName = "Gismeteo",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "id"), parseInfo.TimeOfDayKey),
                 WeatherDescription = new WeatherDescriptionEntity
@@ -157,19 +157,19 @@ namespace Weather.Parser
 
         #region Converters
 
-        protected override CloudyTypeEntity ConvertCloudy(string input)
+        protected override CloudyType ConvertCloudy(string input)
         {
             if (Regex.IsMatch(input, Fair))
-                return CloudyTypeEntity.Fair;
+                return CloudyType.Fair;
 
             if (Regex.IsMatch(input, PartlyCloudy))
-                return CloudyTypeEntity.PartlyCloudy;
+                return CloudyType.PartlyCloudy;
 
             if (Regex.IsMatch(input, MainlyCloudy))
-                return CloudyTypeEntity.MainlyCloudy;
+                return CloudyType.MainlyCloudy;
 
             if (Regex.IsMatch(input, Overcast) || this.ConvertFog(input))
-                return CloudyTypeEntity.Overcast;
+                return CloudyType.Overcast;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }

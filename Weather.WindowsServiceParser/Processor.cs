@@ -11,6 +11,7 @@ using NLog;
 
 using Weather.Bootstrap;
 using Weather.Common.Entities;
+using Weather.Common.Enums;
 using Weather.Common.Exceptions;
 using Weather.Common.Extensions;
 using Weather.DAL.Repository;
@@ -113,15 +114,15 @@ namespace Weather.WindowsServiceParser
 
             switch (link.Provider)
             {
-                case ProviderTypeEntity.Gismeteo:
+                case ProviderType.Gismeteo:
                     result = this.gismeteoProvider.Fetch(link.Url);
                     break;
 
-                case ProviderTypeEntity.Sinoptik:
+                case ProviderType.Sinoptik:
                     result = this.sinoptikProvider.Fetch(link.Url);
                     break;
 
-                case ProviderTypeEntity.Rp5:
+                case ProviderType.Rp5:
                     result = this.rp5Provider.Fetch(link.Url);
                     break;
             }

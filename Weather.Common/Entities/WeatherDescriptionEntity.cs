@@ -1,15 +1,17 @@
 ﻿
+using Weather.Common.Enums;
+
 namespace Weather.Common.Entities
 {
     public class WeatherDescriptionEntity
     {
         public int Id { get; set; }
 
-        public CloudyTypeEntity Cloudy { get; set; }
+        public CloudyType Cloudy { get; set; }
 
-        public PrecipitationTypeEntity Precipitation { get; set; }
+        public PrecipitationType Precipitation { get; set; }
 
-        public StrengthPrecipitationTypeEntity StrengthPrecipitation { get; set; }
+        public StrengthPrecipitationType StrengthPrecipitation { get; set; }
 
         public bool IsFog { get; set; }
 
@@ -21,7 +23,7 @@ namespace Weather.Common.Entities
 
         public double Pressure { get; set; }
 
-        public WindDirectionTypeEntity WindDirection { get; set; }
+        public WindDirectionType WindDirection { get; set; }
 
         public double WindSpeed { get; set; }
 

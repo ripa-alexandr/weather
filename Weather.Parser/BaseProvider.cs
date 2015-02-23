@@ -94,52 +94,52 @@ namespace Weather.Parser
 
         #region Converters
 
-        protected virtual CloudyTypeEntity ConvertCloudy(string input)
+        protected virtual CloudyType ConvertCloudy(string input)
         {
             if (Regex.IsMatch(input, Fair))
-                return CloudyTypeEntity.Fair;
+                return CloudyType.Fair;
 
             if (Regex.IsMatch(input, PartlyCloudy))
-                return CloudyTypeEntity.PartlyCloudy;
+                return CloudyType.PartlyCloudy;
 
             if (Regex.IsMatch(input, Cloudy))
-                return CloudyTypeEntity.Cloudy;
+                return CloudyType.Cloudy;
 
             if (Regex.IsMatch(input, MainlyCloudy))
-                return CloudyTypeEntity.MainlyCloudy;
+                return CloudyType.MainlyCloudy;
 
             if (Regex.IsMatch(input, Overcast) || this.ConvertFog(input))
-                return CloudyTypeEntity.Overcast;
+                return CloudyType.Overcast;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }
 
-        protected virtual PrecipitationTypeEntity ConvertTypePrecipitation(string input)
+        protected virtual PrecipitationType ConvertTypePrecipitation(string input)
         {
             if (Regex.IsMatch(input, Rain))
-                return PrecipitationTypeEntity.Rain;
+                return PrecipitationType.Rain;
 
             if (Regex.IsMatch(input, Sleet))
-                return PrecipitationTypeEntity.Sleet;
+                return PrecipitationType.Sleet;
 
             if (Regex.IsMatch(input, Snow))
-                return PrecipitationTypeEntity.Snow;
+                return PrecipitationType.Snow;
 
-            return PrecipitationTypeEntity.None;
+            return PrecipitationType.None;
         }
 
-        protected virtual StrengthPrecipitationTypeEntity ConvertStrengthPrecipitation(string input)
+        protected virtual StrengthPrecipitationType ConvertStrengthPrecipitation(string input)
         {
-            if (this.ConvertTypePrecipitation(input) == PrecipitationTypeEntity.None)
-                return StrengthPrecipitationTypeEntity.None;
+            if (this.ConvertTypePrecipitation(input) == PrecipitationType.None)
+                return StrengthPrecipitationType.None;
 
             if (Regex.IsMatch(input, Light))
-                return StrengthPrecipitationTypeEntity.Light;
+                return StrengthPrecipitationType.Light;
 
             if (Regex.IsMatch(input, Heavy))
-                return StrengthPrecipitationTypeEntity.Heavy;
+                return StrengthPrecipitationType.Heavy;
 
-            return StrengthPrecipitationTypeEntity.Middle;
+            return StrengthPrecipitationType.Middle;
         }
 
         protected virtual bool ConvertFog(string input)
@@ -152,34 +152,34 @@ namespace Weather.Parser
             return Regex.IsMatch(input, Thunderstorm);
         }
 
-        protected virtual WindDirectionTypeEntity ConvertWindDirection(string input)
+        protected virtual WindDirectionType ConvertWindDirection(string input)
         {
             if (Regex.IsMatch(input, North))
-                return WindDirectionTypeEntity.North;
+                return WindDirectionType.North;
 
             if (Regex.IsMatch(input, NorthEast))
-                return WindDirectionTypeEntity.NorthEast;
+                return WindDirectionType.NorthEast;
 
             if (Regex.IsMatch(input, East))
-                return WindDirectionTypeEntity.East;
+                return WindDirectionType.East;
 
             if (Regex.IsMatch(input, SouthEast))
-                return WindDirectionTypeEntity.SouthEast;
+                return WindDirectionType.SouthEast;
 
             if (Regex.IsMatch(input, South))
-                return WindDirectionTypeEntity.South;
+                return WindDirectionType.South;
 
             if (Regex.IsMatch(input, SouthWest))
-                return WindDirectionTypeEntity.SouthWest;
+                return WindDirectionType.SouthWest;
 
             if (Regex.IsMatch(input, West))
-                return WindDirectionTypeEntity.West;
+                return WindDirectionType.West;
 
             if (Regex.IsMatch(input, NorthWest))
-                return WindDirectionTypeEntity.NorthWest;
+                return WindDirectionType.NorthWest;
 
             if (Regex.IsMatch(input, Calm))
-                return WindDirectionTypeEntity.North;
+                return WindDirectionType.North;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }

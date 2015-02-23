@@ -39,15 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dto\CityDto.cs" />
+    <Compile Include="Dto\CountryDto.cs" />
+    <Compile Include="Dto\LinkDto.cs" />
+    <Compile Include="Dto\RegionDto.cs" />
+    <Compile Include="Dto\WeatherDataDto.cs" />
+    <Compile Include="Dto\WeatherDescriptionDto.cs" />
+    <Compile Include="Dto\WorldDto.cs" />
     <Compile Include="Entities\CityEntity.cs" />
     <Compile Include="Entities\CountryEntity.cs" />
     <Compile Include="Entities\LinkEntity.cs" />
     <Compile Include="Entities\RegionEntity.cs" />
-    <Compile Include="Entities\CloudyTypeEntity.cs" />
-    <Compile Include="Entities\PrecipitationTypeEntity.cs" />
-    <Compile Include="Entities\ProviderTypeEntity.cs" />
-    <Compile Include="Entities\StrengthPrecipitationTypeEntity.cs" />
-    <Compile Include="Entities\WindDirectionTypeEntity.cs" />
+    <Compile Include="Enums\CloudyType.cs" />
+    <Compile Include="Enums\PrecipitationType.cs" />
+    <Compile Include="Enums\ProviderType.cs" />
+    <Compile Include="Enums\StrengthPrecipitationType.cs" />
+    <Compile Include="Enums\WindDirectionType.cs" />
     <Compile Include="Entities\WeatherDataEntity.cs" />
     <Compile Include="Entities\WeatherDescriptionEntity.cs" />
     <Compile Include="Entities\WorldEntity.cs" />
@@ -59,9 +66,7 @@
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dto\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

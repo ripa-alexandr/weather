@@ -5,6 +5,7 @@ using System.Linq;
 
 using Weather.AverageWeatherDescriptionCalculator.Interfaces;
 using Weather.Common.Entities;
+using Weather.Common.Enums;
 
 namespace Weather.AverageWeatherDescriptionCalculator
 {
@@ -31,33 +32,33 @@ namespace Weather.AverageWeatherDescriptionCalculator
             return averageWeatherCharacteristic;
         }
 
-        private WindDirectionTypeEntity AverageWindDirection(IEnumerable<WeatherDescriptionEntity> descriptions)
+        private WindDirectionType AverageWindDirection(IEnumerable<WeatherDescriptionEntity> descriptions)
         {
             var avgDegree = this.AverageDirection(descriptions);
 
             if (avgDegree > 337.5 && avgDegree <= 360 || avgDegree >= 0 && avgDegree <= 22.5)
-                return WindDirectionTypeEntity.North;
+                return WindDirectionType.North;
 
             if (avgDegree > 22.5 && avgDegree <= 67.5)
-                return WindDirectionTypeEntity.NorthEast;
+                return WindDirectionType.NorthEast;
 
             if(avgDegree > 67.5 && avgDegree <= 112.5)
-                return WindDirectionTypeEntity.East;
+                return WindDirectionType.East;
 
             if (avgDegree > 112.5 && avgDegree <= 157.5)
-                return WindDirectionTypeEntity.SouthEast;
+                return WindDirectionType.SouthEast;
 
             if (avgDegree > 157.5 && avgDegree <= 202.5) 
-                return WindDirectionTypeEntity.South;
+                return WindDirectionType.South;
 
             if (avgDegree > 202.5 && avgDegree <= 247.5)
-                return WindDirectionTypeEntity.SouthWest;
+                return WindDirectionType.SouthWest;
 
             if (avgDegree > 247.5 && avgDegree <= 292.5)
-                return WindDirectionTypeEntity.West;
+                return WindDirectionType.West;
 
             if (avgDegree > 292.5 && avgDegree <= 337.5)
-                return WindDirectionTypeEntity.NorthWest;
+                return WindDirectionType.NorthWest;
 
             throw new NotImplementedException();
         }
@@ -115,46 +116,46 @@ namespace Weather.AverageWeatherDescriptionCalculator
             return degree360 < 0 ? degree360 + 360 : degree360;
         }
 
-        private CloudyTypeEntity AverageCloudy(IEnumerable<CloudyTypeEntity> cloudy)
+        private CloudyType AverageCloudy(IEnumerable<CloudyType> cloudy)
         {
             var avgCloudy = cloudy.Average(i => (double)i);
             
             if (avgCloudy >= 0 && avgCloudy <= 12.5)
-                return CloudyTypeEntity.Fair;
+                return CloudyType.Fair;
 
             if (avgCloudy > 12.5 && avgCloudy <= 37.5)
-                return CloudyTypeEntity.PartlyCloudy;
+                return CloudyType.PartlyCloudy;
 
             if (avgCloudy > 37.5 && avgCloudy <= 62.5)
-                return CloudyTypeEntity.Cloudy;
+                return CloudyType.Cloudy;
 
             if (avgCloudy > 62.5 && avgCloudy <= 87.5)
-                return CloudyTypeEntity.MainlyCloudy;
+                return CloudyType.MainlyCloudy;
 
             if (avgCloudy > 87.5 && avgCloudy <= 100)
-                return CloudyTypeEntity.Overcast;
+                return CloudyType.Overcast;
 
             throw new NotImplementedException();
         }
 
-        private PrecipitationTypeEntity AverageTypePrecipitation(IEnumerable<PrecipitationTypeEntity> precipitation)
+        private PrecipitationType AverageTypePrecipitation(IEnumerable<PrecipitationType> precipitation)
         {
-            if (this.AverageBool(precipitation.Select(i => i == PrecipitationTypeEntity.None)))
-                return PrecipitationTypeEntity.None;
+            if (this.AverageBool(precipitation.Select(i => i == PrecipitationType.None)))
+                return PrecipitationType.None;
 
-            var avgTypePrecipitation = Math.Round(precipitation.Where(i => i != PrecipitationTypeEntity.None).Average(p => (int)p));
+            var avgTypePrecipitation = Math.Round(precipitation.Where(i => i != PrecipitationType.None).Average(p => (int)p));
 
-            return (PrecipitationTypeEntity)avgTypePrecipitation;
+            return (PrecipitationType)avgTypePrecipitation;
         }
 
-        private StrengthPrecipitationTypeEntity AverageStrengthPrecipitation(IEnumerable<StrengthPrecipitationTypeEntity> strengthPrecipitation)
+        private StrengthPrecipitationType AverageStrengthPrecipitation(IEnumerable<StrengthPrecipitationType> strengthPrecipitation)
         {
-            if (this.AverageBool(strengthPrecipitation.Select(i => i == StrengthPrecipitationTypeEntity.None)))
-                return StrengthPrecipitationTypeEntity.None;
+            if (this.AverageBool(strengthPrecipitation.Select(i => i == StrengthPrecipitationType.None)))
+                return StrengthPrecipitationType.None;
 
-            var avgStrengthPrecipitation = Math.Round(strengthPrecipitation.Where(i => i != StrengthPrecipitationTypeEntity.None).Average(p => (int)p));
+            var avgStrengthPrecipitation = Math.Round(strengthPrecipitation.Where(i => i != StrengthPrecipitationType.None).Average(p => (int)p));
 
-            return (StrengthPrecipitationTypeEntity)avgStrengthPrecipitation;
+            return (StrengthPrecipitationType)avgStrengthPrecipitation;
         }
 
         private bool AverageBool(IEnumerable<bool> itemBools)

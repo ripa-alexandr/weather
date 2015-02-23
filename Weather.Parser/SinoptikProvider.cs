@@ -56,7 +56,7 @@ namespace Weather.Parser
 
             return new WeatherDataEntity
             {
-                Provider = ProviderTypeEntity.Sinoptik,
+                Provider = ProviderType.Sinoptik,
                 ProviderName = "Sinoptic",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "data-link"), parseInfo.TimeOfDayKey),
                 WeatherDescription = new WeatherDescriptionEntity

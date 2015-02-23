@@ -61,7 +61,7 @@ namespace Weather.Parser
             
             return new WeatherDataEntity
             {
-                Provider = ProviderTypeEntity.Rp5,
+                Provider = ProviderType.Rp5,
                 ProviderName = "Rp5",
                 DateTime = this.GetDateInTable(htmlDocument.GetInnerText(date), parseInfo.TimeOfDayKey),
                 WeatherDescription = new WeatherDescriptionEntity
