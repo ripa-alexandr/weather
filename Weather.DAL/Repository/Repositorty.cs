@@ -37,7 +37,7 @@ namespace Weather.DAL.Repository
 
         public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same) where T : class
         {
-            AddOrUpdate(source, same, i => true);
+            this.AddOrUpdate(source, same, i => true);
         }
 
         public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where) where T : class
