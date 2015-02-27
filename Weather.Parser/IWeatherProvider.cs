@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 
 namespace Weather.Parser
 {
@@ -12,6 +12,6 @@ namespace Weather.Parser
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        IEnumerable<WeatherDataEntity> Fetch(string url);
+        IEnumerable<WeatherDataDto> Fetch(string url);
     }
 }

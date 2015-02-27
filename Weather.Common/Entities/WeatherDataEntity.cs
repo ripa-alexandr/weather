@@ -2,10 +2,11 @@
 using System;
 
 using Weather.Common.Enums;
+using Weather.Common.Interfaces;
 
 namespace Weather.Common.Entities
 {
-    public class WeatherDataEntity
+    public class WeatherDataEntity : IBaseEntity
     {
         public int Id { get; set; }
 

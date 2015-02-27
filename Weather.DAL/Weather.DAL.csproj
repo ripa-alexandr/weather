@@ -60,6 +60,7 @@
     <Compile Include="EntityMapping\RegionMapping.cs" />
     <Compile Include="EntityMapping\WeatherDataMapping.cs" />
     <Compile Include="EntityMapping\CityMapping.cs" />
+    <Compile Include="EntityMapping\WeatherDescriptionMapping.cs" />
     <Compile Include="EntityMapping\WorldMapping.cs" />
     <Compile Include="Migrations\201411290006093_Initialize.cs" />
     <Compile Include="Migrations\201411290006093_Initialize.Designer.cs">
@@ -68,6 +69,18 @@
     <Compile Include="Migrations\201502222303512_UpdatedEntityPropertyNames.cs" />
     <Compile Include="Migrations\201502222303512_UpdatedEntityPropertyNames.Designer.cs">
       <DependentUpon>201502222303512_UpdatedEntityPropertyNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502272317240_TableNames.cs" />
+    <Compile Include="Migrations\201502272317240_TableNames.Designer.cs">
+      <DependentUpon>201502272317240_TableNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502272324006_TableNames2.cs" />
+    <Compile Include="Migrations\201502272324006_TableNames2.Designer.cs">
+      <DependentUpon>201502272324006_TableNames2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502272327556_TableNames3.cs" />
+    <Compile Include="Migrations\201502272327556_TableNames3.Designer.cs">
+      <DependentUpon>201502272327556_TableNames3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +100,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502222303512_UpdatedEntityPropertyNames.resx">
       <DependentUpon>201502222303512_UpdatedEntityPropertyNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502272317240_TableNames.resx">
+      <DependentUpon>201502272317240_TableNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502272324006_TableNames2.resx">
+      <DependentUpon>201502272324006_TableNames2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502272327556_TableNames3.resx">
+      <DependentUpon>201502272327556_TableNames3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

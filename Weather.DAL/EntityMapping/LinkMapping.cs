@@ -10,6 +10,9 @@ namespace Weather.DAL.EntityMapping
     {
         public LinkMapping()
         {
+            // Table name
+            this.ToTable("Links");
+
             // Auto generated GUID as primary key
             this.Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

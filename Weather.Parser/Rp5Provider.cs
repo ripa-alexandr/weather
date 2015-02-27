@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
 
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
 using Weather.Common.Extensions;
@@ -23,10 +23,10 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override IEnumerable<WeatherDataEntity> Fetch(string url)
+        public override IEnumerable<WeatherDataDto> Fetch(string url)
         {
             var htmlDocument = this.HtmlWeb.Load(url);
-            var result = new Collection<WeatherDataEntity>();
+            var result = new Collection<WeatherDataDto>();
 
             var parseInfo = this.InitializeParseInfo(htmlDocument);
 
@@ -38,7 +38,7 @@ namespace Weather.Parser
             return result;
         }
 
-        protected WeatherDataEntity Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
+        protected WeatherDataDto Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
             var cloudy = "//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay);
 
@@ -58,13 +58,13 @@ namespace Weather.Parser
                 "//*[@id='forecastTable']/tr[9]/td[{0}]".F(parseInfo.TimeOfDay));
             var humidity = "//*[@id='forecastTable']/tr[8]/td[{0}]".F(parseInfo.TimeOfDay);
             var date = "//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]".F(parseInfo.Day);
-            
-            return new WeatherDataEntity
+
+            return new WeatherDataDto
             {
                 Provider = ProviderType.Rp5,
                 ProviderName = "Rp5",
                 DateTime = this.GetDateInTable(htmlDocument.GetInnerText(date), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescriptionEntity
+                WeatherDescription = new WeatherDescriptionDto
                 {
                     Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(cloudy, "onmouseover")),
                     Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),

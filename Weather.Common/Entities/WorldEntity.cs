@@ -1,9 +1,11 @@
 ﻿
 using System.Collections.Generic;
 
+using Weather.Common.Interfaces;
+
 namespace Weather.Common.Entities
 {
-    public class WorldEntity
+    public class WorldEntity : IBaseEntity
     {
         public int Id { get; set; }
 

@@ -64,6 +64,7 @@
     <Compile Include="Exceptions\NotImplementedMethodException.cs" />
     <Compile Include="Exceptions\HtmlDocumentNotExistXPathException.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Interfaces\IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

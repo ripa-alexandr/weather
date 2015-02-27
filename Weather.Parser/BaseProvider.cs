@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
 
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
 
@@ -42,7 +42,7 @@ namespace Weather.Parser
             this.HtmlWeb = htmlWeb;
         }
 
-        public abstract IEnumerable<WeatherDataEntity> Fetch(string url);
+        public abstract IEnumerable<WeatherDataDto> Fetch(string url);
         
         protected string BuildUrl(string oldUrl, string addUrl)
         {

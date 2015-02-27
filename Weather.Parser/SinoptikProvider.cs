@@ -6,7 +6,7 @@ using System.Linq;
 
 using HtmlAgilityPack;
 
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 using Weather.Common.Enums;
 using Weather.Common.Extensions;
 using Weather.Parser.Extensions;
@@ -21,9 +21,9 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override IEnumerable<WeatherDataEntity> Fetch(string url)
+        public override IEnumerable<WeatherDataDto> Fetch(string url)
         {
-            var result = new Collection<WeatherDataEntity>();
+            var result = new Collection<WeatherDataDto>();
 
             var parseInfo = this.InitializeParseInfo(url);
             
@@ -42,7 +42,7 @@ namespace Weather.Parser
             return result;
         }
 
-        protected WeatherDataEntity Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
+        protected WeatherDataDto Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
             var description = this.Format("//*[@id='bd{0}c']/div/div[2]/table/tbody/*[@class='img weatherIcoS']/td[{1}]/div", parseInfo.Day, parseInfo.TimeOfDay);
             var airTemp = this.Format("//*[@id='bd{0}c']/div/div[2]/table/tbody/*[@class='temperature']/td[{1}]", parseInfo.Day, parseInfo.TimeOfDay);
@@ -54,12 +54,12 @@ namespace Weather.Parser
             var chancePrecipitation = this.Format("//*[@id='bd{0}c']/div/div[2]/table/tbody/tr[8]/td[{1}]", parseInfo.Day, parseInfo.TimeOfDay);
             var date = "//*[@id='bd{0}']/p/a".F(parseInfo.Day);
 
-            return new WeatherDataEntity
+            return new WeatherDataDto
             {
                 Provider = ProviderType.Sinoptik,
                 ProviderName = "Sinoptic",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "data-link"), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescriptionEntity
+                WeatherDescription = new WeatherDescriptionDto
                 {
                     Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(description, "title")),
                     Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "title")),

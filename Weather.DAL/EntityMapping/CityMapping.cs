@@ -10,6 +10,9 @@ namespace Weather.DAL.EntityMapping
     {
         public CityMapping()
         {
+            // Table name
+            this.ToTable("Cities");
+
             // Auto generated GUID as primary key
             this.Property(p => p.Id)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

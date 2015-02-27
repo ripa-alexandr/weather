@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
 
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
 using Weather.Common.Extensions;
@@ -23,9 +23,9 @@ namespace Weather.Parser
             this.InitializeRegularExpression();
         }
 
-        public override IEnumerable<WeatherDataEntity> Fetch(string url)
+        public override IEnumerable<WeatherDataDto> Fetch(string url)
         {
-            var result = new Collection<WeatherDataEntity>();
+            var result = new Collection<WeatherDataDto>();
 
             var parseInfo = this.InitializeParseInfo();
 
@@ -44,7 +44,7 @@ namespace Weather.Parser
             return result;
         }
 
-        protected WeatherDataEntity Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
+        protected WeatherDataDto Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
             var description = "//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='cltext']".F(parseInfo.Day, parseInfo.TimeOfDay);
             var airTemp = "//*[@id='tbwdaily{0}']/tr[{1}]/td[@class='temp']/*[@class='value m_temp c']".F(parseInfo.Day, parseInfo.TimeOfDay);
@@ -55,12 +55,12 @@ namespace Weather.Parser
             var humidity = "//*[@id='tbwdaily{0}']/tr[{1}]/td[6]".F(parseInfo.Day, parseInfo.TimeOfDay);
             var date = "//*[@id='tbwdaily{0}']/tr[1]".F(parseInfo.Day);
 
-            return new WeatherDataEntity
+            return new WeatherDataDto
             {
                 Provider = ProviderType.Gismeteo,
                 ProviderName = "Gismeteo",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "id"), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescriptionEntity
+                WeatherDescription = new WeatherDescriptionDto
                 {
                     Cloudy = this.ConvertCloudy(htmlDocument.GetInnerText(description)),
                     Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetInnerText(description)),

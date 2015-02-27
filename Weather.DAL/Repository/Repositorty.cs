@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 
 using AutoMapper;
 
+using Weather.Common.Interfaces;
 using Weather.DAL.Repository.Interface;
 
 namespace Weather.DAL.Repository
@@ -20,27 +21,27 @@ namespace Weather.DAL.Repository
             this.context = context;
         }
 
-        public IQueryable<T> Get<T>() where T : class
+        public IQueryable<T> Get<T>() where T : class, IBaseEntity
         {
             return this.Get<T>(i => true);
         }
 
-        public IQueryable<T> Get<T>(Expression<Func<T, bool>> where) where T : class
+        public IQueryable<T> Get<T>(Expression<Func<T, bool>> where) where T : class, IBaseEntity
         {
             return this.context.Set<T>().Where(where);
         }
 
-        public void Add<T>(T data) where T : class
+        public void Add<T>(T data) where T : class, IBaseEntity
         {
             this.context.Set<T>().Add(data);
         }
 
-        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same) where T : class
+        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same) where T : class, IBaseEntity
         {
             this.AddOrUpdate(source, same, i => true);
         }
 
-        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where) where T : class
+        public void AddOrUpdate<T>(IEnumerable<T> source, Func<T, T, bool> same, Expression<Func<T, bool>> where) where T : class, IBaseEntity
         {
             var destination = this.Get(where).ToList();
             var insert = source.Where(x => !destination.Any(y => same(x, y)));
@@ -54,7 +55,7 @@ namespace Weather.DAL.Repository
             }
         }
 
-        public void Delete<T>(T data) where T : class
+        public void Delete<T>(T data) where T : class, IBaseEntity
         {
             this.context.Set<T>().Remove(data);
         }

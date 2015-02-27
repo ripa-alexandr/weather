@@ -1,9 +1,10 @@
 ﻿
 using Weather.Common.Enums;
+using Weather.Common.Interfaces;
 
 namespace Weather.Common.Entities
 {
-    public class LinkEntity
+    public class LinkEntity : IBaseEntity
     {
         public int Id { get; set; }
 

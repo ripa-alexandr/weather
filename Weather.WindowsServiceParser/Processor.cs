@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+using AutoMapper;
+
 using Ninject;
 
 using NLog;
 
 using Weather.Bootstrap;
+using Weather.Common.Dto;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
@@ -91,12 +94,12 @@ namespace Weather.WindowsServiceParser
                 {
                     try
                     {
-                        return this.ProcessLink(i);
+                        return this.ProcessLink(Mapper.Map<LinkDto>(i));
                     }
                     catch (Exception e)
                     {
                         exceptions.Enqueue(e);
-                        return Enumerable.Empty<WeatherDataEntity>();
+                        return Enumerable.Empty<WeatherDataDto>();
                     }
                 }).ToList();
 
@@ -108,9 +111,9 @@ namespace Weather.WindowsServiceParser
             }
         }
 
-        private IEnumerable<WeatherDataEntity> ProcessLink(LinkEntity link)
+        private IEnumerable<WeatherDataDto> ProcessLink(LinkDto link)
         {
-            var result = Enumerable.Empty<WeatherDataEntity>();
+            var result = Enumerable.Empty<WeatherDataDto>();
 
             switch (link.Provider)
             {
@@ -135,11 +138,11 @@ namespace Weather.WindowsServiceParser
             return result;
         }
 
-        private void SaveWeatherData(IEnumerable<WeatherDataEntity> weatherData)
+        private void SaveWeatherData(IEnumerable<WeatherDataDto> weatherData)
         {
             var time = weatherData.Min(t => t.DateTime);
             this.repository.AddOrUpdate(
-                weatherData,
+                Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData),
                 (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
                 x => x.DateTime >= time);
             this.repository.Save();
