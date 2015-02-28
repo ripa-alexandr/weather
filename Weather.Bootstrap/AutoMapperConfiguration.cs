@@ -28,24 +28,56 @@ namespace Weather.Bootstrap
 
         private static void ConfigureEntityToDto()
         {
-            Mapper.CreateMap<CityEntity, CityDto>();
-            Mapper.CreateMap<CountryEntity, CountryDto>();
-            Mapper.CreateMap<LinkEntity, LinkDto>();
-            Mapper.CreateMap<RegionEntity, RegionDto>();
-            Mapper.CreateMap<WeatherDataEntity, WeatherDataDto>();
+            Mapper.CreateMap<CityEntity, CityDto>()
+                .ForMember(d => d.Region, opt => opt.Ignore())
+                .ForMember(d => d.WeatherData, opt => opt.Ignore())
+                .ForMember(d => d.Links, opt => opt.Ignore());
+
+            Mapper.CreateMap<CountryEntity, CountryDto>()
+                .ForMember(d => d.World, opt => opt.Ignore())
+                .ForMember(d => d.Regions, opt => opt.Ignore());
+
+            Mapper.CreateMap<LinkEntity, LinkDto>()
+                .ForMember(d => d.City, opt => opt.Ignore());
+
+            Mapper.CreateMap<RegionEntity, RegionDto>()
+                .ForMember(d => d.Country, opt => opt.Ignore())
+                .ForMember(d => d.Cities, opt => opt.Ignore());
+
+            Mapper.CreateMap<WeatherDataEntity, WeatherDataDto>()
+                .ForMember(d => d.City, opt => opt.Ignore());
+
             Mapper.CreateMap<WeatherDescriptionEntity, WeatherDescriptionDto>();
-            Mapper.CreateMap<WorldEntity, WorldDto>();
+
+            Mapper.CreateMap<WorldEntity, WorldDto>()
+                .ForMember(d => d.Countries, opt => opt.Ignore());
         }
 
         private static void ConfigureDtoToEntity()
         {
-            Mapper.CreateMap<CityDto, CityEntity>();
-            Mapper.CreateMap<CountryDto, CountryEntity>();
-            Mapper.CreateMap<LinkDto, LinkEntity>();
-            Mapper.CreateMap<RegionDto, RegionEntity>();
-            Mapper.CreateMap<WeatherDataDto, WeatherDataEntity>();
+            Mapper.CreateMap<CityDto, CityEntity>()
+                .ForMember(d => d.Region, opt => opt.Ignore())
+                .ForMember(d => d.WeatherData, opt => opt.Ignore())
+                .ForMember(d => d.Links, opt => opt.Ignore());
+
+            Mapper.CreateMap<CountryDto, CountryEntity>()
+                .ForMember(d => d.World, opt => opt.Ignore())
+                .ForMember(d => d.Regions, opt => opt.Ignore());
+
+            Mapper.CreateMap<LinkDto, LinkEntity>()
+                .ForMember(d => d.City, opt => opt.Ignore());
+
+            Mapper.CreateMap<RegionDto, RegionEntity>()
+                .ForMember(d => d.Country, opt => opt.Ignore())
+                .ForMember(d => d.Cities, opt => opt.Ignore());
+
+            Mapper.CreateMap<WeatherDataDto, WeatherDataEntity>()
+                .ForMember(d => d.City, opt => opt.Ignore());
+
             Mapper.CreateMap<WeatherDescriptionDto, WeatherDescriptionEntity>();
-            Mapper.CreateMap<WorldDto, WorldEntity>();
+
+            Mapper.CreateMap<WorldDto, WorldEntity>()
+                .ForMember(d => d.Countries, opt => opt.Ignore());
         }
     }
 }
