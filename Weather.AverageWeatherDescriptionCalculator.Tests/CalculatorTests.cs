@@ -4,7 +4,7 @@ using System;
 using NUnit.Framework;
 
 using Weather.AverageWeatherDescriptionCalculator.Interfaces;
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 using Weather.Common.Enums;
 
 namespace Weather.AverageWeatherDescriptionCalculator.Tests
@@ -31,8 +31,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = direction1, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = direction2, WindSpeed = 10 }
+                new WeatherDescriptionDto { WindDirection = direction1, WindSpeed = 10 }, 
+                new WeatherDescriptionDto { WindDirection = direction2, WindSpeed = 10 }
             };
 
             // Act
@@ -51,8 +51,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = direction1, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = direction2, WindSpeed = 10 }
+                new WeatherDescriptionDto { WindDirection = direction1, WindSpeed = 10 }, 
+                new WeatherDescriptionDto { WindDirection = direction2, WindSpeed = 10 }
             };
 
             // Act
@@ -68,8 +68,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.West, WindSpeed = 0 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 20 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.West, WindSpeed = 0 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 20 },
             };
 
             // Act
@@ -91,8 +91,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = direction1, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = direction2, WindSpeed = 11 }
+                new WeatherDescriptionDto { WindDirection = direction1, WindSpeed = 10 }, 
+                new WeatherDescriptionDto { WindDirection = direction2, WindSpeed = 11 }
             };
 
             // Act
@@ -108,8 +108,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 0 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.East, WindSpeed = 20 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 0 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.East, WindSpeed = 20 },
             };
 
             // Act
@@ -131,8 +131,8 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = direction1, WindSpeed = speed1 }, 
-                new WeatherDescriptionEntity { WindDirection = direction2, WindSpeed = speed2 }
+                new WeatherDescriptionDto { WindDirection = direction1, WindSpeed = speed1 }, 
+                new WeatherDescriptionDto { WindDirection = direction2, WindSpeed = speed2 }
             };
 
             // Act
@@ -148,9 +148,9 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 21 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 2 }
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.South, WindSpeed = 20 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 21 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 2 }
             };
 
             // Act
@@ -166,10 +166,10 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 10 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.East, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.West, WindSpeed = 20 }
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.South, WindSpeed = 10 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.East, WindSpeed = 20 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.West, WindSpeed = 20 }
             };
 
             // Act
@@ -185,11 +185,11 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 10 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.NorthWest, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.SouthEast, WindSpeed = 20 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.West, WindSpeed = 5 }
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.South, WindSpeed = 10 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.NorthWest, WindSpeed = 20 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.SouthEast, WindSpeed = 20 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.West, WindSpeed = 5 }
             };
 
             // Act
@@ -205,10 +205,10 @@ namespace Weather.AverageWeatherDescriptionCalculator.Tests
             // Arrange
             var weatherDescription = new[]
             {
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 10 },
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.North, WindSpeed = 20 }, 
-                new WeatherDescriptionEntity { WindDirection = WindDirectionType.South, WindSpeed = 20 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.South, WindSpeed = 10 },
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.North, WindSpeed = 20 }, 
+                new WeatherDescriptionDto { WindDirection = WindDirectionType.South, WindSpeed = 20 },
             };
 
             // Act
