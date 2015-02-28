@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Weather.AverageWeatherDescriptionCalculator.Interfaces;
-using Weather.Common.Entities;
+using Weather.Common.Dto;
 using Weather.Common.Enums;
 
 namespace Weather.AverageWeatherDescriptionCalculator
 {
     public class Calculator : ICalculator
     {
-        public WeatherDescriptionEntity GetAvgWeatherDescription(IEnumerable<WeatherDescriptionEntity> descriptions)
+        public WeatherDescriptionDto GetAvgWeatherDescription(IEnumerable<WeatherDescriptionDto> descriptions)
         {
-            var averageWeatherCharacteristic = new WeatherDescriptionEntity
+            var averageWeatherCharacteristic = new WeatherDescriptionDto
             {
                 Cloudy = this.AverageCloudy(descriptions.Select(i => i.Cloudy)),
                 Precipitation = this.AverageTypePrecipitation(descriptions.Select(i => i.Precipitation)),
@@ -32,7 +32,7 @@ namespace Weather.AverageWeatherDescriptionCalculator
             return averageWeatherCharacteristic;
         }
 
-        private WindDirectionType AverageWindDirection(IEnumerable<WeatherDescriptionEntity> descriptions)
+        private WindDirectionType AverageWindDirection(IEnumerable<WeatherDescriptionDto> descriptions)
         {
             var avgDegree = this.AverageDirection(descriptions);
 
@@ -63,7 +63,7 @@ namespace Weather.AverageWeatherDescriptionCalculator
             throw new NotImplementedException();
         }
 
-        private double AverageDirection(IEnumerable<WeatherDescriptionEntity> descriptions)
+        private double AverageDirection(IEnumerable<WeatherDescriptionDto> descriptions)
         {
             double ns = 0;
             double ew = 0;
@@ -82,7 +82,7 @@ namespace Weather.AverageWeatherDescriptionCalculator
             return this.AtanDegTo360Deg(atanDegree);
         }
 
-        private double AverageSpeed(IEnumerable<WeatherDescriptionEntity> descriptions)
+        private double AverageSpeed(IEnumerable<WeatherDescriptionDto> descriptions)
         {
             double ns = 0;
             double ew = 0;
