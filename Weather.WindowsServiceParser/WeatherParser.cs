@@ -9,8 +9,8 @@ namespace Weather.WindowsServiceParser
 {
     public partial class WeatherParser : ServiceBase
     {
-        private readonly Logger logger;
-        private readonly Processor processor;
+        private Logger logger;
+        private Processor processor;
 
         private Timer timer;
         
@@ -19,19 +19,18 @@ namespace Weather.WindowsServiceParser
             this.InitializeComponent();
 
             this.logger = LogManager.GetCurrentClassLogger();
-            this.processor = new Processor(this.logger);
         }
 
         protected override void OnStart(string[] args)
         {
+            this.processor = new Processor(this.logger);
+
             this.timer = new Timer();
             this.timer.AutoReset = true;
             this.timer.Enabled = true;
             this.timer.Interval = this.MillisecondsToMinute(ConfigurationManager.AppSettings["interval"]);
             this.timer.Elapsed += this.OnTimedEvent;
             this.timer.Start();
-            
-            this.OnTimedEvent(null, null);
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
