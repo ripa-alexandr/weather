@@ -7,13 +7,13 @@ namespace Weather.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class UpdatedEntityPropertyNames : IMigrationMetadata
+    public sealed partial class Initialize : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedEntityPropertyNames));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initialize));
         
         string IMigrationMetadata.Id
         {
-            get { return "201502222303512_UpdatedEntityPropertyNames"; }
+            get { return "201503202139082_Initialize"; }
         }
         
         string IMigrationMetadata.Source

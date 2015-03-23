@@ -7,8 +7,6 @@ using System.Linq.Expressions;
 
 using AutoMapper;
 
-using EntityFramework.BulkInsert.Extensions;
-
 using Weather.Common.Interfaces;
 using Weather.DAL.Repository.Interface;
 
@@ -49,8 +47,8 @@ namespace Weather.DAL.Repository
             var insert = source.Where(x => !destination.Any(y => same(x, y)));
             var update = source.Except(insert);
 
-            this.context.BulkInsert(insert);
-
+            this.context.Set<T>().AddRange(insert);
+            
             foreach (var item in update)
             {
                 Mapper.Map(item, destination.First(x => same(item, x)));

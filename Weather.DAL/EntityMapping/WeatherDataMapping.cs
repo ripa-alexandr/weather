@@ -24,6 +24,12 @@ namespace Weather.DAL.EntityMapping
 
             this.HasRequired(wd => wd.WeatherDescription)
                 .WithRequiredPrincipal(wd => wd.WeatherData);
+
+            // StoredProcedures
+            this.MapToStoredProcedures(s => s
+                .Update(u => u.HasName("WeatherData_Update"))
+                .Delete(d => d.HasName("WeatherData_Delete"))
+                .Insert(d => d.HasName("WeatherData_Insert")));
         }
     }
 }

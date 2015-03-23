@@ -7,6 +7,7 @@ using Ninject.Modules;
 
 using Weather.DAL;
 using Weather.DAL.Repository;
+using Weather.DAL.Repository.Interface;
 using Weather.Parser;
 
 namespace Weather.Bootstrap
@@ -22,7 +23,8 @@ namespace Weather.Bootstrap
         private void InitializeRepositories()
         {
             Bind<DbContext>().To<WeatherContext>();
-            Bind<Repository>().ToSelf();
+            Bind<IRepository>().To<Repository>();
+            Bind<IRepositorySlim>().To<RepositorySlim>();
         }
 
         private void InitializeProviders()
