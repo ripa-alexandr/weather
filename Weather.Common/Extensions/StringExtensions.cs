@@ -1,7 +1,7 @@
 ﻿
 namespace Weather.Common.Extensions
 {
-    public static class StringExtension
+    public static class StringExtensions
     {
         public static string F(this string value, params object[] parameters)
         {
