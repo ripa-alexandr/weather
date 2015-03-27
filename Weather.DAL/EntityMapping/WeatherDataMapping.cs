@@ -22,9 +22,6 @@ namespace Weather.DAL.EntityMapping
                 .WithMany(t => t.WeatherData)
                 .HasForeignKey(k => k.CityId);
 
-            this.HasRequired(wd => wd.WeatherDescription)
-                .WithRequiredPrincipal(wd => wd.WeatherData);
-
             // StoredProcedures
             this.MapToStoredProcedures(s => s
                 .Update(u => u.HasName("WeatherData_Update"))

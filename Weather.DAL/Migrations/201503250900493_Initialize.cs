@@ -73,17 +73,6 @@ namespace Weather.DAL.Migrations
                         Provider = c.Int(nullable: false),
                         ProviderName = c.String(),
                         DateTime = c.DateTime(nullable: false),
-                        CityId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
-                .Index(t => t.CityId);
-            
-            CreateTable(
-                "dbo.WeatherDescriptions",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
                         Cloudy = c.Int(nullable: false),
                         Precipitation = c.Int(nullable: false),
                         StrengthPrecipitation = c.Int(nullable: false),
@@ -96,10 +85,11 @@ namespace Weather.DAL.Migrations
                         WindSpeed = c.Double(nullable: false),
                         Humidity = c.Double(nullable: false),
                         ChancePrecipitation = c.Double(),
+                        CityId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.WeatherData", t => t.Id)
-                .Index(t => t.Id);
+                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: true)
+                .Index(t => t.CityId);
             
             CreateStoredProcedure(
                 "dbo.WeatherData_Insert",
@@ -108,11 +98,23 @@ namespace Weather.DAL.Migrations
                         Provider = p.Int(),
                         ProviderName = p.String(),
                         DateTime = p.DateTime(),
+                        Cloudy = p.Int(),
+                        Precipitation = p.Int(),
+                        StrengthPrecipitation = p.Int(),
+                        IsFog = p.Boolean(),
+                        IsThunderstorm = p.Boolean(),
+                        AirTemp = p.Double(),
+                        RealFeel = p.Double(),
+                        Pressure = p.Double(),
+                        WindDirection = p.Int(),
+                        WindSpeed = p.Double(),
+                        Humidity = p.Double(),
+                        ChancePrecipitation = p.Double(),
                         CityId = p.Int(),
                     },
                 body:
-                    @"INSERT [dbo].[WeatherData]([Provider], [ProviderName], [DateTime], [CityId])
-                      VALUES (@Provider, @ProviderName, @DateTime, @CityId)
+                    @"INSERT [dbo].[WeatherData]([Provider], [ProviderName], [DateTime], [Cloudy], [Precipitation], [StrengthPrecipitation], [IsFog], [IsThunderstorm], [AirTemp], [RealFeel], [Pressure], [WindDirection], [WindSpeed], [Humidity], [ChancePrecipitation], [CityId])
+                      VALUES (@Provider, @ProviderName, @DateTime, @Cloudy, @Precipitation, @StrengthPrecipitation, @IsFog, @IsThunderstorm, @AirTemp, @RealFeel, @Pressure, @WindDirection, @WindSpeed, @Humidity, @ChancePrecipitation, @CityId)
                       
                       DECLARE @Id int
                       SELECT @Id = [Id]
@@ -132,11 +134,23 @@ namespace Weather.DAL.Migrations
                         Provider = p.Int(),
                         ProviderName = p.String(),
                         DateTime = p.DateTime(),
+                        Cloudy = p.Int(),
+                        Precipitation = p.Int(),
+                        StrengthPrecipitation = p.Int(),
+                        IsFog = p.Boolean(),
+                        IsThunderstorm = p.Boolean(),
+                        AirTemp = p.Double(),
+                        RealFeel = p.Double(),
+                        Pressure = p.Double(),
+                        WindDirection = p.Int(),
+                        WindSpeed = p.Double(),
+                        Humidity = p.Double(),
+                        ChancePrecipitation = p.Double(),
                         CityId = p.Int(),
                     },
                 body:
                     @"UPDATE [dbo].[WeatherData]
-                      SET [Provider] = @Provider, [ProviderName] = @ProviderName, [DateTime] = @DateTime, [CityId] = @CityId
+                      SET [Provider] = @Provider, [ProviderName] = @ProviderName, [DateTime] = @DateTime, [Cloudy] = @Cloudy, [Precipitation] = @Precipitation, [StrengthPrecipitation] = @StrengthPrecipitation, [IsFog] = @IsFog, [IsThunderstorm] = @IsThunderstorm, [AirTemp] = @AirTemp, [RealFeel] = @RealFeel, [Pressure] = @Pressure, [WindDirection] = @WindDirection, [WindSpeed] = @WindSpeed, [Humidity] = @Humidity, [ChancePrecipitation] = @ChancePrecipitation, [CityId] = @CityId
                       WHERE ([Id] = @Id)"
             );
             
@@ -151,87 +165,23 @@ namespace Weather.DAL.Migrations
                       WHERE ([Id] = @Id)"
             );
             
-            CreateStoredProcedure(
-                "dbo.WeatherDescription_Insert",
-                p => new
-                    {
-                        Id = p.Int(),
-                        Cloudy = p.Int(),
-                        Precipitation = p.Int(),
-                        StrengthPrecipitation = p.Int(),
-                        IsFog = p.Boolean(),
-                        IsThunderstorm = p.Boolean(),
-                        AirTemp = p.Double(),
-                        RealFeel = p.Double(),
-                        Pressure = p.Double(),
-                        WindDirection = p.Int(),
-                        WindSpeed = p.Double(),
-                        Humidity = p.Double(),
-                        ChancePrecipitation = p.Double(),
-                    },
-                body:
-                    @"INSERT [dbo].[WeatherDescriptions]([Id], [Cloudy], [Precipitation], [StrengthPrecipitation], [IsFog], [IsThunderstorm], [AirTemp], [RealFeel], [Pressure], [WindDirection], [WindSpeed], [Humidity], [ChancePrecipitation])
-                      VALUES (@Id, @Cloudy, @Precipitation, @StrengthPrecipitation, @IsFog, @IsThunderstorm, @AirTemp, @RealFeel, @Pressure, @WindDirection, @WindSpeed, @Humidity, @ChancePrecipitation)"
-            );
-            
-            CreateStoredProcedure(
-                "dbo.WeatherDescription_Update",
-                p => new
-                    {
-                        Id = p.Int(),
-                        Cloudy = p.Int(),
-                        Precipitation = p.Int(),
-                        StrengthPrecipitation = p.Int(),
-                        IsFog = p.Boolean(),
-                        IsThunderstorm = p.Boolean(),
-                        AirTemp = p.Double(),
-                        RealFeel = p.Double(),
-                        Pressure = p.Double(),
-                        WindDirection = p.Int(),
-                        WindSpeed = p.Double(),
-                        Humidity = p.Double(),
-                        ChancePrecipitation = p.Double(),
-                    },
-                body:
-                    @"UPDATE [dbo].[WeatherDescriptions]
-                      SET [Cloudy] = @Cloudy, [Precipitation] = @Precipitation, [StrengthPrecipitation] = @StrengthPrecipitation, [IsFog] = @IsFog, [IsThunderstorm] = @IsThunderstorm, [AirTemp] = @AirTemp, [RealFeel] = @RealFeel, [Pressure] = @Pressure, [WindDirection] = @WindDirection, [WindSpeed] = @WindSpeed, [Humidity] = @Humidity, [ChancePrecipitation] = @ChancePrecipitation
-                      WHERE ([Id] = @Id)"
-            );
-            
-            CreateStoredProcedure(
-                "dbo.WeatherDescription_Delete",
-                p => new
-                    {
-                        Id = p.Int(),
-                    },
-                body:
-                    @"DELETE [dbo].[WeatherDescriptions]
-                      WHERE ([Id] = @Id)"
-            );
-            
         }
         
         public override void Down()
         {
-            DropStoredProcedure("dbo.WeatherDescription_Delete");
-            DropStoredProcedure("dbo.WeatherDescription_Update");
-            DropStoredProcedure("dbo.WeatherDescription_Insert");
             DropStoredProcedure("dbo.WeatherData_Delete");
             DropStoredProcedure("dbo.WeatherData_Update");
             DropStoredProcedure("dbo.WeatherData_Insert");
-            DropForeignKey("dbo.WeatherDescriptions", "Id", "dbo.WeatherData");
             DropForeignKey("dbo.WeatherData", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Cities", "RegionId", "dbo.Regions");
             DropForeignKey("dbo.Regions", "CountryId", "dbo.Countries");
             DropForeignKey("dbo.Countries", "WorldId", "dbo.Worlds");
             DropForeignKey("dbo.Links", "CityId", "dbo.Cities");
-            DropIndex("dbo.WeatherDescriptions", new[] { "Id" });
             DropIndex("dbo.WeatherData", new[] { "CityId" });
             DropIndex("dbo.Countries", new[] { "WorldId" });
             DropIndex("dbo.Regions", new[] { "CountryId" });
             DropIndex("dbo.Links", new[] { "CityId" });
             DropIndex("dbo.Cities", new[] { "RegionId" });
-            DropTable("dbo.WeatherDescriptions");
             DropTable("dbo.WeatherData");
             DropTable("dbo.Worlds");
             DropTable("dbo.Countries");

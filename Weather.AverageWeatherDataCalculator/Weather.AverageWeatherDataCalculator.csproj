@@ -7,8 +7,8 @@
     <ProjectGuid>{DACA131A-FFFA-41AB-9BCF-644E291AF917}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Weather.AverageWeatherDescriptionCalculator</RootNamespace>
-    <AssemblyName>Weather.AverageWeatherDescriptionCalculator</AssemblyName>
+    <RootNamespace>Weather.AverageWeatherDataCalculator</RootNamespace>
+    <AssemblyName>Weather.AverageWeatherDataCalculator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

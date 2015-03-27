@@ -59,21 +59,18 @@ namespace Weather.Parser
                 Provider = ProviderType.Sinoptik,
                 ProviderName = "Sinoptic",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "data-link"), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescriptionDto
-                {
-                    Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(description, "title")),
-                    Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "title")),
-                    StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "title")),
-                    IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "title")),
-                    IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "title")),
-                    AirTemp = this.ConvertTemp(htmlDocument.GetInnerText(airTemp)),
-                    RealFeel = this.ConvertTemp(htmlDocument.GetInnerText(realFeel)),
-                    Pressure = Double.Parse(htmlDocument.GetInnerText(pressure)),
-                    WindDirection = this.ConvertWindDirection(htmlDocument.GetAttribute(windDirection, "data-tooltip")),
-                    WindSpeed = this.ConvertWindSpeed(htmlDocument.GetInnerText(windSpeed)),
-                    Humidity = Double.Parse(htmlDocument.GetInnerText(humidity)),
-                    ChancePrecipitation = this.ConvertChancePrecipitation(htmlDocument.GetInnerText(chancePrecipitation))
-                }
+                Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(description, "title")),
+                Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "title")),
+                StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "title")),
+                IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "title")),
+                IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "title")),
+                AirTemp = this.ConvertTemp(htmlDocument.GetInnerText(airTemp)),
+                RealFeel = this.ConvertTemp(htmlDocument.GetInnerText(realFeel)),
+                Pressure = Double.Parse(htmlDocument.GetInnerText(pressure)),
+                WindDirection = this.ConvertWindDirection(htmlDocument.GetAttribute(windDirection, "data-tooltip")),
+                WindSpeed = this.ConvertWindSpeed(htmlDocument.GetInnerText(windSpeed)),
+                Humidity = Double.Parse(htmlDocument.GetInnerText(humidity)),
+                ChancePrecipitation = this.ConvertChancePrecipitation(htmlDocument.GetInnerText(chancePrecipitation))
             };
         }
 

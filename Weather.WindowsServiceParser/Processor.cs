@@ -17,7 +17,6 @@ using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
 using Weather.Common.Extensions;
-using Weather.DAL.Repository;
 using Weather.DAL.Repository.Interface;
 using Weather.Parser;
 
@@ -26,6 +25,7 @@ namespace Weather.WindowsServiceParser
     public class Processor
     {
         private readonly IRepository repository;
+        private readonly IRepositorySlim repositorySlim;
         private readonly SinoptikProvider sinoptikProvider;
         private readonly GismeteoProvider gismeteoProvider;
         private readonly Rp5Provider rp5Provider;
@@ -35,7 +35,8 @@ namespace Weather.WindowsServiceParser
         {
             var kernel = Kernel.Initialize();
 
-            this.repository = kernel.Get<Repository>();
+            this.repository = kernel.Get<IRepository>();
+            this.repositorySlim = kernel.Get<IRepositorySlim>();
             this.sinoptikProvider = kernel.Get<SinoptikProvider>();
             this.gismeteoProvider = kernel.Get<GismeteoProvider>();
             this.rp5Provider = kernel.Get<Rp5Provider>();
@@ -140,12 +141,13 @@ namespace Weather.WindowsServiceParser
 
         private void SaveWeatherData(IEnumerable<WeatherDataDto> weatherData)
         {
-            var time = weatherData.Min(t => t.DateTime);
-            this.repository.AddOrUpdate(
-                Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData),
-                (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
-                x => x.DateTime >= time);
-            this.repository.Save();
+            this.repositorySlim.AddOrUpdate(Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData));
+            //var time = weatherData.Min(t => t.DateTime);
+            //this.repository.AddOrUpdate(
+            //    Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData),
+            //    (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
+            //    x => x.DateTime >= time);
+            //this.repository.Save();
         }
     }
 }

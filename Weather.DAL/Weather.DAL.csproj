@@ -66,11 +66,10 @@
     <Compile Include="EntityMapping\RegionMapping.cs" />
     <Compile Include="EntityMapping\WeatherDataMapping.cs" />
     <Compile Include="EntityMapping\CityMapping.cs" />
-    <Compile Include="EntityMapping\WeatherDescriptionMapping.cs" />
     <Compile Include="EntityMapping\WorldMapping.cs" />
-    <Compile Include="Migrations\201503240942532_Initialize.cs" />
-    <Compile Include="Migrations\201503240942532_Initialize.Designer.cs">
-      <DependentUpon>201503240942532_Initialize.cs</DependentUpon>
+    <Compile Include="Migrations\201503250900493_Initialize.cs" />
+    <Compile Include="Migrations\201503250900493_Initialize.Designer.cs">
+      <DependentUpon>201503250900493_Initialize.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,8 +92,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503240942532_Initialize.resx">
-      <DependentUpon>201503240942532_Initialize.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503250900493_Initialize.resx">
+      <DependentUpon>201503250900493_Initialize.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

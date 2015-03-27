@@ -48,7 +48,6 @@
     <Compile Include="Dto\LinkDto.cs" />
     <Compile Include="Dto\RegionDto.cs" />
     <Compile Include="Dto\WeatherDataDto.cs" />
-    <Compile Include="Dto\WeatherDescriptionDto.cs" />
     <Compile Include="Dto\WorldDto.cs" />
     <Compile Include="Entities\CityEntity.cs" />
     <Compile Include="Entities\CountryEntity.cs" />
@@ -60,7 +59,6 @@
     <Compile Include="Enums\StrengthPrecipitationType.cs" />
     <Compile Include="Enums\WindDirectionType.cs" />
     <Compile Include="Entities\WeatherDataEntity.cs" />
-    <Compile Include="Entities\WeatherDescriptionEntity.cs" />
     <Compile Include="Entities\WorldEntity.cs" />
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\TimeOfDay.cs" />
@@ -74,7 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -64,20 +64,17 @@ namespace Weather.Parser
                 Provider = ProviderType.Rp5,
                 ProviderName = "Rp5",
                 DateTime = this.GetDateInTable(htmlDocument.GetInnerText(date), parseInfo.TimeOfDayKey),
-                WeatherDescription = new WeatherDescriptionDto
-                {
-                    Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(cloudy, "onmouseover")),
-                    Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
-                    StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
-                    IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "onmouseover")),
-                    IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "onmouseover")),
-                    AirTemp = Int32.Parse(htmlDocument.GetInnerText(airTemp)),
-                    RealFeel = this.ConvertRealFeel(htmlDocument, isRealFeel, airTemp, realFeel),
-                    Pressure = Double.Parse(htmlDocument.GetInnerText(pressure)),
-                    WindDirection = this.ConvertWindDirection(htmlDocument.GetInnerText(windDirection)),
-                    WindSpeed = Double.Parse(htmlDocument.GetInnerText(windSpeed)),
-                    Humidity = Double.Parse(htmlDocument.GetInnerText(humidity)),
-                }
+                Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(cloudy, "onmouseover")),
+                Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
+                StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
+                IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "onmouseover")),
+                IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "onmouseover")),
+                AirTemp = Int32.Parse(htmlDocument.GetInnerText(airTemp)),
+                RealFeel = this.ConvertRealFeel(htmlDocument, isRealFeel, airTemp, realFeel),
+                Pressure = Double.Parse(htmlDocument.GetInnerText(pressure)),
+                WindDirection = this.ConvertWindDirection(htmlDocument.GetInnerText(windDirection)),
+                WindSpeed = Double.Parse(htmlDocument.GetInnerText(windSpeed)),
+                Humidity = Double.Parse(htmlDocument.GetInnerText(humidity))
             };
         }
 

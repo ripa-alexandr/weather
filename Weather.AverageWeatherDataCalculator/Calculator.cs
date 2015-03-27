@@ -3,38 +3,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Weather.AverageWeatherDescriptionCalculator.Interfaces;
+using Weather.AverageWeatherDataCalculator.Interfaces;
 using Weather.Common.Dto;
 using Weather.Common.Enums;
 
-namespace Weather.AverageWeatherDescriptionCalculator
+namespace Weather.AverageWeatherDataCalculator
 {
     public class Calculator : ICalculator
     {
-        public WeatherDescriptionDto GetAvgWeatherDescription(IEnumerable<WeatherDescriptionDto> descriptions)
+        public WeatherDataDto GetAvgWeatherData(IEnumerable<WeatherDataDto> data)
         {
-            var averageWeatherCharacteristic = new WeatherDescriptionDto
+            var averageWeatherCharacteristic = new WeatherDataDto
             {
-                Cloudy = this.AverageCloudy(descriptions.Select(i => i.Cloudy)),
-                Precipitation = this.AverageTypePrecipitation(descriptions.Select(i => i.Precipitation)),
-                StrengthPrecipitation = this.AverageStrengthPrecipitation(descriptions.Select(i => i.StrengthPrecipitation)),
-                IsFog = this.AverageBool(descriptions.Select(i => i.IsFog)),
-                IsThunderstorm = this.AverageBool(descriptions.Select(i => i.IsThunderstorm)),
-                AirTemp = this.AverageNumber(descriptions.Select(at => at.AirTemp)),
-                RealFeel = this.AverageNumberNullable(descriptions.Select(i => i.RealFeel)),
-                Pressure = this.AverageNumber(descriptions.Select(i => i.Pressure)),
-                WindDirection = this.AverageWindDirection(descriptions),
-                WindSpeed = Math.Round(this.AverageSpeed(descriptions)),
-                Humidity = this.AverageNumber(descriptions.Select(i => i.Humidity)),
-                ChancePrecipitation = this.AverageNumberNullable(descriptions.Select(i => i.ChancePrecipitation)),
+                Cloudy = this.AverageCloudy(data.Select(i => i.Cloudy)),
+                Precipitation = this.AverageTypePrecipitation(data.Select(i => i.Precipitation)),
+                StrengthPrecipitation = this.AverageStrengthPrecipitation(data.Select(i => i.StrengthPrecipitation)),
+                IsFog = this.AverageBool(data.Select(i => i.IsFog)),
+                IsThunderstorm = this.AverageBool(data.Select(i => i.IsThunderstorm)),
+                AirTemp = this.AverageNumber(data.Select(at => at.AirTemp)),
+                RealFeel = this.AverageNumberNullable(data.Select(i => i.RealFeel)),
+                Pressure = this.AverageNumber(data.Select(i => i.Pressure)),
+                WindDirection = this.AverageWindDirection(data),
+                WindSpeed = Math.Round(this.AverageSpeed(data)),
+                Humidity = this.AverageNumber(data.Select(i => i.Humidity)),
+                ChancePrecipitation = this.AverageNumberNullable(data.Select(i => i.ChancePrecipitation)),
             };
 
             return averageWeatherCharacteristic;
         }
 
-        private WindDirectionType AverageWindDirection(IEnumerable<WeatherDescriptionDto> descriptions)
+        private WindDirectionType AverageWindDirection(IEnumerable<WeatherDataDto> data)
         {
-            var avgDegree = this.AverageDirection(descriptions);
+            var avgDegree = this.AverageDirection(data);
 
             if (avgDegree > 337.5 && avgDegree <= 360 || avgDegree >= 0 && avgDegree <= 22.5)
                 return WindDirectionType.North;
@@ -63,38 +63,38 @@ namespace Weather.AverageWeatherDescriptionCalculator
             throw new NotImplementedException();
         }
 
-        private double AverageDirection(IEnumerable<WeatherDescriptionDto> descriptions)
+        private double AverageDirection(IEnumerable<WeatherDataDto> data)
         {
             double ns = 0;
             double ew = 0;
 
-            foreach (var description in descriptions)
+            foreach (var item in data)
             {
-                ns += description.WindSpeed * Math.Cos(this.DegToRad((int)description.WindDirection));
-                ew += description.WindSpeed * Math.Sin(this.DegToRad((int)description.WindDirection));
+                ns += item.WindSpeed * Math.Cos(this.DegToRad((int)item.WindDirection));
+                ew += item.WindSpeed * Math.Sin(this.DegToRad((int)item.WindDirection));
             }
 
-            ns = ns / descriptions.Count();
-            ew = ew / descriptions.Count();
+            ns = ns / data.Count();
+            ew = ew / data.Count();
 
             var atanDegree = this.RadToDeg(Math.Atan2(ns, ew));
 
             return this.AtanDegTo360Deg(atanDegree);
         }
 
-        private double AverageSpeed(IEnumerable<WeatherDescriptionDto> descriptions)
+        private double AverageSpeed(IEnumerable<WeatherDataDto> data)
         {
             double ns = 0;
             double ew = 0;
 
-            foreach (var description in descriptions)
+            foreach (var item in data)
             {
-                ns += description.WindSpeed * Math.Cos(this.DegToRad((int)description.WindDirection));
-                ew += description.WindSpeed * Math.Sin(this.DegToRad((int)description.WindDirection));
+                ns += item.WindSpeed * Math.Cos(this.DegToRad((int)item.WindDirection));
+                ew += item.WindSpeed * Math.Sin(this.DegToRad((int)item.WindDirection));
             }
 
-            ns = ns / descriptions.Count();
-            ew = ew / descriptions.Count();
+            ns = ns / data.Count();
+            ew = ew / data.Count();
 
             return Math.Sqrt(ew * ew + ns * ns);
         }

@@ -2340,7 +2340,7 @@
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
-		<row><td>Weather.AverageWeatherDescriptionCalculator</td><td>Weather.AverageWeatherDescriptionCalculator\Weather.AverageWeatherDescriptionCalculator.csproj</td><td/><td>2</td></row>
+		<row><td>Weather.AverageWeatherDataCalculator</td><td>Weather.AverageWeatherDataCalculator\Weather.AverageWeatherDataCalculator.csproj</td><td/><td>2</td></row>
 		<row><td>Weather.Bootstrap</td><td>Weather.Bootstrap\Weather.Bootstrap.csproj</td><td/><td>2</td></row>
 		<row><td>Weather.DAL</td><td>Weather.DAL\Weather.DAL.csproj</td><td/><td>2</td></row>
 		<row><td>Weather.Data</td><td>Weather.Data\Weather.Data.csproj</td><td/><td>2</td></row>

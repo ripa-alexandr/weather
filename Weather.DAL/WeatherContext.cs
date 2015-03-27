@@ -28,8 +28,6 @@ namespace Weather.DAL
 
         public DbSet<WeatherDataEntity> WeatherData { get; set; }
 
-        public DbSet<WeatherDescriptionEntity> WeatherDescriptions { get; set; }
-
         public DbSet<WorldEntity> Worlds { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -39,7 +37,6 @@ namespace Weather.DAL
             modelBuilder.Configurations.Add(new LinkMapping());
             modelBuilder.Configurations.Add(new RegionMapping());
             modelBuilder.Configurations.Add(new WeatherDataMapping());
-            modelBuilder.Configurations.Add(new WeatherDescriptionMapping());
             modelBuilder.Configurations.Add(new WorldMapping());
 
             base.OnModelCreating(modelBuilder);

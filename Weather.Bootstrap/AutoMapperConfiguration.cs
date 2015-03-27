@@ -20,10 +20,6 @@ namespace Weather.Bootstrap
             Mapper.CreateMap<WeatherDataEntity, WeatherDataEntity>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.City, opt => opt.Ignore());
-
-            Mapper.CreateMap<WeatherDescriptionEntity, WeatherDescriptionEntity>()
-                .ForMember(d => d.Id, opt => opt.Ignore())
-                .ForMember(d => d.WeatherData, opt => opt.Ignore());
         }
 
         private static void ConfigureEntityToDto()
@@ -46,8 +42,6 @@ namespace Weather.Bootstrap
 
             Mapper.CreateMap<WeatherDataEntity, WeatherDataDto>()
                 .ForMember(d => d.City, opt => opt.Ignore());
-
-            Mapper.CreateMap<WeatherDescriptionEntity, WeatherDescriptionDto>();
 
             Mapper.CreateMap<WorldEntity, WorldDto>()
                 .ForMember(d => d.Countries, opt => opt.Ignore());
@@ -73,8 +67,6 @@ namespace Weather.Bootstrap
 
             Mapper.CreateMap<WeatherDataDto, WeatherDataEntity>()
                 .ForMember(d => d.City, opt => opt.Ignore());
-
-            Mapper.CreateMap<WeatherDescriptionDto, WeatherDescriptionEntity>();
 
             Mapper.CreateMap<WorldDto, WorldEntity>()
                 .ForMember(d => d.Countries, opt => opt.Ignore());

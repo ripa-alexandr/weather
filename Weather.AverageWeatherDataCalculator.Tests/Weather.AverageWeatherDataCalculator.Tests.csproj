@@ -7,8 +7,8 @@
     <ProjectGuid>{A632531A-1759-4800-83AB-1BC7D99A4963}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Weather.AverageWeatherDescriptionCalculator.Tests</RootNamespace>
-    <AssemblyName>Weather.AverageWeatherDescriptionCalculator.Tests</AssemblyName>
+    <RootNamespace>Weather.AverageWeatherDataCalculator.Tests</RootNamespace>
+    <AssemblyName>Weather.AverageWeatherDataCalculator.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,9 +49,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Weather.AverageWeatherDescriptionCalculator\Weather.AverageWeatherDescriptionCalculator.csproj">
+    <ProjectReference Include="..\Weather.AverageWeatherDataCalculator\Weather.AverageWeatherDataCalculator.csproj">
       <Project>{daca131a-fffa-41ab-9bcf-644e291af917}</Project>
-      <Name>Weather.AverageWeatherDescriptionCalculator</Name>
+      <Name>Weather.AverageWeatherDataCalculator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Weather.Common\Weather.Common.csproj">
       <Project>{3AC353A6-0B82-4715-84C0-E6A121875598}</Project>

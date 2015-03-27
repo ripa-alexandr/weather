@@ -12,9 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionSettings", "Solutio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.DAL", "Weather.DAL\Weather.DAL.csproj", "{B4BC38CD-7EFA-422D-8101-CDB27C8E34E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.AverageWeatherDescriptionCalculator", "Weather.AverageWeatherDescriptionCalculator\Weather.AverageWeatherDescriptionCalculator.csproj", "{DACA131A-FFFA-41AB-9BCF-644E291AF917}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.AverageWeatherDataCalculator", "Weather.AverageWeatherDataCalculator\Weather.AverageWeatherDataCalculator.csproj", "{DACA131A-FFFA-41AB-9BCF-644E291AF917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.AverageWeatherDescriptionCalculator.Tests", "Weather.AverageWeatherDescriptionCalculator.Tests\Weather.AverageWeatherDescriptionCalculator.Tests.csproj", "{A632531A-1759-4800-83AB-1BC7D99A4963}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.AverageWeatherDataCalculator.Tests", "Weather.AverageWeatherDataCalculator.Tests\Weather.AverageWeatherDataCalculator.Tests.csproj", "{A632531A-1759-4800-83AB-1BC7D99A4963}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Parser", "Weather.Parser\Weather.Parser.csproj", "{196287BA-530F-494E-840B-FA2D483B6110}"
 EndProject
