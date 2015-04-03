@@ -80,7 +80,7 @@ namespace Weather.Parser
             PartlyCloudy = @"Малооблачно";
             MainlyCloudy = @"Облачно";
             Overcast = @"Пасмурно|[Сс]нег|[Дд]ождь";
-            Rain = @"[Дд]ождь";
+            Rain = @"[Дд]ождь(?!\sсо снегом)";
             Sleet = @"дождь со снегом";
             Snow = @"[Сс]нег";
             Light = @"небольшой";
