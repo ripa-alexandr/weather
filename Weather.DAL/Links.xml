@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<root>
+  <world name="Europe">
+    <country name="Ukraine">
+      <region name="Kharkovskaya Oblast">
+        <city name="Chuguev">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-chuhuiv-12830" />
+          <link name="Sinoptik" type="1" url="http://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%87%D1%83%D0%B3%D1%83%D0%B5%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A7%D1%83%D0%B3%D1%83%D0%B5%D0%B2%D0%B5" />
+        </city>
+        <city name="Kharkov">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-kharkiv-5053" />
+          <link name="Sinoptik" type="1" url="http://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%85%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D0%B5" />
+        </city>
+        <city name="Izum">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-izium-5070/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B8%D0%B7%D1%8E%D0%BC" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%98%D0%B7%D1%8E%D0%BC%D0%B5" />
+        </city>
+        <city name="Balakleya">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-balakleya-12258/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B1%D0%B0%D0%BB%D0%B0%D0%BA%D0%BB%D0%B5%D1%8F" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%91%D0%B0%D0%BB%D0%B0%D0%BA%D0%BB%D0%B5%D0%B5,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+	      <city name="Barvenkovo">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-bervinkove-12259/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B1%D0%B0%D1%80%D0%B2%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%BE" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%91%D0%B0%D1%80%D0%B2%D0%B5%D0%BD%D0%BA%D0%BE%D0%B2%D0%BE" />
+        </city>
+	      <city name="Bliznyuki">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-vliznyuki-12260/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B1%D0%BB%D0%B8%D0%B7%D0%BD%D1%8E%D0%BA%D0%B8" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%91%D0%BB%D0%B8%D0%B7%D0%BD%D1%8E%D0%BA%D0%B0%D1%85" />
+        </city>
+	      <city name="Bohodukhov">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-bohodukhiv-5054/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B1%D0%BE%D0%B3%D0%BE%D0%B4%D1%83%D1%85%D0%BE%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%91%D0%BE%D0%B3%D0%BE%D0%B4%D1%83%D1%85%D0%BE%D0%B2%D0%B5" />
+        </city>
+	      <city name="Borovaya">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-borova-12261/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B1%D0%BE%D1%80%D0%BE%D0%B2%D0%B0%D1%8F" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D0%BE%D0%B9,_%D0%91%D0%BE%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9_%D1%80%D0%B0%D0%B9%D0%BE%D0%BD" />
+        </city>
+	      <city name="Valki">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-valki-12262/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B2%D0%B0%D0%BB%D0%BA%D0%B8" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%92%D0%B0%D0%BB%D0%BA%D0%B0%D1%85,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+	      <city name="Velikiy Burluk">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-velykyi-burluk-12263/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B2%D0%B5%D0%BB%D0%B8%D0%BA%D0%B8%D0%B9-%D0%B1%D1%83%D1%80%D0%BB%D1%83%D0%BA" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%92%D0%B5%D0%BB%D0%B8%D0%BA%D0%BE%D0%BC_%D0%91%D1%83%D1%80%D0%BB%D1%83%D0%BA%D0%B5" />
+        </city>
+	      <city name="Volchansk">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-vovchansk-12264/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B2%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D1%81%D0%BA" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%92%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D1%81%D0%BA%D0%B5,_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0" />
+        </city>
+	      <city name="Dvurechnaya">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-dvorichna-12265/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B4%D0%B2%D1%83%D1%80%D0%B5%D1%87%D0%BD%D0%B0%D1%8F" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%94%D0%B2%D1%83%D1%80%D0%B5%D1%87%D0%BD%D0%BE%D0%B9,_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0" />
+        </city>
+	      <city name="Dergachi">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-derhachi-12827/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B4%D0%B5%D1%80%D0%B3%D0%B0%D1%87%D0%B8" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%94%D0%B5%D1%80%D0%B3%D0%B0%D1%87%D0%B0%D1%85,_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0" />
+        </city>
+	      <city name="Zachepylovka">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-zachepylivka-12266/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B7%D0%B0%D1%87%D0%B5%D0%BF%D0%B8%D0%BB%D0%BE%D0%B2%D0%BA%D0%B0" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%97%D0%B0%D1%87%D0%B5%D0%BF%D0%B8%D0%BB%D0%BE%D0%B2%D0%BA%D0%B5,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+	      <city name="Zmiyov">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-zmiiv-12013/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B7%D0%BC%D0%B8%D0%B5%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%97%D0%BC%D0%B8%D0%B5%D0%B2%D0%B5" />
+        </city>
+	      <city name="Zolochev">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-zolochiv-12267/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B7%D0%BE%D0%BB%D0%BE%D1%87%D0%B5%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%97%D0%BE%D0%BB%D0%BE%D1%87%D0%B5%D0%B2%D0%B5,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+	      <city name="Kegchovka">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-kehychivka-12268/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D0%B5%D0%B3%D0%B8%D1%87%D0%B5%D0%B2%D0%BA%D0%B0" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D0%B5%D0%B3%D0%B8%D1%87%D0%B5%D0%B2%D0%BA%D0%B5" />
+        </city>
+	      <city name="Kolomak">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-kolomak-12269/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D0%BE%D0%BB%D0%BE%D0%BC%D0%B0%D0%BA-303011436" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D0%BE%D0%BB%D0%BE%D0%BC%D0%B0%D0%BA%D0%B5,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+	      <city name="Krasnograd">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-krasnohrad-5068/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D0%B4" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D0%B5" />
+        </city>
+	      <city name="Краснокутск">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-krasnokutsk-12270/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%BA%D1%83%D1%82%D1%81%D0%BA" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D1%80%D0%B0%D1%81%D0%BD%D0%BE%D0%BA%D1%83%D1%82%D1%81%D0%BA%D0%B5" />
+        </city>
+	      <city name="Купянск">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-kupyansk-5055/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D1%83%D0%BF%D1%8F%D0%BD%D1%81%D0%BA" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D1%83%D0%BF%D1%8F%D0%BD%D1%81%D0%BA%D0%B5-%D0%A3%D0%B7%D0%BB%D0%BE%D0%B2%D0%BE%D0%BC" />
+        </city>
+	      <city name="Лозовая">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-lozova-5069/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BB%D0%BE%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F-303014098" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9B%D0%BE%D0%B7%D0%BE%D0%B2%D0%BE%D0%B9,_%D0%9B%D0%BE%D0%B7%D0%BE%D0%B2%D0%B0%D1%8F" />
+        </city>
+	      <city name="Люботин">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-lyubotyn-12275/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BB%D1%8E%D0%B1%D0%BE%D1%82%D0%B8%D0%BD" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9B%D1%8E%D0%B1%D0%BE%D1%82%D0%B8%D0%BD%D0%B5,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+	      <city name="Мерефа">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-merefa-13913/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BC%D0%B5%D1%80%D0%B5%D1%84%D0%B0" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9C%D0%B5%D1%80%D0%B5%D1%84%D0%B5" />
+        </city>
+	      <city name="Новая Водолага">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-nova-vodolaha-12271/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BD%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B2%D0%BE%D0%B4%D0%BE%D0%BB%D0%B0%D0%B3%D0%B0" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9D%D0%BE%D0%B2%D0%BE%D0%B9_%D0%92%D0%BE%D0%B4%D0%BE%D0%BB%D0%B0%D0%B3%D0%B5" />
+        </city>
+	      <city name="Первомайский">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-pervomaiskyi-12829/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%BE%D0%BC,_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,_%D0%9F%D0%B5%D1%80%D0%B2%D0%BE%D0%BC%D0%B0%D0%B9%D1%81%D0%BA%D0%B8%D0%B9" />
+        </city>
+      </region>
+      
+      <region name="Kievskaya Oblast">
+        <city name="Kiev">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-kyiv-4944/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D0%B8%D0%B5%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D0%B8%D0%B5%D0%B2%D0%B5,_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0" />
+        </city>
+        <city name="Slavutich">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-slavutich-11308/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%81%D0%BB%D0%B0%D0%B2%D1%83%D1%82%D0%B8%D1%87" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A1%D0%BB%D0%B0%D0%B2%D1%83%D1%82%D0%B8%D1%87%D0%B5" />
+        </city>
+      </region>
+      
+      <region name="Lvovskaya Oblast">
+        <city name="Lvov">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-lviv-4949/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BB%D1%8C%D0%B2%D0%BE%D0%B2" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2%D0%BE_%D0%9B%D1%8C%D0%B2%D0%BE%D0%B2%D0%B5,_%D0%9B%D1%8C%D0%B2%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C" />
+        </city>
+        <city name="Truskavec">
+          <link name="Gismeteo" type="0" url="http://www.gismeteo.ua/weather-truskavetz-11851/" />
+          <link name="Sinoptik" type="1" url="https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%82%D1%80%D1%83%D1%81%D0%BA%D0%B0%D0%B2%D0%B5%D1%86" />
+          <link name="Rp5" type="2" url="http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A2%D1%80%D1%83%D1%81%D0%BA%D0%B0%D0%B2%D1%86%D0%B5" />
+        </city>
+      </region>
+    </country>
+  </world>
+</root>

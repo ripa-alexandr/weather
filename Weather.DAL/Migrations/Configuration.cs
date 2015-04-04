@@ -1,4 +1,9 @@
 
+using System;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 
@@ -27,73 +32,55 @@ namespace Weather.DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            var world = new WorldEntity { Name = "Europe" };
-            var country = new CountryEntity { Name = "Ukraine", World = world };
-            var cityKharkov = new CityEntity { Name = "Kharkov" };
-            var cityChuguev = new CityEntity { Name = "Chuguev" };
-            var cityIzum = new CityEntity { Name = "Izum" };
-            var cityKiev = new CityEntity { Name = "Kiev" };
-            var citySlavutich = new CityEntity { Name = "Slavutich" };
-            var cityLvov = new CityEntity { Name = "Lvov" };
-            var cityTruskavec = new CityEntity { Name = "Truskavec" };
-            var regionKh = new RegionEntity
-            {
-                Name = "Kharkovskaya Oblast",
-                Country = country,
-                Cities = new[] { cityKharkov, cityChuguev, cityIzum }
-            };
-            var regionKiev = new RegionEntity
-            {
-                Name = "Kievskaya Oblast",
-                Country = country,
-                Cities = new[] { cityKiev, citySlavutich }
-            };
-            var regionLvov = new RegionEntity
-            {
-                Name = "Lvovskaya Oblast",
-                Country = country,
-                Cities = new[] { cityLvov, cityTruskavec }
-            };
-
-            var links = new[]
-            {
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-chuhuiv-12830", cityChuguev),
-                this.CreateLink(ProviderType.Sinoptik, "http://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%87%D1%83%D0%B3%D1%83%D0%B5%D0%B2", cityChuguev),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A7%D1%83%D0%B3%D1%83%D0%B5%D0%B2%D0%B5", cityChuguev),
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-kharkiv-5053", cityKharkov),
-                this.CreateLink(ProviderType.Sinoptik, "http://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%85%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2", cityKharkov),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A5%D0%B0%D1%80%D1%8C%D0%BA%D0%BE%D0%B2%D0%B5",cityKharkov),
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-kyiv-4944/", cityKiev),
-                this.CreateLink(ProviderType.Sinoptik, "https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D0%B8%D0%B5%D0%B2", cityKiev),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%9A%D0%B8%D0%B5%D0%B2%D0%B5,_%D0%A3%D0%BA%D1%80%D0%B0%D0%B8%D0%BD%D0%B0", cityKiev),
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-izium-5070/", cityIzum),
-                this.CreateLink(ProviderType.Sinoptik, "https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%B8%D0%B7%D1%8E%D0%BC", cityIzum),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%98%D0%B7%D1%8E%D0%BC%D0%B5", cityIzum),
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-lviv-4949/", cityLvov),
-                this.CreateLink(ProviderType.Sinoptik, "https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BB%D1%8C%D0%B2%D0%BE%D0%B2", cityLvov),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2%D0%BE_%D0%9B%D1%8C%D0%B2%D0%BE%D0%B2%D0%B5,_%D0%9B%D1%8C%D0%B2%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C", cityLvov),
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-truskavetz-11851/", cityTruskavec),
-                this.CreateLink(ProviderType.Sinoptik, "https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%82%D1%80%D1%83%D1%81%D0%BA%D0%B0%D0%B2%D0%B5%D1%86", cityTruskavec),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A2%D1%80%D1%83%D1%81%D0%BA%D0%B0%D0%B2%D1%86%D0%B5", cityTruskavec),
-                this.CreateLink(ProviderType.Gismeteo, "http://www.gismeteo.ua/weather-slavutich-11308/", citySlavutich),
-                this.CreateLink(ProviderType.Sinoptik, "https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D1%81%D0%BB%D0%B0%D0%B2%D1%83%D1%82%D0%B8%D1%87", citySlavutich),
-                this.CreateLink(ProviderType.Rp5, "http://rp5.ua/%D0%9F%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0_%D0%B2_%D0%A1%D0%BB%D0%B0%D0%B2%D1%83%D1%82%D0%B8%D1%87%D0%B5", citySlavutich),
-            };
-
-            context.Regions.Add(regionKh);
-            context.Regions.Add(regionKiev);
-            context.Regions.Add(regionLvov);
-            context.Links.AddRange(links);
+            
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Links.xml");
+            var doc = XDocument.Load(filePath);
+            var worlds = doc.Root.Descendants("world").Select(this.CreateWorld);
+            context.Worlds.AddRange(worlds);
         }
 
-        private LinkEntity CreateLink(ProviderType typeProvider, string url, CityEntity city)
+        private WorldEntity CreateWorld(XElement element)
+        {
+            return new WorldEntity
+            {
+                Name = element.Attribute("name").Value,
+                Countries = element.Descendants("country").Select(this.CreateCountry).ToList()
+            };
+        }
+
+        private CountryEntity CreateCountry(XElement element)
+        {
+            return new CountryEntity
+            {
+                Name = element.Attribute("name").Value,
+                Regions = element.Descendants("region").Select(this.CreateRegion).ToList()
+            };
+        }
+
+        private RegionEntity CreateRegion(XElement element)
+        {
+            return new RegionEntity
+            {
+                Name = element.Attribute("name").Value,
+                Cities = element.Descendants("city").Select(this.CreateCity).ToList()
+            };
+        }
+
+        private CityEntity CreateCity(XElement element)
+        {
+            return new CityEntity
+            {
+                Name = element.Attribute("name").Value,
+                Links = element.Descendants("link").Select(this.CreateLink).ToList()
+            };
+        }
+
+        private LinkEntity CreateLink(XElement element)
         {
             return new LinkEntity
             {
-                Provider = typeProvider,
-                Url = url,
-                City = city
+                Provider = (ProviderType)int.Parse(element.Attribute("type").Value),
+                Url = element.Attribute("url").Value
             };
         }
     }
