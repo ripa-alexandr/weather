@@ -5,9 +5,12 @@ using HtmlAgilityPack;
 
 using Ninject.Modules;
 
+using Weather.AverageWeatherDataCalculator;
+using Weather.AverageWeatherDataCalculator.Interfaces;
 using Weather.DAL;
 using Weather.DAL.Repository;
 using Weather.DAL.Repository.Interface;
+using Weather.Facade;
 using Weather.Parser;
 
 namespace Weather.Bootstrap
@@ -16,8 +19,15 @@ namespace Weather.Bootstrap
     {
         public override void Load()
         {
+            this.InitializeCommon();
             this.InitializeRepositories();
             this.InitializeProviders();
+        }
+
+        private void InitializeCommon()
+        {
+            Bind<ICalculator>().To<Calculator>();
+            Bind<IWeatherFacade>().To<WeatherFacade>();
         }
 
         private void InitializeRepositories()

@@ -1,10 +1,12 @@
-﻿
+﻿@model Weather.Website.Models.WeatherDataViewModel
+
 @{
-    ViewBag.Title = "Main";
+    Layout = null;
 }
 
-<h2>Main</h2>
 
+
+@Model.Id
 <div id="mainContentBlock">
     <div id="blockDays">
         <div class="tabs"></div>
@@ -13,4 +15,3 @@
         <div class="tabsBottom"></div>
     </div>
 </div>
-

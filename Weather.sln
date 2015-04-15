@@ -35,6 +35,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Common", "Weather.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Website", "Weather.Website\Weather.Website.csproj", "{54A15F6D-C6B0-4FDE-A6EA-0B19D698A5A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Facade", "Weather.Facade\Weather.Facade.csproj", "{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A93101D8-A600-42B5-B5B1-69662FA30CDA}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -144,6 +153,16 @@ Global
 		{54A15F6D-C6B0-4FDE-A6EA-0B19D698A5A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54A15F6D-C6B0-4FDE-A6EA-0B19D698A5A5}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{54A15F6D-C6B0-4FDE-A6EA-0B19D698A5A5}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

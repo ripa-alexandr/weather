@@ -11,6 +11,8 @@
     <AssemblyName>Weather.Bootstrap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -68,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Weather.AverageWeatherDataCalculator\Weather.AverageWeatherDataCalculator.csproj">
+      <Project>{DACA131A-FFFA-41AB-9BCF-644E291AF917}</Project>
+      <Name>Weather.AverageWeatherDataCalculator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Weather.Common\Weather.Common.csproj">
       <Project>{3AC353A6-0B82-4715-84C0-E6A121875598}</Project>
       <Name>Weather.Common</Name>
@@ -76,6 +82,10 @@
       <Project>{B4BC38CD-7EFA-422D-8101-CDB27C8E34E3}</Project>
       <Name>Weather.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Weather.Facade\Weather.Facade.csproj">
+      <Project>{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}</Project>
+      <Name>Weather.Facade</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Weather.Parser\Weather.Parser.csproj">
       <Project>{196287BA-530F-494E-840B-FA2D483B6110}</Project>
       <Name>Weather.Parser</Name>
@@ -83,6 +93,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
