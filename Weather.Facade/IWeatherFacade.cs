@@ -8,6 +8,6 @@ namespace Weather.Facade
 {
     public interface IWeatherFacade
     {
-        WeatherDataDto GetAvgWeatherData(int cityId, DateTime dateTime, IEnumerable<int> providers);
+        IEnumerable<WeatherDataDto> GetAvgWeatherData(int cityId, DateTime dateTime, IEnumerable<int> providers);
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Weather.Website.Models.WeatherDataViewModel
+﻿@model IEnumerable<Weather.Website.Models.WeatherDataViewModel>
 
 @{
     Layout = null;
@@ -6,7 +6,10 @@
 
 
 
-@Model.Id
+@foreach (var item in Model)
+{
+    <h3>@item.DateTime</h3>
+}
 <div id="mainContentBlock">
     <div id="blockDays">
         <div class="tabs"></div>

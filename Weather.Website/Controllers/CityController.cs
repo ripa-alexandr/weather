@@ -30,19 +30,11 @@ namespace Weather.Website.Controllers
             return View();
         }
 
-        //public ActionResult Details(int cityId, DateTime date, int[] providers)
-        //{
-        //    var data = this.weatherFacade.GetAvgWeatherData(cityId, date, (IEnumerable<int>)providers);
-
-        //    return PartialView("Details", Mapper.Map<WeatherDataViewModel>(data));
-        //}
-
-        [HttpPost]
         public ActionResult Details(CityRequestViewModel request)
         {
             var data = this.weatherFacade.GetAvgWeatherData(request.CityId, request.Date, request.Providers);
 
-            return PartialView("Details", Mapper.Map<WeatherDataViewModel>(data));
+            return PartialView("Details", Mapper.Map<IEnumerable<WeatherDataViewModel>>(data));
         }
     }
 }
