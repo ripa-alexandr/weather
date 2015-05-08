@@ -9,6 +9,8 @@ namespace Weather.Common.Dto
 
         public string Name { get; set; }
 
+        public int CountryId { get; set; }
+
         public CountryDto Country { get; set; }
 
         public IEnumerable<CityDto> Cities { get; set; }

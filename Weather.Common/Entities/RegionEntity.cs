@@ -11,6 +11,8 @@ namespace Weather.Common.Entities
 
         public string Name { get; set; }
 
+        public int CountryId { get; set; }
+
         public virtual CountryEntity Country { get; set; }
 
         public virtual ICollection<CityEntity> Cities { get; set; }

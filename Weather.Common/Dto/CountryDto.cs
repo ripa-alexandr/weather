@@ -9,6 +9,8 @@ namespace Weather.Common.Dto
 
         public string Name { get; set; }
 
+        public int WorldId { get; set; }
+
         public WorldDto World { get; set; }
 
         public IEnumerable<RegionDto> Regions { get; set; }

@@ -20,7 +20,7 @@ namespace Weather.DAL.EntityMapping
             // Relationships
             this.HasRequired(l => l.World)
                 .WithMany(t => t.Countries)
-                .Map(m => m.MapKey("WorldId"));
+                .HasForeignKey(k => k.WorldId);
         }
     }
 }

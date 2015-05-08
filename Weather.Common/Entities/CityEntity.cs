@@ -11,6 +11,8 @@ namespace Weather.Common.Entities
 
         public string Name { get; set; }
 
+        public int RegionId { get; set; }
+
         public virtual RegionEntity Region { get; set; }
 
         public virtual ICollection<WeatherDataEntity> WeatherData { get; set; }
