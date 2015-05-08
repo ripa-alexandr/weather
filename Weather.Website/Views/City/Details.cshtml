@@ -1,13 +1,12 @@
-﻿@model IEnumerable<string>
+﻿@model Weather.Website.Models.CityViewModel
 
 <div id="header">
-    @*TODO: data-id*@
-    <div id="city-name" data-id="1"></div>
+    <div id="city-name" data-id=@Model.Id>@Model.Name</div>
 </div>
 <div id="mainContentBlock">
     <div id="blockDays">
         <div class="tabs">
-            @foreach (var item in Model)
+            @foreach (var item in Model.LastSevenDays)
             {
                 <div>
                     @Html.ActionLink(item, "GetWeatherData", null, new { @class = "update-container" })

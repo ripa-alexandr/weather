@@ -9,6 +9,8 @@ namespace Weather.Website.Models
 
         public string Name { get; set; }
 
+        public IEnumerable<string> LastSevenDays { get; set; }
+
         public IEnumerable<WeatherDataViewModel> WeatherData { get; set; }
     }
 }

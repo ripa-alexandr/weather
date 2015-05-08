@@ -19,9 +19,13 @@ namespace Weather.Website.Controllers
 
         public ActionResult Details(int cityId)
         {
-            var days = WeatherFacade.GetLastSevenDays(DateTime.Now);
+            var result = new CityViewModel
+            {
+                Id = cityId,
+                LastSevenDays = WeatherFacade.GetLastSevenDays(DateTime.Now),
+            };
 
-            return View(days);
+            return View(result);
         }
 
         public ActionResult GetWeatherData(CityRequestViewModel request)
