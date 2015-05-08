@@ -1,0 +1,24 @@
+﻿@model IEnumerable<string>
+
+<div id="header">
+    @*TODO: data-id*@
+    <div id="city-name" data-id="1"></div>
+</div>
+<div id="mainContentBlock">
+    <div id="blockDays">
+        <div class="tabs">
+            @foreach (var item in Model)
+            {
+                <div>
+                    @Html.ActionLink(item, "Details", "City", new { @class = "update-container" })
+                </div>
+            }
+        </div>
+        <div class="tabsTop"></div>
+        <div class="tabsContent">
+            Content here!!!
+        </div>
+        <div class="tabsBottom"></div>
+    </div>
+</div>
+

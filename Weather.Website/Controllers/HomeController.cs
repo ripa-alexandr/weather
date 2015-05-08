@@ -10,7 +10,8 @@ namespace Weather.Website.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "World");
+            //return View();
         }
 
         public ActionResult About()

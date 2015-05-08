@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Weather.Website.Models.CountryViewModel>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(@item.Name, "Index", "Region", new { countryId = item.Id }, null)</li>
+    }
+</ul>
+

@@ -1,11 +1,11 @@
-﻿var requestAjax = function (item, link) {
+﻿var requestAjax = function (request, link) {
     return $.ajax({
         url: link,
-        type: 'POST',
-        data: JSON.stringify(item),
+        type: 'GET',
+        data: $.param(request, true),
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            $('#container').html(data);
+            $('.tabsContent').html(data);
         },
         error: function(data) {
             $('#container').html("Error");
@@ -13,9 +13,14 @@
     });
 };
 
-$('#update-container').click(function (e) {
+$('.update-container').click(function (e) {
     e.preventDefault();
+
     var link = $(this).attr('href');
-    var data = { CityId: 1, Date: new Date(2015, 03, 10, 15, 00, 00), Providers: [1] };
+    var data = {
+        CityId: $("#city-name").data("id"),
+        Date: $(this).text(),
+        Providers: [0, 1, 2]
+    };
     requestAjax(data, link);
 });

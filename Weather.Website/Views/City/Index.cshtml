@@ -1,18 +1,15 @@
-﻿
-@{
-    ViewBag.Title = "Main";
-}
+﻿@model IEnumerable<Weather.Website.Models.CityViewModel>
 
-<h2>Main</h2>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(@item.Name, "Index", "WeatherData", new { cityId = item.Id }, null)</li>
+    }
+</ul>
+
+@Scripts.Render("~/bundles/custom-ajax")
 
 
-@Ajax.ActionLink("TestLink", "Details", "City", new { cityId = 1, date = new DateTime(2015, 04, 10, 15, 00, 00), providers = new [] { 1, 2 } }, new AjaxOptions { UpdateTargetId = "container" })
 
-@Html.ActionLink("TestLinkJquery", "Details", "City", new { id = "update-container" })
-@*<a href="#" id="update-container">TestLinkJquery</a>*@
-
-<div id="container">
-    
-</div>
 
 

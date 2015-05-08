@@ -28,6 +28,9 @@ namespace Weather.Website
                      "~/Scripts/jquery.validate.unobtrusive*",
                      "~/Scripts/ajax.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/custom-ajax").Include(
+                     "~/Scripts/ajax.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

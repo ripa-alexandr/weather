@@ -1,0 +1,19 @@
+﻿@using Weather.Website.Extensions
+@model IEnumerable<Weather.Website.Models.WeatherDataViewModel>
+
+<div class="leftContent"></div>
+<div class="rightContent">
+    <table>
+        <tr>@Html.Td(Model.Select(i => i.DateTime))</tr>
+        <tr>@Html.Td(Model.Select(i => i.Cloudy))</tr>
+        <tr>@Html.Td(Model.Select(i => i.Precipitation))</tr>
+        <tr>@Html.Td(Model.Select(i => i.AirTemp))</tr>
+        <tr>@Html.Td(Model.Select(i => i.RealFeel))</tr>
+        <tr>@Html.Td(Model.Select(i => i.Pressure))</tr>
+        <tr>@Html.Td(Model.Select(i => i.Humidity))</tr>
+        <tr>@Html.Td(Model.Select(i => i.WindDirection))</tr>
+        <tr>@Html.Td(Model.Select(i => i.WindSpeed))</tr>
+        <tr>@Html.Td(Model.Select(i => i.ChancePrecipitation))</tr>
+    </table>
+</div>
+

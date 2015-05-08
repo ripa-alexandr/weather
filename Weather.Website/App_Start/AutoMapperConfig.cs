@@ -18,6 +18,9 @@ namespace Weather.Website
 
         private static void ConfigureDtoToViewModel()
         {
+            Mapper.CreateMap<WorldDto, WorldViewModel>();
+            Mapper.CreateMap<CountryDto, CountryViewModel>();
+            Mapper.CreateMap<RegionDto, RegionViewModel>();
             Mapper.CreateMap<CityDto, CityViewModel>();
             Mapper.CreateMap<WeatherDataDto, WeatherDataViewModel>();
         }
