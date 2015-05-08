@@ -10,7 +10,7 @@
             @foreach (var item in Model)
             {
                 <div>
-                    @Html.ActionLink(item, "Details", "City", new { @class = "update-container" })
+                    @Html.ActionLink(item, "GetWeatherData", null, new { @class = "update-container" })
                 </div>
             }
         </div>
@@ -21,4 +21,3 @@
         <div class="tabsBottom"></div>
     </div>
 </div>
-

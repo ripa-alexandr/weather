@@ -180,7 +180,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
-    <Compile Include="Controllers\WeatherDataController.cs" />
     <Compile Include="Controllers\WorldController.cs" />
     <Compile Include="Extensions\CustomHtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
@@ -250,11 +249,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\City\Index.cshtml" />
-    <Content Include="Views\WeatherData\Details.cshtml" />
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\Region\Index.cshtml" />
     <Content Include="Views\World\Index.cshtml" />
-    <Content Include="Views\WeatherData\Index.cshtml" />
+    <Content Include="Views\City\Details.cshtml" />
+    <Content Include="Views\City\WeatherData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

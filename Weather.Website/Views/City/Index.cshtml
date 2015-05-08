@@ -3,7 +3,7 @@
 <ul>
     @foreach (var item in Model)
     {
-        <li>@Html.ActionLink(@item.Name, "Index", "WeatherData", new { cityId = item.Id }, null)</li>
+        <li>@Html.ActionLink(@item.Name, "Details", new { cityId = item.Id }, null)</li>
     }
 </ul>
 
