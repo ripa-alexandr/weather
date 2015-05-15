@@ -1,5 +1,5 @@
 ﻿var sendAjaxRequest = function (request, link) {
-    return $.ajax({
+    $.ajax({
         url: link,
         type: 'GET',
         data: $.param(request, true),
@@ -11,6 +11,9 @@
             $('#container').html("Error");
         }
     });
+
+    var newUrl = link + "?" + $.param(request, true);
+    history.pushState({ foo: "bar" }, newUrl, newUrl);
 };
 
 $('.update-container').click(function (e) {

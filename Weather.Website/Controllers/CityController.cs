@@ -17,22 +17,27 @@ namespace Weather.Website.Controllers
             return View(Mapper.Map<IEnumerable<CityViewModel>>(cities));
         }
 
-        public ActionResult Details(int cityId)
+        public ActionResult Details(int cityId, DateTime? date, IEnumerable<int> providers)
         {
-            var result = new CityViewModel
-            {
-                Id = cityId,
-                LastSevenDays = WeatherFacade.GetLastSevenDays(DateTime.Now),
-            };
+            // TODO: DateTime.Now and defaultProviders?
+            var result = GetDetails(cityId, date ?? DateTime.Now, providers ?? new[] { WebsiteConfig.DefaultProvider });
+
+            if (Request.IsAjaxRequest())
+                return PartialView("WeatherData", result.WeatherData);
 
             return View(result);
         }
 
-        public ActionResult GetWeatherData(CityRequestViewModel request)
+        private CityViewModel GetDetails(int cityId, DateTime date, IEnumerable<int> providers)
         {
-            var data = WeatherFacade.GetWeatherData(request.CityId, request.Date, request.Providers);
+            var result = new CityViewModel
+            {
+                Id = cityId,
+                LastSevenDays = WeatherFacade.GetLastSevenDays(cityId, date, providers),
+                WeatherData = Mapper.Map<IEnumerable<WeatherDataViewModel>>(WeatherFacade.GetWeatherData(cityId, date, providers))
+            };
 
-            return PartialView("WeatherData", Mapper.Map<IEnumerable<WeatherDataViewModel>>(data));
+            return result;
         }
     }
 }

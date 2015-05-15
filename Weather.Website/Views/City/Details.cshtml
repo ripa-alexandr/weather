@@ -9,13 +9,13 @@
             @foreach (var item in Model.LastSevenDays)
             {
                 <div>
-                    @Html.ActionLink(item, "GetWeatherData", null, new { @class = "update-container" })
+                    @Html.ActionLink(item, "Details", null, new { @class = "update-container" })
                 </div>
             }
         </div>
         <div class="tabsTop"></div>
         <div class="tabsContent">
-            Content here!!!
+            @Html.Partial("WeatherData", Model.WeatherData)
         </div>
         <div class="tabsBottom"></div>
     </div>

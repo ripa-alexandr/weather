@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
+using System.Linq.Expressions;
 
 using AutoMapper;
 
@@ -51,10 +52,17 @@ namespace Weather.Facade
             return Mapper.Map<IEnumerable<CityDto>>(regiones);
         }
 
-        public IEnumerable<string> GetLastSevenDays(DateTime dateTime)
+        public IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<int> providers)
         {
+            var last = this.repository
+                .Get<WeatherDataEntity>(i => i.CityId == cityId)
+                .Join(providers, wd => (int)wd.Provider, p => p, (wd, p) => wd)
+                .Max(i => EntityFunctions.TruncateTime(i.DateTime)).Value;
+            var to = dateTime.AddDays(6).Date >= last.Date ? last : dateTime.AddDays(6).Date;
+            var from = to.AddDays(-6);
+
             var days = this.repository
-                .Get<WeatherDataEntity>(i => EntityFunctions.TruncateTime(i.DateTime) >= dateTime.Date)
+                .Get<WeatherDataEntity>(i => EntityFunctions.TruncateTime(i.DateTime) >= from.Date && EntityFunctions.TruncateTime(i.DateTime) <= to.Date)
                 .Select(i => EntityFunctions.TruncateTime(i.DateTime))
                 .Distinct()
                 .OrderBy(i => i)
