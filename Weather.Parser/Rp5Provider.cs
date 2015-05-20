@@ -136,7 +136,10 @@ namespace Weather.Parser
         {
             var avaibleXPath = args.FirstOrDefault(htmlDocument.IsInnerText);
 
-            return avaibleXPath;
+            if (avaibleXPath != null)
+                return avaibleXPath;
+
+            throw new HtmlDocumentNotExistXPathException(string.Join(" | ", args));
         }
 
         private DateTime GetDateInTable(string input, TimeOfDay timeOfDay)
