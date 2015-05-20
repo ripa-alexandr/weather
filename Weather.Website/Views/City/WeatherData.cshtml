@@ -4,15 +4,45 @@
 <div class="leftContent"></div>
 <div class="rightContent">
     <table>
-        <tr>@Html.Td(Model.Select(i => i.DateTime))</tr>
-        <tr>@Html.Td(Model.Select(i => i.Cloudy))</tr>
-        <tr>@Html.Td(Model.Select(i => i.Precipitation))</tr>
-        <tr>@Html.Td(Model.Select(i => i.AirTemp))</tr>
-        <tr>@Html.Td(Model.Select(i => i.RealFeel))</tr>
-        <tr>@Html.Td(Model.Select(i => i.Pressure))</tr>
-        <tr>@Html.Td(Model.Select(i => i.Humidity))</tr>
-        <tr>@Html.Td(Model.Select(i => i.WindDirection))</tr>
-        <tr>@Html.Td(Model.Select(i => i.WindSpeed))</tr>
-        <tr>@Html.Td(Model.Select(i => i.ChancePrecipitation))</tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().TimeOfDay)</td>
+            @Html.Td(Model.Select(i => i.TimeOfDay))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().Cloudy)</td>
+            @Html.Td(Model.Select(i => i.Cloudy))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().Precipitation)</td>
+            @Html.Td(Model.Select(i => i.Precipitation))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().AirTemp)</td>
+            @Html.Td(Model.Select(i => i.AirTemp))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().RealFeel)</td>
+            @Html.Td(Model.Select(i => i.RealFeel))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().Pressure)</td>
+            @Html.Td(Model.Select(i => i.Pressure))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().Humidity)</td>
+            @Html.Td(Model.Select(i => i.Humidity))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().WindDirection)</td>
+            @Html.Td(Model.Select(i => i.WindDirection))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().WindSpeed)</td>
+            @Html.Td(Model.Select(i => i.WindSpeed))
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.First().ChancePrecipitation)</td>
+            @Html.Td(Model.Select(i => i.ChancePrecipitation))
+        </tr>
     </table>
 </div>
