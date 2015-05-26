@@ -45,16 +45,18 @@ namespace Weather.Parser
             // In one time of day two description
             var description = "//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay * 2 - 2);
             var airTemp = "//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay);
+            var realFeel = "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay);
+            var sameRealFeel = "//*[@id='forecastTable']/tr[6]/td[{0}]".F(parseInfo.TimeOfDay);
             var pressure = this.GetAvailablePath(
                 htmlDocument,
-                "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay),
-                "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
-            var windDirection = "//*[@id='forecastTable']/tr[9]/td[{0}]".F(parseInfo.TimeOfDay);
+                "//*[@id='forecastTable']/tr[last()-6]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay),
+                "//*[@id='forecastTable']/tr[last()-6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
+            var windDirection = "//*[@id='forecastTable']/tr[last()-3]/td[{0}]".F(parseInfo.TimeOfDay);
             var windSpeed = this.GetAvailablePath(
-                htmlDocument, 
-                "//*[@id='forecastTable']/tr[8]/td[{0}]/div[1]".F(parseInfo.TimeOfDay), 
-                "//*[@id='forecastTable']/tr[8]/td[{0}]".F(parseInfo.TimeOfDay));
-            var humidity = "//*[@id='forecastTable']/tr[7]/td[{0}]".F(parseInfo.TimeOfDay);
+                htmlDocument,
+                "//*[@id='forecastTable']/tr[last()-4]/td[{0}]/div[1]".F(parseInfo.TimeOfDay),
+                "//*[@id='forecastTable']/tr[last()-4]/td[{0}]".F(parseInfo.TimeOfDay));
+            var humidity = "//*[@id='forecastTable']/tr[last()-5]/td[{0}]".F(parseInfo.TimeOfDay);
             var date = "//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]".F(parseInfo.Day);
 
             return new WeatherDataDto
@@ -68,6 +70,7 @@ namespace Weather.Parser
                 IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "onmouseover")),
                 IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "onmouseover")),
                 AirTemp = Int32.Parse(htmlDocument.GetInnerText(airTemp)),
+                RealFeel = this.ConvertRealFeel(htmlDocument, sameRealFeel, airTemp, realFeel),
                 Pressure = Double.Parse(htmlDocument.GetInnerText(pressure)),
                 WindDirection = this.ConvertWindDirection(htmlDocument.GetInnerText(windDirection)),
                 WindSpeed = Double.Parse(htmlDocument.GetInnerText(windSpeed)),
@@ -161,5 +164,26 @@ namespace Weather.Parser
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), day);
         }
+
+        #region Converters
+
+        private double ConvertRealFeel(HtmlDocument htmlDocument, string sameRealFeelXPath, string airTempXPath, string realFeelXPath)
+        {
+            if (htmlDocument.DocumentNode.SelectNodes("//*[@id='forecastTable']/tr").Count() == 13 && !IsSameRealFeel(htmlDocument, sameRealFeelXPath))
+            {
+                return double.Parse(htmlDocument.GetInnerText(realFeelXPath));
+            }
+
+            return double.Parse(htmlDocument.GetInnerText(airTempXPath));
+        }
+
+        private static bool IsSameRealFeel(HtmlDocument htmlDocument, string sameRealFeelXPath)
+        {
+            var isSameRealFeel = htmlDocument.IsAttribute(sameRealFeelXPath, "onmouseover");
+
+            return isSameRealFeel && Regex.IsMatch(htmlDocument.GetAttribute(sameRealFeelXPath, "onmouseover"), "равно значению температуры воздуха");
+        }
+
+        #endregion
     }
 }
