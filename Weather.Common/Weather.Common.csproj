@@ -50,6 +50,8 @@
     <Compile Include="Dto\CountryDto.cs" />
     <Compile Include="Dto\LinkDto.cs" />
     <Compile Include="Dto\RegionDto.cs" />
+    <Compile Include="Dto\WeatherDataAggregateDto.cs" />
+    <Compile Include="Dto\WeatherDataBaseDto.cs" />
     <Compile Include="Dto\WeatherDataDto.cs" />
     <Compile Include="Dto\WorldDto.cs" />
     <Compile Include="Entities\CityEntity.cs" />

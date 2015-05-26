@@ -7,6 +7,6 @@ namespace Weather.AverageWeatherDataCalculator.Interfaces
 {
     public interface ICalculator
     {
-        WeatherDataDto GetAvgWeatherData(IEnumerable<WeatherDataDto> weatherData);
+        WeatherDataAggregateDto GetAvgWeatherData(IEnumerable<WeatherDataDto> weatherData);
     }
 }

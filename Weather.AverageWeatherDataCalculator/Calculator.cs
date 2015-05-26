@@ -11,10 +11,11 @@ namespace Weather.AverageWeatherDataCalculator
 {
     public class Calculator : ICalculator
     {
-        public WeatherDataDto GetAvgWeatherData(IEnumerable<WeatherDataDto> data)
+        public WeatherDataAggregateDto GetAvgWeatherData(IEnumerable<WeatherDataDto> data)
         {
-            var averageWeatherCharacteristic = new WeatherDataDto
+            var averageWeatherCharacteristic = new WeatherDataAggregateDto
             {
+                Providers = data.Select(i => i.Provider),
                 Cloudy = this.AverageCloudy(data.Select(i => i.Cloudy)),
                 Precipitation = this.AverageTypePrecipitation(data.Select(i => i.Precipitation)),
                 StrengthPrecipitation = this.AverageStrengthPrecipitation(data.Select(i => i.StrengthPrecipitation)),
