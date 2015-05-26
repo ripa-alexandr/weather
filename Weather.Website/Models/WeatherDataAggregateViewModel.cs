@@ -1,16 +1,16 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using Weather.Common.Enums;
 using Weather.Website.Resources;
 
 namespace Weather.Website.Models
 {
-    public class WeatherDataViewModel
+    public class WeatherDataAggregateViewModel
     {
-        public int Id { get; set; }
-
-        public string ProviderName { get; set; }
+        public IEnumerable<ProviderType> Providers { get; set; }
 
         public DateTime DateTime { get; set; }
 

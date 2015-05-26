@@ -13,9 +13,14 @@
                 </div>
             }
         </div>
-        <div class="tabsTop"></div>
+        <div class="tabsTop">
+            @Html.DropDownList("items", Model.Providers, new { id = "poviders", multiple = "multiple" })
+        </div>
         <div class="tabsContent">
-            @Html.Partial("WeatherData", Model.WeatherData)
+            <div class="leftContent"></div>
+            <div class="rightContent">
+                @Html.Partial("WeatherData", Model.WeatherData)
+            </div>
         </div>
         <div class="tabsBottom"></div>
     </div>

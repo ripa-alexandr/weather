@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 
 using Weather.Common.Dto;
+using Weather.Common.Enums;
 
 namespace Weather.Facade
 {
@@ -16,8 +17,8 @@ namespace Weather.Facade
 
         IEnumerable<CityDto> GetCities(int regionId);
 
-        IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<int> providers);
+        IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers);
 
-        IEnumerable<WeatherDataDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<int> providers);
+        IEnumerable<WeatherDataAggregateDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers);
     }
 }

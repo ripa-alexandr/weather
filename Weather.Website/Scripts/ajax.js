@@ -18,12 +18,12 @@
 
 $('.update-container').click(function (e) {
     e.preventDefault();
-
+    
     var link = $(this).attr('href');
     var request = {
         CityId: $("#city-name").data("id"),
         Date: $(this).text(),
-        Providers: [0, 1, 2]
+        Providers: $("#poviders option:selected").map(function () { return this.value; }).get()
     };
     sendAjaxRequest(request, link);
 });

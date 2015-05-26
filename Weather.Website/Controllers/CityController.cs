@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 
 using AutoMapper;
 
+using Weather.Common.Enums;
 using Weather.Website.Models;
 
 namespace Weather.Website.Controllers
@@ -17,10 +21,12 @@ namespace Weather.Website.Controllers
             return View(Mapper.Map<IEnumerable<CityViewModel>>(cities));
         }
 
-        public ActionResult Details(int cityId, DateTime? date, IEnumerable<int> providers)
+        public ActionResult Details(int cityId, DateTime? date, IEnumerable<ProviderType> providers)
         {
+            // TODO: test
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-ru");
             // TODO: DateTime.Now and defaultProviders?
-            var result = GetDetails(cityId, date ?? DateTime.Now, providers ?? new[] { WebsiteConfig.DefaultProvider });
+            var result = GetDetails(cityId, date ?? DateTime.Now, providers ?? WebsiteConfig.DefaultProviders);
 
             if (Request.IsAjaxRequest())
                 return PartialView("WeatherData", result.WeatherData);
@@ -28,13 +34,13 @@ namespace Weather.Website.Controllers
             return View(result);
         }
 
-        private CityViewModel GetDetails(int cityId, DateTime date, IEnumerable<int> providers)
+        private CityViewModel GetDetails(int cityId, DateTime date, IEnumerable<ProviderType> providers)
         {
             var result = new CityViewModel
             {
                 Id = cityId,
                 LastSevenDays = WeatherFacade.GetLastSevenDays(cityId, date, providers),
-                WeatherData = Mapper.Map<IEnumerable<WeatherDataViewModel>>(WeatherFacade.GetWeatherData(cityId, date, providers))
+                WeatherData = Mapper.Map<IEnumerable<WeatherDataAggregateViewModel>>(WeatherFacade.GetWeatherData(cityId, date, providers))
             };
 
             return result;

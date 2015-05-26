@@ -9,6 +9,7 @@ using AutoMapper;
 using Weather.AverageWeatherDataCalculator.Interfaces;
 using Weather.Common.Dto;
 using Weather.Common.Entities;
+using Weather.Common.Enums;
 using Weather.DAL.Repository.Interface;
 
 namespace Weather.Facade
@@ -52,11 +53,11 @@ namespace Weather.Facade
             return Mapper.Map<IEnumerable<CityDto>>(regiones);
         }
 
-        public IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<int> providers)
+        public IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers)
         {
             var last = this.repository
                 .Get<WeatherDataEntity>(i => i.CityId == cityId)
-                .Join(providers, wd => (int)wd.Provider, p => p, (wd, p) => wd)
+                .Join(providers, wd => wd.Provider, p => p, (wd, p) => wd)
                 .Max(i => EntityFunctions.TruncateTime(i.DateTime)).Value;
             var to = dateTime.AddDays(6).Date >= last.Date ? last : dateTime.AddDays(6).Date;
             var from = to.AddDays(-6);
@@ -72,15 +73,15 @@ namespace Weather.Facade
             return days;
         }
 
-        public IEnumerable<WeatherDataDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<int> providers)
+        public IEnumerable<WeatherDataAggregateDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers)
         {
             var weatherData = this.repository
                 .Get<WeatherDataEntity>(i => i.CityId == cityId && EntityFunctions.TruncateTime(i.DateTime) == dateTime.Date)
-                .Join(providers, wd => (int)(wd.Provider), p => p, (wd, p) => wd)
+                .Join(providers, wd => wd.Provider, p => p, (wd, p) => wd)
                 .GroupBy(wd => wd.DateTime)
+                .Where(wd => wd.Count() == providers.Count())
                 .ToList();
-
-            var result = new List<WeatherDataDto>();
+            var result = new List<WeatherDataAggregateDto>();
 
             foreach (var item in weatherData)
             {
@@ -90,7 +91,7 @@ namespace Weather.Facade
             return result;
         }
 
-        private WeatherDataDto GetAvgWeatherData(ICollection<WeatherDataEntity> weatherData)
+        private WeatherDataAggregateDto GetAvgWeatherData(ICollection<WeatherDataEntity> weatherData)
         {
             if (weatherData.Count > 1)
             {
@@ -100,7 +101,7 @@ namespace Weather.Facade
                 return result;
             }
 
-            return Mapper.Map<WeatherDataDto>(weatherData.First());
+            return Mapper.Map<WeatherDataAggregateDto>(weatherData.First());
         }
     }
 }

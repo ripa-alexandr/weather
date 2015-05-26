@@ -1,15 +1,18 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
+
+using Weather.Common.Enums;
 
 namespace Weather.Website
 {
     public static class WebsiteConfig
     {
-        public static int DefaultProvider
+        public static IEnumerable<ProviderType> DefaultProviders
         {
             get
             {
-                return Int32.Parse(ConfigurationManager.AppSettings["DefaultProvider"]);
+                return Enum.GetValues(typeof(ProviderType)).Cast<ProviderType>();
             }
         }
     }
