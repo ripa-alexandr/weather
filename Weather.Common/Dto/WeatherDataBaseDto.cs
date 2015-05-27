@@ -1,14 +1,9 @@
-﻿
-using System;
-
-using Weather.Common.Enums;
+﻿using Weather.Common.Enums;
 
 namespace Weather.Common.Dto
 {
     public abstract class WeatherDataBaseDto
     {
-        public DateTime DateTime { get; set; }
-
         public CloudyType Cloudy { get; set; }
 
         public PrecipitationType Precipitation { get; set; }

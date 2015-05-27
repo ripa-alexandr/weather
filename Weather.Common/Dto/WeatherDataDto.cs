@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 using Weather.Common.Enums;
 
 namespace Weather.Common.Dto
@@ -6,6 +8,8 @@ namespace Weather.Common.Dto
     public class WeatherDataDto : WeatherDataBaseDto
     {
         public int Id { get; set; }
+
+        public DateTime DateTime { get; set; }
 
         public ProviderType Provider { get; set; }
 

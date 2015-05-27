@@ -91,17 +91,12 @@ namespace Weather.Facade
             return result;
         }
 
-        private WeatherDataAggregateDto GetAvgWeatherData(ICollection<WeatherDataEntity> weatherData)
+        private WeatherDataAggregateDto GetAvgWeatherData(IEnumerable<WeatherDataEntity> weatherData)
         {
-            if (weatherData.Count > 1)
-            {
-                var result = this.calculator.GetAvgWeatherData(Mapper.Map<IEnumerable<WeatherDataDto>>(weatherData));
-                result.DateTime = weatherData.First().DateTime;
-
-                return result;
-            }
-
-            return Mapper.Map<WeatherDataAggregateDto>(weatherData.First());
+            var dto = Mapper.Map<IEnumerable<WeatherDataDto>>(weatherData);
+            var result = this.calculator.GetAvgWeatherData(dto);
+            
+            return result;
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="Dto\CityDto.cs" />
     <Compile Include="Dto\CountryDto.cs" />
     <Compile Include="Dto\LinkDto.cs" />
+    <Compile Include="Dto\ProviderDto.cs" />
     <Compile Include="Dto\RegionDto.cs" />
     <Compile Include="Dto\WeatherDataAggregateDto.cs" />
     <Compile Include="Dto\WeatherDataBaseDto.cs" />

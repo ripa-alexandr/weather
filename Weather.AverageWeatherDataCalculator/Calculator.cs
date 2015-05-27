@@ -15,7 +15,7 @@ namespace Weather.AverageWeatherDataCalculator
         {
             var averageWeatherCharacteristic = new WeatherDataAggregateDto
             {
-                Providers = data.Select(i => i.Provider),
+                Providers = data.Select(i => new ProviderDto { Provider = i.Provider, DateTime = i.DateTime }),
                 Cloudy = this.AverageCloudy(data.Select(i => i.Cloudy)),
                 Precipitation = this.AverageTypePrecipitation(data.Select(i => i.Precipitation)),
                 StrengthPrecipitation = this.AverageStrengthPrecipitation(data.Select(i => i.StrengthPrecipitation)),
