@@ -141,13 +141,13 @@ namespace Weather.WindowsServiceParser
 
         private void SaveWeatherData(IEnumerable<WeatherDataDto> weatherData)
         {
-            this.repositorySlim.AddOrUpdate(Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData));
-            //var time = weatherData.Min(t => t.DateTime);
-            //this.repository.AddOrUpdate(
-            //    Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData),
-            //    (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
-            //    x => x.DateTime >= time);
-            //this.repository.Save();
+            //this.repositorySlim.AddOrUpdate(Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData));
+            var time = weatherData.Min(t => t.DateTime);
+            this.repository.AddOrUpdate(
+                Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData),
+                (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
+                x => x.DateTime >= time);
+            this.repository.Save();
         }
     }
 }
