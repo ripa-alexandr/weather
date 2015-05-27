@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using System.Text;
 
 using AutoMapper;
@@ -28,17 +29,23 @@ namespace Weather.Website
             Mapper.CreateMap<CountryDto, CountryViewModel>();
             Mapper.CreateMap<RegionDto, RegionViewModel>();
             Mapper.CreateMap<CityDto, CityViewModel>();
+            
             Mapper.CreateMap<WeatherDataAggregateDto, WeatherDataAggregateViewModel>()
-                .ForMember(d => d.TimeOfDay, opt => opt.MapFrom(i => GetTimeOfDay(i.DateTime)))
-                .ForMember(d => d.Cloudy, opt => opt.MapFrom(i => GetCloudy(i.Cloudy)))
-                .ForMember(d => d.Precipitation, opt => opt.MapFrom(i => GetPrecipitation(i.Precipitation, i.StrengthPrecipitation, i.IsFog, i.IsThunderstorm)))
-                .ForMember(d => d.WindDirection, opt => opt.MapFrom(i => GetWindDirection(i.WindDirection)));
-            Mapper.CreateMap<WeatherDataDto, WeatherDataAggregateViewModel>()
-                .ForMember(d => d.Providers, opt => opt.MapFrom(i => new[] { i.Provider } ))
-                .ForMember(d => d.TimeOfDay, opt => opt.MapFrom(i => GetTimeOfDay(i.DateTime)))
-                .ForMember(d => d.Cloudy, opt => opt.MapFrom(i => GetCloudy(i.Cloudy)))
-                .ForMember(d => d.Precipitation, opt => opt.MapFrom(i => GetPrecipitation(i.Precipitation, i.StrengthPrecipitation, i.IsFog, i.IsThunderstorm)))
-                .ForMember(d => d.WindDirection, opt => opt.MapFrom(i => GetWindDirection(i.WindDirection)));
+                .ConvertUsing(source => new WeatherDataAggregateViewModel
+                                            {
+                                                Providers = source.Providers.Select(p => p.Provider),
+                                                DateTime = source.Providers.Select(p => p.DateTime).Distinct().Single(),
+                                                TimeOfDay = GetTimeOfDay(source.Providers.Select(p => p.DateTime).Distinct().Single()),
+                                                Cloudy = GetCloudy(source.Cloudy),
+                                                Precipitation = GetPrecipitation(source.Precipitation, source.StrengthPrecipitation, source.IsFog, source.IsThunderstorm),
+                                                AirTemp = source.AirTemp,
+                                                RealFeel = source.RealFeel,
+                                                Pressure = source.Pressure,
+                                                WindDirection = GetWindDirection(source.WindDirection),
+                                                WindSpeed = source.WindSpeed,
+                                                Humidity = source.Humidity,
+                                                ChancePrecipitation = source.ChancePrecipitation
+                                            });
         }
 
         private static string GetTimeOfDay(DateTime dateTime)
