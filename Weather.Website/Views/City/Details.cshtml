@@ -1,4 +1,5 @@
-﻿@model Weather.Website.Models.CityViewModel
+﻿@using Weather.Website.Extensions
+@model Weather.Website.Models.CityViewModel
 
 <div id="header">
     <div id="city-name" data-id=@Model.Id>@Model.Name</div>
@@ -9,7 +10,7 @@
             @foreach (var item in Model.LastSevenDays)
             {
                 <div>
-                    @Html.ActionLink(item, "Details", null, new { @class = "update-container" })
+                    <a href="@Url.ActionPattern("Details", "City", @"\/city-\d+")" class="update-container">@item</a>
                 </div>
             }
         </div>
