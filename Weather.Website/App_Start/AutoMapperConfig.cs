@@ -126,10 +126,13 @@ namespace Weather.Website
             return isFirst ? message : ", {0}".F(message.ToLower());
         }
 
-        private static string GetWindDirection(WindDirection direction)
+        private static string GetWindDirection(WindDirection? direction)
         {
             switch (direction)
             {
+                case null:
+                    return AppResource.WindDirection_Calm;
+
                 case WindDirection.North:
                     return AppResource.WindDirectionType_North;
 

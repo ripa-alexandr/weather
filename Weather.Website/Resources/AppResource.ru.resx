@@ -222,4 +222,7 @@
   <data name="WindDirectionType_West" xml:space="preserve">
     <value>З</value>
   </data>
+  <data name="WindDirection_Calm" xml:space="preserve">
+    <value>Ш</value>
+  </data>
 </root>

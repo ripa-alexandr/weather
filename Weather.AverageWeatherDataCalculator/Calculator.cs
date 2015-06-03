@@ -6,6 +6,7 @@ using System.Linq;
 using Weather.AverageWeatherDataCalculator.Interfaces;
 using Weather.Common.Dto;
 using Weather.Common.Enums;
+using Weather.Common.Exceptions;
 
 namespace Weather.AverageWeatherDataCalculator
 {
@@ -33,9 +34,12 @@ namespace Weather.AverageWeatherDataCalculator
             return averageWeatherCharacteristic;
         }
 
-        private WindDirection AverageWindDirection(IEnumerable<WeatherDataDto> data)
+        private WindDirection? AverageWindDirection(IEnumerable<WeatherDataDto> data)
         {
             var avgDegree = this.AverageDirection(data);
+
+            if (!avgDegree.HasValue) 
+                return null;
 
             if (avgDegree > 337.5 && avgDegree <= 360 || avgDegree >= 0 && avgDegree <= 22.5)
                 return WindDirection.North;
@@ -64,15 +68,21 @@ namespace Weather.AverageWeatherDataCalculator
             throw new NotImplementedException();
         }
 
-        private double AverageDirection(IEnumerable<WeatherDataDto> data)
+        private double? AverageDirection(IEnumerable<WeatherDataDto> data)
         {
+            if (data.Any(i => !i.WindDirection.HasValue && i.WindSpeed > 0 || i.WindDirection.HasValue && i.WindSpeed == 0))
+                throw new NotCorrectWindDirectionEndWindSpeedException();
+
+            if (data.All(i => !i.WindDirection.HasValue)) 
+                return null;
+
             double ns = 0;
             double ew = 0;
 
             foreach (var item in data)
             {
-                ns += item.WindSpeed * Math.Cos(this.DegToRad((int)item.WindDirection));
-                ew += item.WindSpeed * Math.Sin(this.DegToRad((int)item.WindDirection));
+                ns += item.WindSpeed * Math.Cos(this.DegToRad(item.WindDirection));
+                ew += item.WindSpeed * Math.Sin(this.DegToRad(item.WindDirection));
             }
 
             ns = ns / data.Count();
@@ -85,13 +95,16 @@ namespace Weather.AverageWeatherDataCalculator
 
         private double AverageSpeed(IEnumerable<WeatherDataDto> data)
         {
+            if (data.Any(i => !i.WindDirection.HasValue && i.WindSpeed > 0 || i.WindDirection.HasValue && i.WindSpeed == 0))
+                throw new NotCorrectWindDirectionEndWindSpeedException();
+
             double ns = 0;
             double ew = 0;
 
             foreach (var item in data)
             {
-                ns += item.WindSpeed * Math.Cos(this.DegToRad((int)item.WindDirection));
-                ew += item.WindSpeed * Math.Sin(this.DegToRad((int)item.WindDirection));
+                ns += item.WindSpeed * Math.Cos(this.DegToRad(item.WindDirection));
+                ew += item.WindSpeed * Math.Sin(this.DegToRad(item.WindDirection));
             }
 
             ns = ns / data.Count();
@@ -103,6 +116,11 @@ namespace Weather.AverageWeatherDataCalculator
         private double RadToDeg(double angle)
         {
             return angle / Math.PI * 180.0;
+        }
+
+        private double DegToRad(WindDirection? angle)
+        {
+            return DegToRad(angle.HasValue ? (int)angle : 0);
         }
 
         private double DegToRad(double angle)

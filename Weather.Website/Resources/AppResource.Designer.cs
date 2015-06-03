@@ -304,6 +304,15 @@ namespace Weather.Website.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        public static string WindDirection_Calm {
+            get {
+                return ResourceManager.GetString("WindDirection_Calm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E.
         /// </summary>
         public static string WindDirectionType_East {

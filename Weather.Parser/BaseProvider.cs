@@ -152,7 +152,7 @@ namespace Weather.Parser
             return Regex.IsMatch(input, Thunderstorm);
         }
 
-        protected virtual WindDirection ConvertWindDirection(string input)
+        protected virtual WindDirection? ConvertWindDirection(string input)
         {
             if (Regex.IsMatch(input, North))
                 return WindDirection.North;
@@ -179,7 +179,7 @@ namespace Weather.Parser
                 return WindDirection.NorthWest;
 
             if (Regex.IsMatch(input, Calm))
-                return WindDirection.North;
+                return null;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }
