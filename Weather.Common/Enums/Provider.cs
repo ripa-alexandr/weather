@@ -1,7 +1,7 @@
 ﻿
 namespace Weather.Common.Enums
 {
-    public enum ProviderType
+    public enum Provider
     {
         Gismeteo,
         Sinoptik,

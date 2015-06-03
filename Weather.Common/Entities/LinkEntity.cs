@@ -10,7 +10,7 @@ namespace Weather.Common.Entities
 
         public string Url { get; set; }
 
-        public ProviderType Provider { get; set; }
+        public Provider Provider { get; set; }
 
         public int CityId { get; set; }
 

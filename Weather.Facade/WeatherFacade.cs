@@ -53,7 +53,7 @@ namespace Weather.Facade
             return Mapper.Map<IEnumerable<CityDto>>(regiones);
         }
 
-        public IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers)
+        public IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<Provider> providers)
         {
             var last = this.repository
                 .Get<WeatherDataEntity>(i => i.CityId == cityId)
@@ -73,7 +73,7 @@ namespace Weather.Facade
             return days;
         }
 
-        public IEnumerable<WeatherDataAggregateDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers)
+        public IEnumerable<WeatherDataAggregateDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<Provider> providers)
         {
             var weatherData = this.repository
                 .Get<WeatherDataEntity>(i => i.CityId == cityId && EntityFunctions.TruncateTime(i.DateTime) == dateTime.Date)

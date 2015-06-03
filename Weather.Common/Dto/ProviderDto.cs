@@ -7,7 +7,7 @@ namespace Weather.Common.Dto
 {
     public class ProviderDto
     {
-        public ProviderType Provider { get; set; }
+        public Provider Provider { get; set; }
 
         public DateTime DateTime { get; set; }
     }

@@ -118,15 +118,15 @@ namespace Weather.WindowsServiceParser
 
             switch (link.Provider)
             {
-                case ProviderType.Gismeteo:
+                case Provider.Gismeteo:
                     result = this.gismeteoProvider.Fetch(link.Url);
                     break;
 
-                case ProviderType.Sinoptik:
+                case Provider.Sinoptik:
                     result = this.sinoptikProvider.Fetch(link.Url);
                     break;
 
-                case ProviderType.Rp5:
+                case Provider.Rp5:
                     result = this.rp5Provider.Fetch(link.Url);
                     break;
             }

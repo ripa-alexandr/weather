@@ -114,32 +114,32 @@ namespace Weather.Parser
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }
 
-        protected virtual PrecipitationType ConvertTypePrecipitation(string input)
+        protected virtual Precipitation ConvertPrecipitation(string input)
         {
             if (Regex.IsMatch(input, Rain))
-                return PrecipitationType.Rain;
+                return Precipitation.Rain;
 
             if (Regex.IsMatch(input, Sleet))
-                return PrecipitationType.Sleet;
+                return Precipitation.Sleet;
 
             if (Regex.IsMatch(input, Snow))
-                return PrecipitationType.Snow;
+                return Precipitation.Snow;
 
-            return PrecipitationType.None;
+            return Precipitation.None;
         }
 
-        protected virtual StrengthPrecipitationType ConvertStrengthPrecipitation(string input)
+        protected virtual StrengthPrecipitation ConvertStrengthPrecipitation(string input)
         {
-            if (this.ConvertTypePrecipitation(input) == PrecipitationType.None)
-                return StrengthPrecipitationType.None;
+            if (this.ConvertPrecipitation(input) == Precipitation.None)
+                return StrengthPrecipitation.None;
 
             if (Regex.IsMatch(input, Light))
-                return StrengthPrecipitationType.Light;
+                return StrengthPrecipitation.Light;
 
             if (Regex.IsMatch(input, Heavy))
-                return StrengthPrecipitationType.Heavy;
+                return StrengthPrecipitation.Heavy;
 
-            return StrengthPrecipitationType.Middle;
+            return StrengthPrecipitation.Middle;
         }
 
         protected virtual bool ConvertFog(string input)
@@ -152,34 +152,34 @@ namespace Weather.Parser
             return Regex.IsMatch(input, Thunderstorm);
         }
 
-        protected virtual WindDirectionType ConvertWindDirection(string input)
+        protected virtual WindDirection ConvertWindDirection(string input)
         {
             if (Regex.IsMatch(input, North))
-                return WindDirectionType.North;
+                return WindDirection.North;
 
             if (Regex.IsMatch(input, NorthEast))
-                return WindDirectionType.NorthEast;
+                return WindDirection.NorthEast;
 
             if (Regex.IsMatch(input, East))
-                return WindDirectionType.East;
+                return WindDirection.East;
 
             if (Regex.IsMatch(input, SouthEast))
-                return WindDirectionType.SouthEast;
+                return WindDirection.SouthEast;
 
             if (Regex.IsMatch(input, South))
-                return WindDirectionType.South;
+                return WindDirection.South;
 
             if (Regex.IsMatch(input, SouthWest))
-                return WindDirectionType.SouthWest;
+                return WindDirection.SouthWest;
 
             if (Regex.IsMatch(input, West))
-                return WindDirectionType.West;
+                return WindDirection.West;
 
             if (Regex.IsMatch(input, NorthWest))
-                return WindDirectionType.NorthWest;
+                return WindDirection.NorthWest;
 
             if (Regex.IsMatch(input, Calm))
-                return WindDirectionType.North;
+                return WindDirection.North;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }

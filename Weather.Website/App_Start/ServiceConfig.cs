@@ -8,11 +8,11 @@ namespace Weather.Website
 {
     public static class WebsiteConfig
     {
-        public static IEnumerable<ProviderType> DefaultProviders
+        public static IEnumerable<Provider> DefaultProviders
         {
             get
             {
-                return Enum.GetValues(typeof(ProviderType)).Cast<ProviderType>();
+                return Enum.GetValues(typeof(Provider)).Cast<Provider>();
             }
         }
     }

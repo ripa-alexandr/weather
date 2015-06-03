@@ -79,7 +79,7 @@ namespace Weather.DAL.Migrations
         {
             return new LinkEntity
             {
-                Provider = (ProviderType)int.Parse(element.Attribute("type").Value),
+                Provider = (Provider)int.Parse(element.Attribute("type").Value),
                 Url = element.Attribute("url").Value
             };
         }

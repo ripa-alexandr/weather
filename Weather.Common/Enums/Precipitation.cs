@@ -1,7 +1,7 @@
 ﻿
 namespace Weather.Common.Enums
 {
-    public enum PrecipitationType
+    public enum Precipitation
     {
         None = 0,
         Rain = 1,

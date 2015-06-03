@@ -11,7 +11,7 @@ namespace Weather.Common.Dto
 
         public DateTime DateTime { get; set; }
 
-        public ProviderType Provider { get; set; }
+        public Provider Provider { get; set; }
 
         public string ProviderName { get; set; }
 

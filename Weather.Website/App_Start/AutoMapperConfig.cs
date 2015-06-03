@@ -68,7 +68,7 @@ namespace Weather.Website
             return string.Empty;
         }
 
-        private static string GetPrecipitation(PrecipitationType precipitation, StrengthPrecipitationType strengthPrecipitation, bool isFog, bool isThunderstorm)
+        private static string GetPrecipitation(Precipitation precipitation, StrengthPrecipitation strengthPrecipitation, bool isFog, bool isThunderstorm)
         {
             var sb = new StringBuilder();
             sb.Append(GetPrecipitation(precipitation, strengthPrecipitation, sb.Length == 0));
@@ -78,33 +78,33 @@ namespace Weather.Website
             return sb.ToString();
         }
 
-        private static string GetPrecipitation(PrecipitationType precipitation, StrengthPrecipitationType strengthPrecipitation, bool isFirst)
+        private static string GetPrecipitation(Precipitation precipitation, StrengthPrecipitation strengthPrecipitation, bool isFirst)
         {
             var result = GetStrengthPrecipitation(strengthPrecipitation, isFirst);
 
             switch (precipitation)
             {
-                case PrecipitationType.Rain:
+                case Precipitation.Rain:
                     return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Rain : " {0}".F(AppResource.PrecipitationType_Rain.ToLower());
 
-                case PrecipitationType.Sleet:
+                case Precipitation.Sleet:
                     return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Sleet : " {0}".F(AppResource.PrecipitationType_Sleet.ToLower());
 
-                case PrecipitationType.Snow:
+                case Precipitation.Snow:
                     return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Snow : " {0}".F(AppResource.PrecipitationType_Snow.ToLower());
             }
 
             return string.Empty;
         }
 
-        private static string GetStrengthPrecipitation(StrengthPrecipitationType strengthPrecipitation, bool isFirst)
+        private static string GetStrengthPrecipitation(StrengthPrecipitation strengthPrecipitation, bool isFirst)
         {
             switch (strengthPrecipitation)
             {
-                case StrengthPrecipitationType.Light:
+                case StrengthPrecipitation.Light:
                     return GetEditedMessage(AppResource.StrengthPrecipitationType_Light, isFirst);
 
-                case StrengthPrecipitationType.Heavy:
+                case StrengthPrecipitation.Heavy:
                     return GetEditedMessage(AppResource.StrengthPrecipitationType_Heavy, isFirst);
             }
 
@@ -126,32 +126,32 @@ namespace Weather.Website
             return isFirst ? message : ", {0}".F(message.ToLower());
         }
 
-        private static string GetWindDirection(WindDirectionType direction)
+        private static string GetWindDirection(WindDirection direction)
         {
             switch (direction)
             {
-                case WindDirectionType.North:
+                case WindDirection.North:
                     return AppResource.WindDirectionType_North;
 
-                case WindDirectionType.NorthEast:
+                case WindDirection.NorthEast:
                     return AppResource.WindDirectionType_NorthEast;
 
-                case WindDirectionType.East:
+                case WindDirection.East:
                     return AppResource.WindDirectionType_East;
 
-                case WindDirectionType.SouthEast:
+                case WindDirection.SouthEast:
                     return AppResource.WindDirectionType_SouthEast;
 
-                case WindDirectionType.South:
+                case WindDirection.South:
                     return AppResource.WindDirectionType_South;
 
-                case WindDirectionType.SouthWest:
+                case WindDirection.SouthWest:
                     return AppResource.WindDirectionType_SouthWest;
 
-                case WindDirectionType.West:
+                case WindDirection.West:
                     return AppResource.WindDirectionType_West;
 
-                case WindDirectionType.NorthWest:
+                case WindDirection.NorthWest:
                     return AppResource.WindDirectionType_NorthWest;
             }
 

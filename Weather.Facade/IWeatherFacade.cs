@@ -17,8 +17,8 @@ namespace Weather.Facade
 
         IEnumerable<CityDto> GetCities(int regionId);
 
-        IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers);
+        IEnumerable<string> GetLastSevenDays(int cityId, DateTime dateTime, IEnumerable<Provider> providers);
 
-        IEnumerable<WeatherDataAggregateDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<ProviderType> providers);
+        IEnumerable<WeatherDataAggregateDto> GetWeatherData(int cityId, DateTime dateTime, IEnumerable<Provider> providers);
     }
 }

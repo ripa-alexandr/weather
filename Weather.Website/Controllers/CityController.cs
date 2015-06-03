@@ -21,7 +21,7 @@ namespace Weather.Website.Controllers
             return View(Mapper.Map<IEnumerable<CityViewModel>>(cities));
         }
 
-        public ActionResult Details(int cityId, DateTime? date, IEnumerable<ProviderType> providers)
+        public ActionResult Details(int cityId, DateTime? date, IEnumerable<Provider> providers)
         {
             // TODO: test
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-ru");
@@ -34,7 +34,7 @@ namespace Weather.Website.Controllers
             return View(result);
         }
 
-        private CityViewModel GetDetails(int cityId, DateTime date, IEnumerable<ProviderType> providers)
+        private CityViewModel GetDetails(int cityId, DateTime date, IEnumerable<Provider> providers)
         {
             var result = new CityViewModel
             {

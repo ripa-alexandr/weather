@@ -10,7 +10,7 @@ namespace Weather.Website.Models
 {
     public class WeatherDataAggregateViewModel
     {
-        public IEnumerable<ProviderType> Providers { get; set; }
+        public IEnumerable<Provider> Providers { get; set; }
 
         public DateTime DateTime { get; set; }
 

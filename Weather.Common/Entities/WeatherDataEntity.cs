@@ -10,7 +10,7 @@ namespace Weather.Common.Entities
     {
         public int Id { get; set; }
 
-        public ProviderType Provider { get; set; }
+        public Provider Provider { get; set; }
 
         public string ProviderName { get; set; }
 
@@ -18,9 +18,9 @@ namespace Weather.Common.Entities
 
         public CloudyType Cloudy { get; set; }
 
-        public PrecipitationType Precipitation { get; set; }
+        public Precipitation Precipitation { get; set; }
 
-        public StrengthPrecipitationType StrengthPrecipitation { get; set; }
+        public StrengthPrecipitation StrengthPrecipitation { get; set; }
 
         public bool IsFog { get; set; }
 
@@ -32,7 +32,7 @@ namespace Weather.Common.Entities
 
         public double Pressure { get; set; }
 
-        public WindDirectionType WindDirection { get; set; }
+        public WindDirection WindDirection { get; set; }
 
         public double WindSpeed { get; set; }
 

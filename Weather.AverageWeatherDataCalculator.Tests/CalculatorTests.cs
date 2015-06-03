@@ -20,13 +20,13 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             this.calculator = new Calculator();
         }
 
-        [TestCase(WindDirectionType.North, WindDirectionType.East, WindDirectionType.NorthEast)]
-        [TestCase(WindDirectionType.East, WindDirectionType.South, WindDirectionType.SouthEast)]
-        [TestCase(WindDirectionType.South, WindDirectionType.West, WindDirectionType.SouthWest)]
-        [TestCase(WindDirectionType.West, WindDirectionType.North, WindDirectionType.NorthWest)]
+        [TestCase(WindDirection.North, WindDirection.East, WindDirection.NorthEast)]
+        [TestCase(WindDirection.East, WindDirection.South, WindDirection.SouthEast)]
+        [TestCase(WindDirection.South, WindDirection.West, WindDirection.SouthWest)]
+        [TestCase(WindDirection.West, WindDirection.North, WindDirection.NorthWest)]
         [Test]
         public void GetAvgWeatherData_CalculateAverageDirectionEveryFourthWithSameSpeed_AverageDirection(
-            WindDirectionType direction1, WindDirectionType direction2, WindDirectionType result)
+            WindDirection direction1, WindDirection direction2, WindDirection result)
         {
             // Arrange
             var weatherData = new[]
@@ -42,11 +42,11 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             Assert.AreEqual(averageWeatherData.WindDirection, result);
         }
 
-        [TestCase(WindDirectionType.North, WindDirectionType.West, WindDirectionType.NorthWest)]
-        [TestCase(WindDirectionType.North, WindDirectionType.East, WindDirectionType.NorthEast)]
+        [TestCase(WindDirection.North, WindDirection.West, WindDirection.NorthWest)]
+        [TestCase(WindDirection.North, WindDirection.East, WindDirection.NorthEast)]
         [Test]
         public void GetAvgWeatherData_CalculateAverageDirectionNearZerroWithSameSpeed_AverageDirection(
-            WindDirectionType direction1, WindDirectionType direction2, WindDirectionType result)
+            WindDirection direction1, WindDirection direction2, WindDirection result)
         {
             // Arrange
             var weatherData = new[]
@@ -68,25 +68,25 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Arrange
             var weatherData = new[]
             {
-                new WeatherDataDto { WindDirection = WindDirectionType.West, WindSpeed = 0 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 20 },
+                new WeatherDataDto { WindDirection = WindDirection.West, WindSpeed = 0 }, 
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 20 },
             };
 
             // Act
             var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
 
             // Assert
-            Assert.AreEqual(averageWeatherData.WindDirection, WindDirectionType.North);
+            Assert.AreEqual(averageWeatherData.WindDirection, WindDirection.North);
         }
 
-        [TestCase(WindDirectionType.North, WindDirectionType.South)]
-        [TestCase(WindDirectionType.NorthEast, WindDirectionType.SouthWest)]
-        [TestCase(WindDirectionType.East, WindDirectionType.West)]
-        [TestCase(WindDirectionType.SouthEast, WindDirectionType.NorthWest)]
-        [TestCase(WindDirectionType.South, WindDirectionType.North)]
+        [TestCase(WindDirection.North, WindDirection.South)]
+        [TestCase(WindDirection.NorthEast, WindDirection.SouthWest)]
+        [TestCase(WindDirection.East, WindDirection.West)]
+        [TestCase(WindDirection.SouthEast, WindDirection.NorthWest)]
+        [TestCase(WindDirection.South, WindDirection.North)]
         [Test]
         public void GetAvgWeatherData_CalculateAverageDirectionWithCrosswindAndDifferentSpeed_DirectionWhereMoreSpeed(
-            WindDirectionType direction1, WindDirectionType direction2)
+            WindDirection direction1, WindDirection direction2)
         {
             // Arrange
             var weatherData = new[]
@@ -108,8 +108,8 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Arrange
             var weatherData = new[]
             {
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 0 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.East, WindSpeed = 20 },
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 0 }, 
+                new WeatherDataDto { WindDirection = WindDirection.East, WindSpeed = 20 },
             };
 
             // Act
@@ -119,14 +119,14 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             Assert.AreEqual(averageWeatherData.WindSpeed, 10);
         }
 
-        [TestCase(WindDirectionType.North, WindDirectionType.South, 10, 11)]
-        [TestCase(WindDirectionType.NorthEast, WindDirectionType.SouthWest, 10, 16)]
-        [TestCase(WindDirectionType.East, WindDirectionType.West, 2, 1)]
-        [TestCase(WindDirectionType.SouthEast, WindDirectionType.NorthWest, 17, 8)]
-        [TestCase(WindDirectionType.South, WindDirectionType.North, 5, 4)]
+        [TestCase(WindDirection.North, WindDirection.South, 10, 11)]
+        [TestCase(WindDirection.NorthEast, WindDirection.SouthWest, 10, 16)]
+        [TestCase(WindDirection.East, WindDirection.West, 2, 1)]
+        [TestCase(WindDirection.SouthEast, WindDirection.NorthWest, 17, 8)]
+        [TestCase(WindDirection.South, WindDirection.North, 5, 4)]
         [Test]
         public void GetAvgWeatherData_CalculateAverageSpeedWithCrosswindAndDifferentSpeed_AverageSpeed(
-            WindDirectionType direction1, WindDirectionType direction2, double speed1, double speed2)
+            WindDirection direction1, WindDirection direction2, double speed1, double speed2)
         {
             // Arrange
             var weatherData = new[]
@@ -148,9 +148,9 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Arrange
             var weatherData = new[]
             {
-                new WeatherDataDto { WindDirection = WindDirectionType.South, WindSpeed = 20 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 21 },
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 2 }
+                new WeatherDataDto { WindDirection = WindDirection.South, WindSpeed = 20 }, 
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 21 },
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 2 }
             };
 
             // Act
@@ -166,10 +166,10 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Arrange
             var weatherData = new[]
             {
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.South, WindSpeed = 10 },
-                new WeatherDataDto { WindDirection = WindDirectionType.East, WindSpeed = 20 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.West, WindSpeed = 20 }
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 10 }, 
+                new WeatherDataDto { WindDirection = WindDirection.South, WindSpeed = 10 },
+                new WeatherDataDto { WindDirection = WindDirection.East, WindSpeed = 20 }, 
+                new WeatherDataDto { WindDirection = WindDirection.West, WindSpeed = 20 }
             };
 
             // Act
@@ -185,11 +185,11 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Arrange
             var weatherData = new[]
             {
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.South, WindSpeed = 10 },
-                new WeatherDataDto { WindDirection = WindDirectionType.NorthWest, WindSpeed = 20 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.SouthEast, WindSpeed = 20 },
-                new WeatherDataDto { WindDirection = WindDirectionType.West, WindSpeed = 5 }
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 10 }, 
+                new WeatherDataDto { WindDirection = WindDirection.South, WindSpeed = 10 },
+                new WeatherDataDto { WindDirection = WindDirection.NorthWest, WindSpeed = 20 }, 
+                new WeatherDataDto { WindDirection = WindDirection.SouthEast, WindSpeed = 20 },
+                new WeatherDataDto { WindDirection = WindDirection.West, WindSpeed = 5 }
             };
 
             // Act
@@ -205,10 +205,10 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Arrange
             var weatherData = new[]
             {
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 10 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.South, WindSpeed = 10 },
-                new WeatherDataDto { WindDirection = WindDirectionType.North, WindSpeed = 20 }, 
-                new WeatherDataDto { WindDirection = WindDirectionType.South, WindSpeed = 20 },
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 10 }, 
+                new WeatherDataDto { WindDirection = WindDirection.South, WindSpeed = 10 },
+                new WeatherDataDto { WindDirection = WindDirection.North, WindSpeed = 20 }, 
+                new WeatherDataDto { WindDirection = WindDirection.South, WindSpeed = 20 },
             };
 
             // Act

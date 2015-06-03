@@ -6,9 +6,9 @@ namespace Weather.Common.Dto
     {
         public CloudyType Cloudy { get; set; }
 
-        public PrecipitationType Precipitation { get; set; }
+        public Precipitation Precipitation { get; set; }
 
-        public StrengthPrecipitationType StrengthPrecipitation { get; set; }
+        public StrengthPrecipitation StrengthPrecipitation { get; set; }
 
         public bool IsFog { get; set; }
 
@@ -20,7 +20,7 @@ namespace Weather.Common.Dto
 
         public double Pressure { get; set; }
 
-        public WindDirectionType WindDirection { get; set; }
+        public WindDirection WindDirection { get; set; }
 
         public double WindSpeed { get; set; }
 

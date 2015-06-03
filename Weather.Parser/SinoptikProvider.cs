@@ -56,11 +56,11 @@ namespace Weather.Parser
 
             return new WeatherDataDto
             {
-                Provider = ProviderType.Sinoptik,
+                Provider = Provider.Sinoptik,
                 ProviderName = "Sinoptic",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "data-link"), parseInfo.TimeOfDayKey),
                 Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(description, "title")),
-                Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "title")),
+                Precipitation = this.ConvertPrecipitation(htmlDocument.GetAttribute(description, "title")),
                 StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "title")),
                 IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "title")),
                 IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "title")),

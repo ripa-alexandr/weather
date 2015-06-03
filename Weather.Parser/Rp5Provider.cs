@@ -61,11 +61,11 @@ namespace Weather.Parser
 
             return new WeatherDataDto
             {
-                Provider = ProviderType.Rp5,
+                Provider = Provider.Rp5,
                 ProviderName = "Rp5",
                 DateTime = this.GetDateInTable(htmlDocument.GetInnerText(date), parseInfo.TimeOfDayKey),
                 Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(cloudy, "onmouseover")),
-                Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
+                Precipitation = this.ConvertPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
                 StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
                 IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "onmouseover")),
                 IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "onmouseover")),

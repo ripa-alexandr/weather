@@ -60,10 +60,10 @@
     <Compile Include="Entities\LinkEntity.cs" />
     <Compile Include="Entities\RegionEntity.cs" />
     <Compile Include="Enums\CloudyType.cs" />
-    <Compile Include="Enums\PrecipitationType.cs" />
-    <Compile Include="Enums\ProviderType.cs" />
-    <Compile Include="Enums\StrengthPrecipitationType.cs" />
-    <Compile Include="Enums\WindDirectionType.cs" />
+    <Compile Include="Enums\Precipitation.cs" />
+    <Compile Include="Enums\Provider.cs" />
+    <Compile Include="Enums\StrengthPrecipitation.cs" />
+    <Compile Include="Enums\WindDirection.cs" />
     <Compile Include="Entities\WeatherDataEntity.cs" />
     <Compile Include="Entities\WorldEntity.cs" />
     <Compile Include="Enums\Day.cs" />

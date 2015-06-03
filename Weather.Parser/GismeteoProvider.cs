@@ -57,11 +57,11 @@ namespace Weather.Parser
 
             return new WeatherDataDto
             {
-                Provider = ProviderType.Gismeteo,
+                Provider = Provider.Gismeteo,
                 ProviderName = "Gismeteo",
                 DateTime = this.GetDate(htmlDocument.GetAttribute(date, "id"), parseInfo.TimeOfDayKey),
                 Cloudy = this.ConvertCloudy(htmlDocument.GetInnerText(description)),
-                Precipitation = this.ConvertTypePrecipitation(htmlDocument.GetInnerText(description)),
+                Precipitation = this.ConvertPrecipitation(htmlDocument.GetInnerText(description)),
                 StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetInnerText(description)),
                 IsFog = this.ConvertFog(htmlDocument.GetInnerText(description)),
                 IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetInnerText(description)),
