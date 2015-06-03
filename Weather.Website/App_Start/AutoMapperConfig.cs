@@ -32,20 +32,20 @@ namespace Weather.Website
             
             Mapper.CreateMap<WeatherDataAggregateDto, WeatherDataAggregateViewModel>()
                 .ConvertUsing(source => new WeatherDataAggregateViewModel
-                                            {
-                                                Providers = source.Providers.Select(p => p.Provider),
-                                                DateTime = source.Providers.Select(p => p.DateTime).Distinct().Single(),
-                                                TimeOfDay = GetTimeOfDay(source.Providers.Select(p => p.DateTime).Distinct().Single()),
-                                                Cloudy = GetCloudy(source.Cloudy),
-                                                Precipitation = GetPrecipitation(source.Precipitation, source.StrengthPrecipitation, source.IsFog, source.IsThunderstorm),
-                                                AirTemp = source.AirTemp,
-                                                RealFeel = source.RealFeel,
-                                                Pressure = source.Pressure,
-                                                WindDirection = GetWindDirection(source.WindDirection),
-                                                WindSpeed = source.WindSpeed,
-                                                Humidity = source.Humidity,
-                                                ChancePrecipitation = source.ChancePrecipitation
-                                            });
+                    {
+                        Providers = source.Providers.Select(p => p.Provider),
+                        DateTime = source.Providers.Select(p => p.DateTime).Distinct().Single(),
+                        TimeOfDay = GetTimeOfDay(source.Providers.Select(p => p.DateTime).Distinct().Single()),
+                        Cloudy = GetCloudy(source.Cloudy),
+                        Precipitation = GetPrecipitation(source.Precipitation, source.StrengthPrecipitation, source.IsFog, source.IsThunderstorm),
+                        AirTemp = source.AirTemp,
+                        RealFeel = source.RealFeel,
+                        Pressure = source.Pressure,
+                        WindDirection = GetWindDirection(source.WindDirection),
+                        WindSpeed = source.WindSpeed,
+                        Humidity = source.Humidity,
+                        ChancePrecipitation = source.ChancePrecipitation
+                    });
         }
 
         private static string GetTimeOfDay(DateTime dateTime)
@@ -71,43 +71,59 @@ namespace Weather.Website
         private static string GetPrecipitation(PrecipitationType precipitation, StrengthPrecipitationType strengthPrecipitation, bool isFog, bool isThunderstorm)
         {
             var sb = new StringBuilder();
-            sb.Append(GetStrengthPrecipitation(strengthPrecipitation));
-            sb.Append(GetPrecipitation(precipitation));
-            sb.AppendFormat(isThunderstorm ? ", {0}".F(AppResource.WeatherData_Thunderstorm.ToLower()) : "");
-            sb.Append(isFog ? ", {0}".F(AppResource.WeatherData_Fog) : "");
+            sb.Append(GetPrecipitation(precipitation, strengthPrecipitation, sb.Length == 0));
+            sb.AppendFormat(GetThunderstorm(isThunderstorm, sb.Length == 0));
+            sb.Append(isFog ? GetEditedMessage(AppResource.WeatherData_Fog, sb.Length == 0) : string.Empty);
             
             return sb.ToString();
         }
 
-        private static string GetStrengthPrecipitation(StrengthPrecipitationType strengthPrecipitation)
+        private static string GetPrecipitation(PrecipitationType precipitation, StrengthPrecipitationType strengthPrecipitation, bool isFirst)
         {
-            switch (strengthPrecipitation)
-            {
-                case StrengthPrecipitationType.Light:
-                    return AppResource.StrengthPrecipitationType_Light;
+            var result = GetStrengthPrecipitation(strengthPrecipitation, isFirst);
 
-                case StrengthPrecipitationType.Heavy:
-                    return AppResource.StrengthPrecipitationType_Heavy;
+            switch (precipitation)
+            {
+                case PrecipitationType.Rain:
+                    return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Rain : " {0}".F(AppResource.PrecipitationType_Rain.ToLower());
+
+                case PrecipitationType.Sleet:
+                    return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Sleet : " {0}".F(AppResource.PrecipitationType_Sleet.ToLower());
+
+                case PrecipitationType.Snow:
+                    return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Snow : " {0}".F(AppResource.PrecipitationType_Snow.ToLower());
             }
 
             return string.Empty;
         }
 
-        private static string GetPrecipitation(PrecipitationType precipitation)
+        private static string GetStrengthPrecipitation(StrengthPrecipitationType strengthPrecipitation, bool isFirst)
         {
-            switch (precipitation)
+            switch (strengthPrecipitation)
             {
-                case PrecipitationType.Rain:
-                    return AppResource.PrecipitationType_Rain;
+                case StrengthPrecipitationType.Light:
+                    return GetEditedMessage(AppResource.StrengthPrecipitationType_Light, isFirst);
 
-                case PrecipitationType.Sleet:
-                    return AppResource.PrecipitationType_Sleet;
-
-                case PrecipitationType.Snow:
-                    return AppResource.PrecipitationType_Snow;
+                case StrengthPrecipitationType.Heavy:
+                    return GetEditedMessage(AppResource.StrengthPrecipitationType_Heavy, isFirst);
             }
 
             return string.Empty;
+        }
+
+        private static string GetThunderstorm(bool isThunderstorm, bool isFirst)
+        {
+            if (isThunderstorm)
+            {
+                return GetEditedMessage(AppResource.WeatherData_Thunderstorm, isFirst);
+            }
+            
+            return string.Empty;
+        }
+
+        private static string GetEditedMessage(string message, bool isFirst)
+        {
+            return isFirst ? message : ", {0}".F(message.ToLower());
         }
 
         private static string GetWindDirection(WindDirectionType direction)
