@@ -25,7 +25,7 @@ namespace Weather.AverageWeatherDataCalculator
                 RealFeel = this.AverageNumberNullable(data.Select(i => i.RealFeel)),
                 Pressure = this.AverageNumber(data.Select(i => i.Pressure)),
                 WindDirection = this.AverageWindDirection(data),
-                WindSpeed = Math.Round(this.AverageSpeed(data)),
+                WindSpeed = Round(this.AverageSpeed(data)),
                 Humidity = this.AverageNumber(data.Select(i => i.Humidity)),
                 ChancePrecipitation = this.AverageNumberNullable(data.Select(i => i.ChancePrecipitation)),
             };
@@ -144,7 +144,7 @@ namespace Weather.AverageWeatherDataCalculator
             if (this.AverageBool(precipitation.Select(i => i == PrecipitationType.None)))
                 return PrecipitationType.None;
 
-            var avgTypePrecipitation = Math.Round(precipitation.Where(i => i != PrecipitationType.None).Average(p => (int)p));
+            var avgTypePrecipitation = Round(precipitation.Where(i => i != PrecipitationType.None).Average(p => (int)p));
 
             return (PrecipitationType)avgTypePrecipitation;
         }
@@ -154,7 +154,7 @@ namespace Weather.AverageWeatherDataCalculator
             if (this.AverageBool(strengthPrecipitation.Select(i => i == StrengthPrecipitationType.None)))
                 return StrengthPrecipitationType.None;
 
-            var avgStrengthPrecipitation = Math.Round(strengthPrecipitation.Where(i => i != StrengthPrecipitationType.None).Average(p => (int)p));
+            var avgStrengthPrecipitation = Round(strengthPrecipitation.Where(i => i != StrengthPrecipitationType.None).Average(p => (int)p));
 
             return (StrengthPrecipitationType)avgStrengthPrecipitation;
         }
@@ -163,14 +163,14 @@ namespace Weather.AverageWeatherDataCalculator
         {
             var avgBool = itemBools.Average(i => Convert.ToDouble(i));
 
-            var isBool = Convert.ToBoolean(Math.Round(avgBool));
+            var isBool = Convert.ToBoolean(Round(avgBool));
 
             return isBool;
         }
 
         private double AverageNumber(IEnumerable<double> items)
         {
-            var avg = Math.Round(items.Average());
+            var avg = Round(items.Average());
 
             return avg;
         }
@@ -180,9 +180,14 @@ namespace Weather.AverageWeatherDataCalculator
             var avg = items.Where(i => i.HasValue);
 
             if (avg.Count() != 0) 
-                return Math.Round(avg.Average(i => i.Value));
+                return Round(avg.Average(i => i.Value));
             
             return null;
+        }
+
+        private double Round(double arg)
+        {
+            return Math.Round(arg, MidpointRounding.AwayFromZero);
         }
     }
 }

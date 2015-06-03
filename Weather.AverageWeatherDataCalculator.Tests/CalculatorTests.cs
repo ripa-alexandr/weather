@@ -139,7 +139,7 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
 
             // Assert
-            Assert.AreEqual(averageWeatherData.WindSpeed, Math.Round((speed1 > speed2 ? speed1 - speed2 : speed2 - speed1) / 2));
+            Assert.AreEqual(averageWeatherData.WindSpeed, Math.Round((speed1 > speed2 ? speed1 - speed2 : speed2 - speed1) / 2, MidpointRounding.AwayFromZero));
         }
 
         [Test]
