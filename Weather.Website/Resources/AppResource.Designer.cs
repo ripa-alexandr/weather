@@ -108,54 +108,54 @@ namespace Weather.Website.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string PrecipitationType_None {
+        public static string Precipitation_None {
             get {
-                return ResourceManager.GetString("PrecipitationType_None", resourceCulture);
+                return ResourceManager.GetString("Precipitation_None", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Rain.
         /// </summary>
-        public static string PrecipitationType_Rain {
+        public static string Precipitation_Rain {
             get {
-                return ResourceManager.GetString("PrecipitationType_Rain", resourceCulture);
+                return ResourceManager.GetString("Precipitation_Rain", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Sleet.
         /// </summary>
-        public static string PrecipitationType_Sleet {
+        public static string Precipitation_Sleet {
             get {
-                return ResourceManager.GetString("PrecipitationType_Sleet", resourceCulture);
+                return ResourceManager.GetString("Precipitation_Sleet", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Snow.
         /// </summary>
-        public static string PrecipitationType_Snow {
+        public static string Precipitation_Snow {
             get {
-                return ResourceManager.GetString("PrecipitationType_Snow", resourceCulture);
+                return ResourceManager.GetString("Precipitation_Snow", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Heavy.
         /// </summary>
-        public static string StrengthPrecipitationType_Heavy {
+        public static string StrengthPrecipitation_Heavy {
             get {
-                return ResourceManager.GetString("StrengthPrecipitationType_Heavy", resourceCulture);
+                return ResourceManager.GetString("StrengthPrecipitation_Heavy", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
-        public static string StrengthPrecipitationType_Light {
+        public static string StrengthPrecipitation_Light {
             get {
-                return ResourceManager.GetString("StrengthPrecipitationType_Light", resourceCulture);
+                return ResourceManager.GetString("StrengthPrecipitation_Light", resourceCulture);
             }
         }
         
@@ -315,72 +315,72 @@ namespace Weather.Website.Resources {
         /// <summary>
         ///   Looks up a localized string similar to E.
         /// </summary>
-        public static string WindDirectionType_East {
+        public static string WindDirection_East {
             get {
-                return ResourceManager.GetString("WindDirectionType_East", resourceCulture);
+                return ResourceManager.GetString("WindDirection_East", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
-        public static string WindDirectionType_North {
+        public static string WindDirection_North {
             get {
-                return ResourceManager.GetString("WindDirectionType_North", resourceCulture);
+                return ResourceManager.GetString("WindDirection_North", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to NE.
         /// </summary>
-        public static string WindDirectionType_NorthEast {
+        public static string WindDirection_NorthEast {
             get {
-                return ResourceManager.GetString("WindDirectionType_NorthEast", resourceCulture);
+                return ResourceManager.GetString("WindDirection_NorthEast", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to NW.
         /// </summary>
-        public static string WindDirectionType_NorthWest {
+        public static string WindDirection_NorthWest {
             get {
-                return ResourceManager.GetString("WindDirectionType_NorthWest", resourceCulture);
+                return ResourceManager.GetString("WindDirection_NorthWest", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to S.
         /// </summary>
-        public static string WindDirectionType_South {
+        public static string WindDirection_South {
             get {
-                return ResourceManager.GetString("WindDirectionType_South", resourceCulture);
+                return ResourceManager.GetString("WindDirection_South", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to SE.
         /// </summary>
-        public static string WindDirectionType_SouthEast {
+        public static string WindDirection_SouthEast {
             get {
-                return ResourceManager.GetString("WindDirectionType_SouthEast", resourceCulture);
+                return ResourceManager.GetString("WindDirection_SouthEast", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to SW.
         /// </summary>
-        public static string WindDirectionType_SouthWest {
+        public static string WindDirection_SouthWest {
             get {
-                return ResourceManager.GetString("WindDirectionType_SouthWest", resourceCulture);
+                return ResourceManager.GetString("WindDirection_SouthWest", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to W.
         /// </summary>
-        public static string WindDirectionType_West {
+        public static string WindDirection_West {
             get {
-                return ResourceManager.GetString("WindDirectionType_West", resourceCulture);
+                return ResourceManager.GetString("WindDirection_West", resourceCulture);
             }
         }
     }

@@ -85,13 +85,13 @@ namespace Weather.Website
             switch (precipitation)
             {
                 case Precipitation.Rain:
-                    return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Rain : " {0}".F(AppResource.PrecipitationType_Rain.ToLower());
+                    return string.IsNullOrEmpty(result) ? AppResource.Precipitation_Rain : " {0}".F(AppResource.Precipitation_Rain.ToLower());
 
                 case Precipitation.Sleet:
-                    return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Sleet : " {0}".F(AppResource.PrecipitationType_Sleet.ToLower());
+                    return string.IsNullOrEmpty(result) ? AppResource.Precipitation_Sleet : " {0}".F(AppResource.Precipitation_Sleet.ToLower());
 
                 case Precipitation.Snow:
-                    return string.IsNullOrEmpty(result) ? AppResource.PrecipitationType_Snow : " {0}".F(AppResource.PrecipitationType_Snow.ToLower());
+                    return string.IsNullOrEmpty(result) ? AppResource.Precipitation_Snow : " {0}".F(AppResource.Precipitation_Snow.ToLower());
             }
 
             return string.Empty;
@@ -102,10 +102,10 @@ namespace Weather.Website
             switch (strengthPrecipitation)
             {
                 case StrengthPrecipitation.Light:
-                    return GetEditedMessage(AppResource.StrengthPrecipitationType_Light, isFirst);
+                    return GetEditedMessage(AppResource.StrengthPrecipitation_Light, isFirst);
 
                 case StrengthPrecipitation.Heavy:
-                    return GetEditedMessage(AppResource.StrengthPrecipitationType_Heavy, isFirst);
+                    return GetEditedMessage(AppResource.StrengthPrecipitation_Heavy, isFirst);
             }
 
             return string.Empty;
@@ -134,28 +134,28 @@ namespace Weather.Website
                     return AppResource.WindDirection_Calm;
 
                 case WindDirection.North:
-                    return AppResource.WindDirectionType_North;
+                    return AppResource.WindDirection_North;
 
                 case WindDirection.NorthEast:
-                    return AppResource.WindDirectionType_NorthEast;
+                    return AppResource.WindDirection_NorthEast;
 
                 case WindDirection.East:
-                    return AppResource.WindDirectionType_East;
+                    return AppResource.WindDirection_East;
 
                 case WindDirection.SouthEast:
-                    return AppResource.WindDirectionType_SouthEast;
+                    return AppResource.WindDirection_SouthEast;
 
                 case WindDirection.South:
-                    return AppResource.WindDirectionType_South;
+                    return AppResource.WindDirection_South;
 
                 case WindDirection.SouthWest:
-                    return AppResource.WindDirectionType_SouthWest;
+                    return AppResource.WindDirection_SouthWest;
 
                 case WindDirection.West:
-                    return AppResource.WindDirectionType_West;
+                    return AppResource.WindDirection_West;
 
                 case WindDirection.NorthWest:
-                    return AppResource.WindDirectionType_NorthWest;
+                    return AppResource.WindDirection_NorthWest;
             }
 
             return string.Empty;
