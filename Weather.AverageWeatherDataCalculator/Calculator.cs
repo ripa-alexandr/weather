@@ -141,22 +141,26 @@ namespace Weather.AverageWeatherDataCalculator
 
         private PrecipitationType AverageTypePrecipitation(IEnumerable<PrecipitationType> precipitation)
         {
-            if (this.AverageBool(precipitation.Select(i => i == PrecipitationType.None)))
-                return PrecipitationType.None;
+            if (this.AverageBool(precipitation.Select(i => i != PrecipitationType.None)))
+            {
+                var avg = precipitation.Where(i => i != PrecipitationType.None).Average(p => (int)p);
 
-            var avgTypePrecipitation = Round(precipitation.Where(i => i != PrecipitationType.None).Average(p => (int)p));
+                return (PrecipitationType)Round(avg);
+            }
 
-            return (PrecipitationType)avgTypePrecipitation;
+            return PrecipitationType.None;
         }
 
         private StrengthPrecipitationType AverageStrengthPrecipitation(IEnumerable<StrengthPrecipitationType> strengthPrecipitation)
         {
-            if (this.AverageBool(strengthPrecipitation.Select(i => i == StrengthPrecipitationType.None)))
-                return StrengthPrecipitationType.None;
+            if (this.AverageBool(strengthPrecipitation.Select(i => i != StrengthPrecipitationType.None)))
+            {
+                var avg = strengthPrecipitation.Where(i => i != StrengthPrecipitationType.None).Average(p => (int)p);
 
-            var avgStrengthPrecipitation = Round(strengthPrecipitation.Where(i => i != StrengthPrecipitationType.None).Average(p => (int)p));
+                return (StrengthPrecipitationType)Round(avg);
+            }
 
-            return (StrengthPrecipitationType)avgStrengthPrecipitation;
+            return StrengthPrecipitationType.None;
         }
 
         private bool AverageBool(IEnumerable<bool> itemBools)
