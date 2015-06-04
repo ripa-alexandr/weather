@@ -20,7 +20,7 @@ namespace Weather.Common.Entities
 
         public Precipitation? Precipitation { get; set; }
 
-        public StrengthPrecipitation StrengthPrecipitation { get; set; }
+        public StrengthPrecipitation? StrengthPrecipitation { get; set; }
 
         public bool IsFog { get; set; }
 

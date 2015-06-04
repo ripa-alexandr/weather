@@ -68,7 +68,7 @@ namespace Weather.Website
             return string.Empty;
         }
 
-        private static string GetPrecipitation(Precipitation? precipitation, StrengthPrecipitation strengthPrecipitation, bool isFog, bool isThunderstorm)
+        private static string GetPrecipitation(Precipitation? precipitation, StrengthPrecipitation? strengthPrecipitation, bool isFog, bool isThunderstorm)
         {
             var sb = new StringBuilder();
             sb.Append(GetPrecipitation(precipitation, strengthPrecipitation, sb.Length == 0));
@@ -78,7 +78,7 @@ namespace Weather.Website
             return sb.ToString();
         }
 
-        private static string GetPrecipitation(Precipitation? precipitation, StrengthPrecipitation strengthPrecipitation, bool isFirst)
+        private static string GetPrecipitation(Precipitation? precipitation, StrengthPrecipitation? strengthPrecipitation, bool isFirst)
         {
             if (!precipitation.HasValue) 
                 return string.Empty;
@@ -100,8 +100,11 @@ namespace Weather.Website
             return string.Empty;
         }
 
-        private static string GetStrengthPrecipitation(StrengthPrecipitation strengthPrecipitation, bool isFirst)
+        private static string GetStrengthPrecipitation(StrengthPrecipitation? strengthPrecipitation, bool isFirst)
         {
+            if (!strengthPrecipitation.HasValue)
+                return string.Empty;
+
             switch (strengthPrecipitation)
             {
                 case StrengthPrecipitation.Light:

@@ -130,10 +130,10 @@ namespace Weather.Parser
             return null;
         }
 
-        protected virtual StrengthPrecipitation ConvertStrengthPrecipitation(string input)
+        protected virtual StrengthPrecipitation? ConvertStrengthPrecipitation(string input)
         {
             if (!this.ConvertPrecipitation(input).HasValue)
-                return StrengthPrecipitation.None;
+                return null;
 
             if (Regex.IsMatch(input, Light))
                 return StrengthPrecipitation.Light;

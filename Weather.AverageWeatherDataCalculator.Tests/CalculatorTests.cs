@@ -305,5 +305,40 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Assert
             Assert.AreEqual(averageWeatherData.Precipitation, Precipitation.Sleet);
         }
+
+        [Test]
+        public void GetAvgWeatherData_CalculateStrenghPrecepitationWithNull_Havy()
+        {
+            // Arrange
+            var weatherData = new[]
+            {
+                new WeatherDataDto { StrengthPrecipitation = StrengthPrecipitation.Heavy }, 
+                new WeatherDataDto { StrengthPrecipitation = null }
+            };
+
+            // Act
+            var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
+
+            // Assert
+            Assert.AreEqual(averageWeatherData.StrengthPrecipitation, StrengthPrecipitation.Heavy);
+        }
+
+        [Test]
+        public void GetAvgWeatherData_CalculateStrenghPrecepitationWithNull_Null()
+        {
+            // Arrange
+            var weatherData = new[]
+            {
+                new WeatherDataDto { StrengthPrecipitation = StrengthPrecipitation.Heavy }, 
+                new WeatherDataDto { StrengthPrecipitation = null },
+                new WeatherDataDto { StrengthPrecipitation = null }
+            };
+
+            // Act
+            var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
+
+            // Assert
+            Assert.IsNull(averageWeatherData.StrengthPrecipitation);
+        }
     }
 }

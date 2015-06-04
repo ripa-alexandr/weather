@@ -8,7 +8,7 @@ namespace Weather.Common.Dto
 
         public Precipitation? Precipitation { get; set; }
 
-        public StrengthPrecipitation StrengthPrecipitation { get; set; }
+        public StrengthPrecipitation? StrengthPrecipitation { get; set; }
 
         public bool IsFog { get; set; }
 
