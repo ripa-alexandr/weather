@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A93101
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weather.Utilities", "Weather.Utilities\Weather.Utilities.csproj", "{25E68679-1A2A-4D9A-A65A-9FE04994D380}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -162,6 +164,16 @@ Global
 		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{25E68679-1A2A-4D9A-A65A-9FE04994D380}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

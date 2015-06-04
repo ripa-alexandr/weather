@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
@@ -8,6 +9,7 @@ using HtmlAgilityPack;
 using Weather.Common.Dto;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
+using Weather.Utilities;
 
 namespace Weather.Parser
 {
@@ -48,7 +50,7 @@ namespace Weather.Parser
         {
             if (!string.IsNullOrWhiteSpace(addUrl))
             {
-                return string.Format("{0}/{1}", oldUrl, addUrl);
+                return UrlUtility.Combine(oldUrl, addUrl);
             }
 
             return oldUrl;
