@@ -157,16 +157,16 @@ namespace Weather.AverageWeatherDataCalculator
             throw new NotImplementedException();
         }
 
-        private Precipitation AveragePrecipitation(IEnumerable<Precipitation> precipitation)
+        private Precipitation? AveragePrecipitation(IEnumerable<Precipitation?> precipitation)
         {
-            if (this.AverageBool(precipitation.Select(i => i != Precipitation.None)))
+            if (this.AverageBool(precipitation.Select(i => i.HasValue)))
             {
-                var avg = precipitation.Where(i => i != Precipitation.None).Average(p => (int)p);
+                var avg = precipitation.Where(i => i.HasValue).Average(p => (int)p);
 
                 return (Precipitation)Round(avg);
             }
 
-            return Precipitation.None;
+            return null;
         }
 
         private StrengthPrecipitation AverageStrengthPrecipitation(IEnumerable<StrengthPrecipitation> strengthPrecipitation)

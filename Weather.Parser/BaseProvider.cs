@@ -116,7 +116,7 @@ namespace Weather.Parser
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
         }
 
-        protected virtual Precipitation ConvertPrecipitation(string input)
+        protected virtual Precipitation? ConvertPrecipitation(string input)
         {
             if (Regex.IsMatch(input, Rain))
                 return Precipitation.Rain;
@@ -127,12 +127,12 @@ namespace Weather.Parser
             if (Regex.IsMatch(input, Snow))
                 return Precipitation.Snow;
 
-            return Precipitation.None;
+            return null;
         }
 
         protected virtual StrengthPrecipitation ConvertStrengthPrecipitation(string input)
         {
-            if (this.ConvertPrecipitation(input) == Precipitation.None)
+            if (!this.ConvertPrecipitation(input).HasValue)
                 return StrengthPrecipitation.None;
 
             if (Regex.IsMatch(input, Light))

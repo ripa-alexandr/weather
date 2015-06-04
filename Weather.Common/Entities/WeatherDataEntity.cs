@@ -18,7 +18,7 @@ namespace Weather.Common.Entities
 
         public CloudyType Cloudy { get; set; }
 
-        public Precipitation Precipitation { get; set; }
+        public Precipitation? Precipitation { get; set; }
 
         public StrengthPrecipitation StrengthPrecipitation { get; set; }
 

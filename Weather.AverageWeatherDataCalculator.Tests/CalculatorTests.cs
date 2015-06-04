@@ -252,5 +252,58 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Assert
             Assert.AreEqual(averageWeatherData.WindSpeed, 0);
         }
+
+        [Test]
+        public void GetAvgWeatherData_CalculatePrecepitationWithNull_Rain()
+        {
+            // Arrange
+            var weatherData = new[]
+            {
+                new WeatherDataDto { Precipitation = Precipitation.Rain }, 
+                new WeatherDataDto { Precipitation = null }
+            };
+
+            // Act
+            var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
+
+            // Assert
+            Assert.AreEqual(averageWeatherData.Precipitation, Precipitation.Rain);
+        }
+
+        [Test]
+        public void GetAvgWeatherData_CalculatePrecepitationWithNull_Null()
+        {
+            // Arrange
+            var weatherData = new[]
+            {
+                new WeatherDataDto { Precipitation = Precipitation.Rain }, 
+                new WeatherDataDto { Precipitation = null },
+                new WeatherDataDto { Precipitation = null }
+            };
+
+            // Act
+            var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
+
+            // Assert
+            Assert.IsNull(averageWeatherData.Precipitation);
+        }
+
+        [Test]
+        public void GetAvgWeatherData_CalculatePrecepitationWhereHasValue_Sleet()
+        {
+            // Arrange
+            var weatherData = new[]
+            {
+                new WeatherDataDto { Precipitation = Precipitation.Rain }, 
+                new WeatherDataDto { Precipitation = Precipitation.Snow },
+                new WeatherDataDto { Precipitation = null }
+            };
+
+            // Act
+            var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
+
+            // Assert
+            Assert.AreEqual(averageWeatherData.Precipitation, Precipitation.Sleet);
+        }
     }
 }
