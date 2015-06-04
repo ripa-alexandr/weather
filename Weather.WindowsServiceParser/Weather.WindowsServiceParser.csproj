@@ -140,6 +140,10 @@
       <Project>{196287BA-530F-494E-840B-FA2D483B6110}</Project>
       <Name>Weather.Parser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Weather.Utilities\Weather.Utilities.csproj">
+      <Project>{25E68679-1A2A-4D9A-A65A-9FE04994D380}</Project>
+      <Name>Weather.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

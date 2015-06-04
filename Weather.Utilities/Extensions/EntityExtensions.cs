@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 
-namespace Weather.Common.Extensions
+namespace Weather.Utilities.Extensions
 {
     public static class EntityExtensions
     {

@@ -72,14 +72,17 @@
     <Compile Include="Exceptions\NotCorrectWindDirectionEndWindSpeedException.cs" />
     <Compile Include="Exceptions\NotImplementedMethodException.cs" />
     <Compile Include="Exceptions\HtmlDocumentNotExistXPathException.cs" />
-    <Compile Include="Extensions\EntityExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Interfaces\IBaseEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Weather.Utilities\Weather.Utilities.csproj">
+      <Project>{25E68679-1A2A-4D9A-A65A-9FE04994D380}</Project>
+      <Name>Weather.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

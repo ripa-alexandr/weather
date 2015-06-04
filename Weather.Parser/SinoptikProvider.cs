@@ -8,8 +8,8 @@ using HtmlAgilityPack;
 
 using Weather.Common.Dto;
 using Weather.Common.Enums;
-using Weather.Common.Extensions;
 using Weather.Parser.Extensions;
+using Weather.Utilities.Extensions;
 
 namespace Weather.Parser
 {

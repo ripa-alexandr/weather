@@ -16,9 +16,9 @@ using Weather.Common.Dto;
 using Weather.Common.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
-using Weather.Common.Extensions;
 using Weather.DAL.Repository.Interface;
 using Weather.Parser;
+using Weather.Utilities.Extensions;
 
 namespace Weather.WindowsServiceParser
 {

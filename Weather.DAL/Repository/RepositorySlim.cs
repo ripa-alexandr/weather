@@ -8,8 +8,8 @@ using AutoMapper;
 using EntityFramework.BulkInsert.Extensions;
 
 using Weather.Common.Entities;
-using Weather.Common.Extensions;
 using Weather.DAL.Repository.Interface;
+using Weather.Utilities.Extensions;
 
 namespace Weather.DAL.Repository
 {

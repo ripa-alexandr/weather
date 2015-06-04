@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-using Weather.Common.Extensions;
+using Weather.Utilities.Extensions;
 
 namespace Weather.Common.Exceptions
 {

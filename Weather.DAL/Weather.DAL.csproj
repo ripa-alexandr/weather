@@ -92,6 +92,10 @@
       <Project>{3AC353A6-0B82-4715-84C0-E6A121875598}</Project>
       <Name>Weather.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Weather.Utilities\Weather.Utilities.csproj">
+      <Project>{25E68679-1A2A-4D9A-A65A-9FE04994D380}</Project>
+      <Name>Weather.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201503250900493_Initialize.resx">

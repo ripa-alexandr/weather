@@ -8,7 +8,7 @@ using AutoMapper;
 using Weather.Bootstrap;
 using Weather.Common.Dto;
 using Weather.Common.Enums;
-using Weather.Common.Extensions;
+using Weather.Utilities.Extensions;
 using Weather.Website.Models;
 using Weather.Website.Resources;
 

@@ -296,6 +296,10 @@
       <Project>{FE4515FE-0A1E-4362-8C95-CE985D5E9E0B}</Project>
       <Name>Weather.Facade</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Weather.Utilities\Weather.Utilities.csproj">
+      <Project>{25E68679-1A2A-4D9A-A65A-9FE04994D380}</Project>
+      <Name>Weather.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResource.resx">

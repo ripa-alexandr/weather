@@ -1,5 +1,5 @@
 ﻿
-namespace Weather.Common.Extensions
+namespace Weather.Utilities.Extensions
 {
     public static class StringExtensions
     {
