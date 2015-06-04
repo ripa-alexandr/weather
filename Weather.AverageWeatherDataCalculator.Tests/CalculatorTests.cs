@@ -340,5 +340,23 @@ namespace Weather.AverageWeatherDataCalculator.Tests
             // Assert
             Assert.IsNull(averageWeatherData.StrengthPrecipitation);
         }
+
+        [Test]
+        public void GetAvgWeatherData_CalculateStrenghPrecepitationWithNull_Middle()
+        {
+            // Arrange
+            var weatherData = new[]
+            {
+                new WeatherDataDto { StrengthPrecipitation = StrengthPrecipitation.Heavy }, 
+                new WeatherDataDto { StrengthPrecipitation = StrengthPrecipitation.Light },
+                new WeatherDataDto { StrengthPrecipitation = null }
+            };
+
+            // Act
+            var averageWeatherData = this.calculator.GetAvgWeatherData(weatherData);
+
+            // Assert
+            Assert.AreEqual(averageWeatherData.StrengthPrecipitation, StrengthPrecipitation.Middle);
+        }
     }
 }
