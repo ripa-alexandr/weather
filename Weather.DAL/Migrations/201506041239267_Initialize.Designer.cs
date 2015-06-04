@@ -13,7 +13,7 @@ namespace Weather.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201503250900493_Initialize"; }
+            get { return "201506041239267_Initialize"; }
         }
         
         string IMigrationMetadata.Source
