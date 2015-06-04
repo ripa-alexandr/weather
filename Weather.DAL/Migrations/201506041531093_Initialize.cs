@@ -81,7 +81,7 @@ namespace Weather.DAL.Migrations
                         AirTemp = c.Double(nullable: false),
                         RealFeel = c.Double(),
                         Pressure = c.Double(nullable: false),
-                        WindDirection = c.Int(nullable: false),
+                        WindDirection = c.Int(),
                         WindSpeed = c.Double(nullable: false),
                         Humidity = c.Double(nullable: false),
                         ChancePrecipitation = c.Double(),

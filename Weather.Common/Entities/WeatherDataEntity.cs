@@ -32,7 +32,7 @@ namespace Weather.Common.Entities
 
         public double Pressure { get; set; }
 
-        public WindDirection WindDirection { get; set; }
+        public WindDirection? WindDirection { get; set; }
 
         public double WindSpeed { get; set; }
 
