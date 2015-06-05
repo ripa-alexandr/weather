@@ -55,6 +55,7 @@ namespace Weather.WindowsServiceParser
 #if DEBUG
         public void Start()
         {
+            this.processor = new Processor(this.logger);
             this.OnTimedEvent(null, null);
         }
 #endif
