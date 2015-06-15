@@ -1,0 +1,9 @@
+﻿@model Weather.Website.Models.SelectLanguageViewModel
+   
+@using (Html.BeginForm("SetLanguage", "SelectLanguage"))
+{
+    @Html.DropDownList("cultureName", Model.Languages, new { onchange = "this.form.submit();" })
+}    
+  
+
+

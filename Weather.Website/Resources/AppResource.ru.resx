@@ -132,6 +132,9 @@
   <data name="CloudyType_PartlyCloudy" xml:space="preserve">
     <value>Малооблачно</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Русский</value>
+  </data>
   <data name="Precipitation_None" xml:space="preserve">
     <value />
   </data>

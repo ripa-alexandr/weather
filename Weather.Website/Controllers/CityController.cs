@@ -23,8 +23,6 @@ namespace Weather.Website.Controllers
 
         public ActionResult Details(int cityId, DateTime? date, IEnumerable<Provider> providers)
         {
-            // TODO: test
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-ru");
             // TODO: DateTime.Now and defaultProviders?
             var result = GetDetails(cityId, date ?? DateTime.Now, providers ?? WebsiteConfig.DefaultProviders);
 
