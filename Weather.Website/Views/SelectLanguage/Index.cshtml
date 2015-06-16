@@ -2,6 +2,7 @@
    
 @using (Html.BeginForm("SetLanguage", "SelectLanguage"))
 {
+    @Html.Hidden("url", Request.Url.AbsoluteUri, new { id = "url" })
     @Html.DropDownList("cultureName", Model.Languages, new { onchange = "this.form.submit();" })
 }    
   

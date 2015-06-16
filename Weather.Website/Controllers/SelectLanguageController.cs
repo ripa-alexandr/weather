@@ -27,7 +27,7 @@ namespace Weather.Website.Controllers
         }
 
         [HttpPost]
-        public ActionResult SetLanguage(string cultureName)
+        public ActionResult SetLanguage(string cultureName, string url)
         {
             HttpCookie cookie = Request.Cookies["_culture"];
 
@@ -44,7 +44,7 @@ namespace Weather.Website.Controllers
 
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index", "Home");
+            return Redirect(url);
         }
 
         private IEnumerable<SelectListItem> GetAvailableLanguages(string cultureName)

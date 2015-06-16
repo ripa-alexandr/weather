@@ -16,6 +16,7 @@
 var updateUrl = function (request, url) {
     var newUrl = url + "?" + $.param(request, true);
     history.pushState({ foo: "bar" }, newUrl, newUrl);
+    $('input#url').val(newUrl);
 };
 
 $('.update-container').click(function (e) {
@@ -23,10 +24,11 @@ $('.update-container').click(function (e) {
 
     var url = $(this).attr('href');
     var request = {
-        CityId: $("#city-name").data("id"),
+        CityId: $('#city-name').data('id'),
         Date: $(this).text(),
-        Providers: $("#poviders option:selected").map(function () { return this.value; }).get()
+        Providers: $('#poviders option:selected').map(function () { return this.value; }).get()
     };
     sendAjaxRequest(request, url);
     updateUrl({ Providers: request.Providers }, url + "/" + request.Date);
+
 });
