@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Configuration;
 using System.ServiceProcess;
 using System.Timers;
@@ -42,7 +43,7 @@ namespace Weather.WindowsServiceParser
         {
             var result = double.Parse(input);
 
-            return result * 1000 * 60;
+            return TimeSpan.FromMinutes(result).TotalMilliseconds;
         }
 
         protected override void OnStop()
