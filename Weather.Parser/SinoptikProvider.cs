@@ -138,7 +138,7 @@ namespace Weather.Parser
 
         private double ConvertTemp(string input)
         {
-            return Double.Parse(input.Replace("&deg;", string.Empty), CultureInfo.InvariantCulture);
+            return Double.Parse(input.Replace("&deg;", string.Empty));
         }
 
         private double ConvertWindSpeed(string input)
@@ -148,7 +148,7 @@ namespace Weather.Parser
 
         private double ConvertChancePrecipitation(string input)
         {
-            return Double.Parse(input.Replace('-', '0'), CultureInfo.InvariantCulture);
+            return Double.Parse(input.Replace('-', '0'));
         }
 
         #endregion
