@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 
 using HtmlAgilityPack;
@@ -137,17 +138,17 @@ namespace Weather.Parser
 
         private double ConvertTemp(string input)
         {
-            return Double.Parse(input.Replace("&deg;", string.Empty));
+            return Double.Parse(input.Replace("&deg;", string.Empty), CultureInfo.InvariantCulture);
         }
 
         private double ConvertWindSpeed(string input)
         {
-            return Double.Parse(input.Replace('.', ','));
+            return Double.Parse(input, CultureInfo.InvariantCulture);
         }
 
         private double ConvertChancePrecipitation(string input)
         {
-            return Double.Parse(input.Replace('-', '0'));
+            return Double.Parse(input.Replace('-', '0'), CultureInfo.InvariantCulture);
         }
 
         #endregion
