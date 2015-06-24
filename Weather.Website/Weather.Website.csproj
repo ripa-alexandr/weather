@@ -219,6 +219,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\City\details.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -264,9 +265,9 @@
     <Content Include="Views\Country\Index.cshtml" />
     <Content Include="Views\Region\Index.cshtml" />
     <Content Include="Views\World\Index.cshtml" />
-    <Content Include="Views\City\Details.cshtml" />
     <Content Include="Views\City\WeatherData.cshtml" />
     <Content Include="Views\SelectLanguage\Index.cshtml" />
+    <Content Include="Views\City\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

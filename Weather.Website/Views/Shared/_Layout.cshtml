@@ -37,9 +37,11 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/unobtrusive-ajax")
+    @Scripts.Render("~/bundles/custom-ajax")
+    @Scripts.Render("~/bundles/city")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

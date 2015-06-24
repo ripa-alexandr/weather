@@ -25,11 +25,13 @@ namespace Weather.Website
 
             bundles.Add(new ScriptBundle("~/bundles/unobtrusive-ajax").Include(
                      "~/Scripts/jquery.unobtrusive*",
-                     "~/Scripts/jquery.validate.unobtrusive*",
-                     "~/Scripts/ajax.js"));
+                     "~/Scripts/jquery.validate.unobtrusive*"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom-ajax").Include(
                      "~/Scripts/ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/city").Include(
+                     "~/Scripts/City/details.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

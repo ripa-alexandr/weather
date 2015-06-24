@@ -13,22 +13,12 @@
     });
 };
 
-var updateUrl = function (request, url) {
-    var newUrl = url + "?" + $.param(request, true);
+var updateHistory = function (request, url) {
+    var newUrl = updateUrl(request, url);
     history.pushState({ foo: "bar" }, newUrl, newUrl);
-    $('input#url').val(newUrl);
 };
 
-$('.update-container').click(function (e) {
-    e.preventDefault();
+var updateUrl = function (request, url) {
+    return url + "?" + $.param(request, true);
+};
 
-    var url = $(this).attr('href');
-    var request = {
-        CityId: $('#city-name').data('id'),
-        Date: $(this).text(),
-        Providers: $('#poviders option:selected').map(function () { return this.value; }).get()
-    };
-    sendAjaxRequest(request, url);
-    updateUrl({ Providers: request.Providers }, url + "/" + request.Date);
-
-});
