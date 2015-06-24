@@ -199,10 +199,8 @@ namespace Weather.AverageWeatherDataCalculator
 
         private double? AverageNumberNullable(IEnumerable<double?> items)
         {
-            var avg = items.Where(i => i.HasValue);
-
-            if (avg.Count() != 0) 
-                return Round(avg.Average(i => i.Value));
+            if (items.All(i => i.HasValue))
+                return Round(items.Average(i => i.Value));
             
             return null;
         }
