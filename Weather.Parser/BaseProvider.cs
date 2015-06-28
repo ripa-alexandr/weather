@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.Security.Policy;
 using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
@@ -98,19 +97,19 @@ namespace Weather.Parser
 
         protected virtual CloudyType ConvertCloudy(string input)
         {
-            if (Regex.IsMatch(input, Fair))
+            if (IsMatch(input, Fair))
                 return CloudyType.Fair;
 
-            if (Regex.IsMatch(input, PartlyCloudy))
+            if (IsMatch(input, PartlyCloudy))
                 return CloudyType.PartlyCloudy;
 
-            if (Regex.IsMatch(input, Cloudy))
+            if (IsMatch(input, Cloudy))
                 return CloudyType.Cloudy;
 
-            if (Regex.IsMatch(input, MainlyCloudy))
+            if (IsMatch(input, MainlyCloudy))
                 return CloudyType.MainlyCloudy;
 
-            if (Regex.IsMatch(input, Overcast) || this.ConvertFog(input))
+            if (IsMatch(input, Overcast) || this.ConvertFog(input))
                 return CloudyType.Overcast;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
@@ -118,13 +117,13 @@ namespace Weather.Parser
 
         protected virtual Precipitation? ConvertPrecipitation(string input)
         {
-            if (Regex.IsMatch(input, Rain))
+            if (IsMatch(input, Rain))
                 return Precipitation.Rain;
 
-            if (Regex.IsMatch(input, Sleet))
+            if (IsMatch(input, Sleet))
                 return Precipitation.Sleet;
 
-            if (Regex.IsMatch(input, Snow))
+            if (IsMatch(input, Snow))
                 return Precipitation.Snow;
 
             return null;
@@ -135,10 +134,10 @@ namespace Weather.Parser
             if (!this.ConvertPrecipitation(input).HasValue)
                 return null;
 
-            if (Regex.IsMatch(input, Light))
+            if (IsMatch(input, Light))
                 return StrengthPrecipitation.Light;
 
-            if (Regex.IsMatch(input, Heavy))
+            if (IsMatch(input, Heavy))
                 return StrengthPrecipitation.Heavy;
 
             return StrengthPrecipitation.Middle;
@@ -146,44 +145,49 @@ namespace Weather.Parser
 
         protected virtual bool ConvertFog(string input)
         {
-            return Regex.IsMatch(input, Fog);
+            return IsMatch(input, Fog);
         }
 
         protected virtual bool ConvertThunderstorm(string input)
         {
-            return Regex.IsMatch(input, Thunderstorm);
+            return IsMatch(input, Thunderstorm);
         }
 
         protected virtual WindDirection? ConvertWindDirection(string input)
         {
-            if (Regex.IsMatch(input, North))
+            if (IsMatch(input, North))
                 return WindDirection.North;
 
-            if (Regex.IsMatch(input, NorthEast))
+            if (IsMatch(input, NorthEast))
                 return WindDirection.NorthEast;
 
-            if (Regex.IsMatch(input, East))
+            if (IsMatch(input, East))
                 return WindDirection.East;
 
-            if (Regex.IsMatch(input, SouthEast))
+            if (IsMatch(input, SouthEast))
                 return WindDirection.SouthEast;
 
-            if (Regex.IsMatch(input, South))
+            if (IsMatch(input, South))
                 return WindDirection.South;
 
-            if (Regex.IsMatch(input, SouthWest))
+            if (IsMatch(input, SouthWest))
                 return WindDirection.SouthWest;
 
-            if (Regex.IsMatch(input, West))
+            if (IsMatch(input, West))
                 return WindDirection.West;
 
-            if (Regex.IsMatch(input, NorthWest))
+            if (IsMatch(input, NorthWest))
                 return WindDirection.NorthWest;
 
-            if (Regex.IsMatch(input, Calm))
+            if (IsMatch(input, Calm))
                 return null;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
+        }
+
+        protected bool IsMatch(string input, string pattern)
+        {
+            return Regex.IsMatch(input, pattern, RegexOptions.IgnoreCase);
         }
 
         #endregion

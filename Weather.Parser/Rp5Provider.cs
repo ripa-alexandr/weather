@@ -43,20 +43,21 @@ namespace Weather.Parser
             var cloudy = "//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay);
 
             // In one time of day two description
-            var description = "//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay * 2 - 2);
-            var airTemp = "//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay);
-            var realFeel = "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay);
-            var sameRealFeel = "//*[@id='forecastTable']/tr[6]/td[{0}]".F(parseInfo.TimeOfDay);
+            var description = "//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]".F(parseInfo.TimeOfDay * 2 - 2);
+            var isFog = "//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]".F(parseInfo.TimeOfDay - 1);
+            var airTemp = "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay);
+            var realFeel = "//*[@id='forecastTable']/tr[7]/td[{0}]/div[1]".F(parseInfo.TimeOfDay);
+            var sameRealFeel = "//*[@id='forecastTable']/tr[7]/td[{0}]".F(parseInfo.TimeOfDay);
             var pressure = this.GetAvailablePath(
                 htmlDocument,
-                "//*[@id='forecastTable']/tr[last()-6]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay),
-                "//*[@id='forecastTable']/tr[last()-6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
-            var windDirection = "//*[@id='forecastTable']/tr[last()-3]/td[{0}]".F(parseInfo.TimeOfDay);
+                "//*[@id='forecastTable']/tr[last()-7]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay),
+                "//*[@id='forecastTable']/tr[last()-7]/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
+            var windDirection = "//*[@id='forecastTable']/tr[last()-4]/td[{0}]".F(parseInfo.TimeOfDay);
             var windSpeed = this.GetAvailablePath(
                 htmlDocument,
-                "//*[@id='forecastTable']/tr[last()-4]/td[{0}]/div[1]".F(parseInfo.TimeOfDay),
-                "//*[@id='forecastTable']/tr[last()-4]/td[{0}]".F(parseInfo.TimeOfDay));
-            var humidity = "//*[@id='forecastTable']/tr[last()-5]/td[{0}]".F(parseInfo.TimeOfDay);
+                "//*[@id='forecastTable']/tr[last()-6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay),
+                "//*[@id='forecastTable']/tr[last()-6]/td[{0}]".F(parseInfo.TimeOfDay));
+            var humidity = "//*[@id='forecastTable']/tr[last()-3]/td[{0}]".F(parseInfo.TimeOfDay);
             var date = "//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]".F(parseInfo.Day);
 
             return new WeatherDataDto
@@ -67,7 +68,7 @@ namespace Weather.Parser
                 Cloudy = this.ConvertCloudy(htmlDocument.GetAttribute(cloudy, "onmouseover")),
                 Precipitation = this.ConvertPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
                 StrengthPrecipitation = this.ConvertStrengthPrecipitation(htmlDocument.GetAttribute(description, "onmouseover")),
-                IsFog = this.ConvertFog(htmlDocument.GetAttribute(description, "onmouseover")),
+                IsFog = this.ConvertFog(htmlDocument.IsAttribute(isFog, "onmouseover") ? htmlDocument.GetAttribute(isFog, "onmouseover") : string.Empty),
                 IsThunderstorm = this.ConvertThunderstorm(htmlDocument.GetAttribute(description, "onmouseover")),
                 AirTemp = Int32.Parse(htmlDocument.GetInnerText(airTemp)),
                 RealFeel = this.ConvertRealFeel(htmlDocument, sameRealFeel, airTemp, realFeel),
@@ -92,13 +93,13 @@ namespace Weather.Parser
             Heavy = @"сильный";
             Fog = @"туман";
             Thunderstorm = @"гроз";
-            North = @"\bС\b";
+            North = @"^С$";
             NorthEast = @"С-В";
-            East = @"\bВ\b";
+            East = @"^В$";
             SouthEast = @"Ю-В";
-            South = @"\bЮ\b";
+            South = @"^Ю$";
             SouthWest = @"Ю-З";
-            West = @"\bЗ\b";
+            West = @"^З$";
             NorthWest = @"С-З";
             Calm = @"ШТЛ";
         }
@@ -177,11 +178,11 @@ namespace Weather.Parser
             return double.Parse(htmlDocument.GetInnerText(airTempXPath));
         }
 
-        private static bool IsSameRealFeel(HtmlDocument htmlDocument, string sameRealFeelXPath)
+        private bool IsSameRealFeel(HtmlDocument htmlDocument, string sameRealFeelXPath)
         {
             var isSameRealFeel = htmlDocument.IsAttribute(sameRealFeelXPath, "onmouseover");
 
-            return isSameRealFeel && Regex.IsMatch(htmlDocument.GetAttribute(sameRealFeelXPath, "onmouseover"), "равно значению температуры воздуха");
+            return isSameRealFeel && IsMatch(htmlDocument.GetAttribute(sameRealFeelXPath, "onmouseover"), "равно значению температуры воздуха");
         }
 
         #endregion

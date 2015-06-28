@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 using HtmlAgilityPack;
 
@@ -79,23 +78,23 @@ namespace Weather.Parser
             Fair = @"Ясно";
             PartlyCloudy = @"Малооблачно";
             MainlyCloudy = @"Облачно";
-            Overcast = @"Пасмурно|[Сс]нег|[Дд]ождь";
-            Rain = @"[Дд]ождь(?!\sсо снегом)|[Лл]ивень";
+            Overcast = @"Пасмурно|снег|дождь";
+            Rain = @"дождь(?!\sсо снегом)|ливень";
             Sleet = @"дождь со снегом";
-            Snow = @"[Сс]нег";
+            Snow = @"снег";
             Light = @"небольшой";
             Heavy = @"сильный";
-            Fog = @"[Тт]уман|[Дд]ымка";
+            Fog = @"туман|дымка";
             Thunderstorm = @"гроз";
-            North = @"\bС\b";
+            North = @"^С$";
             NorthEast = @"СВ";
-            East = @"\bВ\b";
+            East = @"^В$";
             SouthEast = @"ЮВ";
-            South = @"\bЮ\b";
+            South = @"^Ю$";
             SouthWest = @"ЮЗ";
-            West = @"\bЗ\b";
+            West = @"^З$";
             NorthWest = @"СЗ";
-            Calm = @"\bШ\b";
+            Calm = @"^Ш$";
         }
 
         private IEnumerable<ParseInfo> InitializeParseInfo()
@@ -156,16 +155,16 @@ namespace Weather.Parser
 
         protected override CloudyType ConvertCloudy(string input)
         {
-            if (Regex.IsMatch(input, Fair))
+            if (IsMatch(input, Fair))
                 return CloudyType.Fair;
 
-            if (Regex.IsMatch(input, PartlyCloudy))
+            if (IsMatch(input, PartlyCloudy))
                 return CloudyType.PartlyCloudy;
 
-            if (Regex.IsMatch(input, MainlyCloudy))
+            if (IsMatch(input, MainlyCloudy))
                 return CloudyType.MainlyCloudy;
 
-            if (Regex.IsMatch(input, Overcast) || this.ConvertFog(input))
+            if (IsMatch(input, Overcast) || this.ConvertFog(input))
                 return CloudyType.Overcast;
 
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), input);
