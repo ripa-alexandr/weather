@@ -40,26 +40,22 @@ namespace Weather.Parser
 
         protected WeatherDataDto Fetch(HtmlDocument htmlDocument, ParseInfo parseInfo)
         {
-            var cloudy = "//*[@id='forecastTable']/tr[3]/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay);
+            var cloudy = GetXPath(htmlDocument, "Облачность", "/td[{0}]/div[1]/div".F(parseInfo.TimeOfDay));
 
             // In one time of day two description
-            var description = "//*[@id='forecastTable']/tr[4]/td[{0}]/div[1]".F(parseInfo.TimeOfDay * 2 - 2);
+            var description = GetXPath(htmlDocument, "Явления погоды", "/td[{0}]/div[1]".F(parseInfo.TimeOfDay * 2 - 2));
             var isFog = "//*[@id='forecastTable']/tr[5]/td[{0}]/div[1]".F(parseInfo.TimeOfDay - 1);
-            var airTemp = "//*[@id='forecastTable']/tr[6]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay);
-            var realFeel = "//*[@id='forecastTable']/tr[7]/td[{0}]/div[1]".F(parseInfo.TimeOfDay);
-            var sameRealFeel = "//*[@id='forecastTable']/tr[7]/td[{0}]".F(parseInfo.TimeOfDay);
-            var pressure = this.GetAvailablePath(
-                htmlDocument,
-                "//*[@id='forecastTable']/tr[last()-7]/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay),
-                "//*[@id='forecastTable']/tr[last()-7]/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
+            var airTemp = GetXPath(htmlDocument, "Температура", "/td[{0}]/div[1]/b".F(parseInfo.TimeOfDay));
+            var realFeel = GetXPath(htmlDocument, "Ощущается", "/td[{0}]/div[1]".F(parseInfo.TimeOfDay));
+            var sameRealFeel = GetXPath(htmlDocument, "Ощущается", "/td[{0}]".F(parseInfo.TimeOfDay));
+            var pressure = "//*[@id='forecastTable']/tr[last()-7]/td[{0}]/div[1]/b|//*[@id='forecastTable']/tr[last()-7]/td[{0}]/div[1]".F(parseInfo.TimeOfDay);
             var windDirection = "//*[@id='forecastTable']/tr[last()-4]/td[{0}]".F(parseInfo.TimeOfDay);
-            var windSpeed = this.GetAvailablePath(
-                htmlDocument,
+            var windSpeed = GetAvailablePath(htmlDocument,
                 "//*[@id='forecastTable']/tr[last()-6]/td[{0}]/div[1]".F(parseInfo.TimeOfDay),
                 "//*[@id='forecastTable']/tr[last()-6]/td[{0}]".F(parseInfo.TimeOfDay));
             var humidity = "//*[@id='forecastTable']/tr[last()-3]/td[{0}]".F(parseInfo.TimeOfDay);
             var date = "//*[@id='forecastTable']/tr[1]/td[{0}]/div/div/span[2]".F(parseInfo.Day);
-
+            
             return new WeatherDataDto
             {
                 Provider = Provider.Rp5,
@@ -166,11 +162,19 @@ namespace Weather.Parser
             throw new NotImplementedMethodException(this.HtmlWeb.ResponseUri.ToString(), day);
         }
 
+        private string GetXPath(HtmlDocument htmlDocument, string rowPattern, string pattern)
+        {
+            var result = htmlDocument.DocumentNode.SelectNodes("//*[@id='forecastTable']/tr")
+                .FirstOrDefault(i => Regex.IsMatch(i.InnerHtml, rowPattern));
+
+            return result == null ? null : result.XPath + pattern;
+        }
+
         #region Converters
 
         private double ConvertRealFeel(HtmlDocument htmlDocument, string sameRealFeelXPath, string airTempXPath, string realFeelXPath)
         {
-            if (htmlDocument.DocumentNode.SelectNodes("//*[@id='forecastTable']/tr").Count() == 13 && !IsSameRealFeel(htmlDocument, sameRealFeelXPath))
+            if (!string.IsNullOrEmpty(sameRealFeelXPath) && !string.IsNullOrEmpty(realFeelXPath) && !IsSameRealFeel(htmlDocument, sameRealFeelXPath))
             {
                 return double.Parse(htmlDocument.GetInnerText(realFeelXPath));
             }
