@@ -16,6 +16,8 @@ namespace Weather.DAL.Repository
     {
         private readonly DbContext context;
 
+        private bool disposed = false;
+
         public Repository(DbContext context)
         {
             this.context = context;
@@ -64,5 +66,21 @@ namespace Weather.DAL.Repository
         {
             this.context.SaveChanges();
         }
+
+        #region Implementing IDisposable
+
+        public void Dispose()
+        {
+            if (!this.disposed)
+            {
+                Save();
+
+                context.Dispose();
+                
+                this.disposed = true;
+            }
+        }
+
+        #endregion
     }
 }

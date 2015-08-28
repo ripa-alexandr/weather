@@ -8,7 +8,7 @@ using Weather.Common.Interfaces;
 
 namespace Weather.DAL.Repository.Interface
 {
-    public interface IRepository
+    public interface IRepository : IDisposable
     {
         /// <summary>
         /// Get all entities from database 

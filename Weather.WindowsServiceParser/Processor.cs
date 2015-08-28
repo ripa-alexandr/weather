@@ -24,8 +24,7 @@ namespace Weather.WindowsServiceParser
 {
     public class Processor
     {
-        private readonly IRepository repository;
-        private readonly IRepositorySlim repositorySlim;
+        private readonly StandardKernel kernel; 
         private readonly SinoptikProvider sinoptikProvider;
         private readonly GismeteoProvider gismeteoProvider;
         private readonly Rp5Provider rp5Provider;
@@ -33,13 +32,10 @@ namespace Weather.WindowsServiceParser
 
         public Processor(Logger logger)
         {
-            var kernel = Kernel.Initialize();
-
-            this.repository = kernel.Get<IRepository>();
-            this.repositorySlim = kernel.Get<IRepositorySlim>();
-            this.sinoptikProvider = kernel.Get<SinoptikProvider>();
-            this.gismeteoProvider = kernel.Get<GismeteoProvider>();
-            this.rp5Provider = kernel.Get<Rp5Provider>();
+            this.kernel = Kernel.Initialize();
+            this.sinoptikProvider = this.kernel.Get<SinoptikProvider>();
+            this.gismeteoProvider = this.kernel.Get<GismeteoProvider>();
+            this.rp5Provider = this.kernel.Get<Rp5Provider>();
             this.logger = logger;
 
             AutoMapperConfiguration.Configure();
@@ -74,12 +70,16 @@ namespace Weather.WindowsServiceParser
 
                 if (nime != null)
                 {
-                    var msg = "TypeException: {0}\r\nMessage: {1}\r\nMethodArgs: {2}\r\nStackTrace: {3}\r\n".F(nime.GetType().Name, nime.Message, nime.MethodArgs, nime.StackTrace);
+                    var msg = "TypeException: {0}\r\nMessage: {1}\r\nMethodArgs: {2}\r\nStackTrace: {3}\r\n"
+                        .F(nime.GetType().Name, nime.Message, nime.MethodArgs, nime.StackTrace);
+
                     this.logger.Error(msg);
                 }
                 else
                 {
-                    var msg = "TypeException: {0}\r\nMessage: {1}\r\nStackTrace: {2}\r\n".F(ex.GetType().Name, ex.Message, ex.StackTrace);
+                    var msg = "TypeException: {0}\r\nMessage: {1}\r\nStackTrace: {2}\r\n"
+                        .F(ex.GetType().Name, ex.Message, ex.StackTrace);
+
                     this.logger.Error(msg);
                 }
             }
@@ -87,28 +87,31 @@ namespace Weather.WindowsServiceParser
 
         private void ProcessWeatherData()
         {
-            var exceptions = new ConcurrentQueue<Exception>();
-
-            var links = this.repository.Get<LinkEntity>().ToList();
-            var weatherData = links.AsParallel().SelectMany(
-                i =>
-                {
-                    try
-                    {
-                        return this.ProcessLink(Mapper.Map<LinkDto>(i));
-                    }
-                    catch (Exception e)
-                    {
-                        exceptions.Enqueue(e);
-                        return Enumerable.Empty<WeatherDataDto>();
-                    }
-                }).ToList();
-
-            this.SaveWeatherData(weatherData);
-
-            if (exceptions.Count > 0)
+            using (var repository = this.kernel.Get<IRepository>())
             {
-                throw new AggregateException(exceptions);
+                var exceptions = new ConcurrentQueue<Exception>();
+
+                var links = repository.Get<LinkEntity>().ToList();
+                var weatherData = links.AsParallel().SelectMany(
+                    i =>
+                    {
+                        try
+                        {
+                            return this.ProcessLink(Mapper.Map<LinkDto>(i));
+                        }
+                        catch (Exception e)
+                        {
+                            exceptions.Enqueue(e);
+                            return Enumerable.Empty<WeatherDataDto>();
+                        }
+                    }).ToList();
+
+                this.SaveWeatherData(repository, weatherData);
+
+                if (exceptions.Count > 0)
+                {
+                    throw new AggregateException(exceptions);
+                }
             }
         }
 
@@ -139,15 +142,16 @@ namespace Weather.WindowsServiceParser
             return result;
         }
 
-        private void SaveWeatherData(IEnumerable<WeatherDataDto> weatherData)
+        private void SaveWeatherData(IRepository repository, IEnumerable<WeatherDataDto> weatherData)
         {
-            //this.repositorySlim.AddOrUpdate(Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData));
             var time = weatherData.Min(t => t.DateTime);
-            this.repository.AddOrUpdate(
+
+            repository.AddOrUpdate(
                 Mapper.Map<IEnumerable<WeatherDataEntity>>(weatherData),
                 (x, y) => x.DateTime == y.DateTime && x.Provider == y.Provider && x.CityId == y.CityId,
                 x => x.DateTime >= time);
-            this.repository.Save();
+
+            repository.Save();
         }
     }
 }
