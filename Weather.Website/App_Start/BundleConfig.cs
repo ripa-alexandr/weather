@@ -30,6 +30,9 @@ namespace Weather.Website
             bundles.Add(new ScriptBundle("~/bundles/custom-ajax").Include(
                      "~/Scripts/ajax.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                     "~/Scripts/main.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/city").Include(
                      "~/Scripts/City/details.js"));
 
