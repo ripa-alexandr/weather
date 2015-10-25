@@ -4,7 +4,7 @@
 <h1>@Model.First().DateTime</h1>
 <div class="leftContent"></div>
 <div class="rightContent">
-    <table>
+    <table class="table">
         <tr>
             <td>@Html.LabelFor(model => model.First().TimeOfDay)</td>
             @Html.Td(Model.Select(i => i.TimeOfDay))

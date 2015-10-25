@@ -6,16 +6,18 @@
 </div>
 <div id="mainContentBlock">
     <div id="blockDays">
-        <div class="tabs">
-            @foreach (var item in Model.LastSevenDays)
-            {
-                <div>
-                    <a href="@Url.ActionPattern("Details", "City", @"\/city-\d+")" class="update-container">@item</a>
-                </div>
-            }
-        </div>
         <div class="tabsTop">
-            @Html.DropDownList("items", Model.Providers, new { id = "poviders", multiple = "multiple" })
+            @Html.DropDownList("items", Model.Providers, new { id = "poviders", multiple = "multiple", @class = "form-control" })
+        </div>
+        <div class="container">
+            <ul class="nav nav-tabs">
+                @foreach (var item in Model.LastSevenDays)
+                {
+                    <li>
+                        <a href="@Url.ActionPattern("Details", "City", @"\/city-\d+")" id="@item" class="update-container">@item</a>
+                    </li>
+                }
+            </ul>
         </div>
         <div class="tabsContent">
             <div class="leftContent"></div>
@@ -26,3 +28,4 @@
         <div class="tabsBottom"></div>
     </div>
 </div>
+
