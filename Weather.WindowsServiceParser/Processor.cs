@@ -13,7 +13,7 @@ using NLog;
 
 using Weather.Bootstrap;
 using Weather.Common.Dto;
-using Weather.Common.Entities;
+using Weather.DAL.Entities;
 using Weather.Common.Enums;
 using Weather.Common.Exceptions;
 using Weather.DAL.Repository.Interface;

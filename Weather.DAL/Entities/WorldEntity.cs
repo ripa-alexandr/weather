@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Weather.Common.Interfaces;
 
-namespace Weather.Common.Entities
+namespace Weather.DAL.Entities
 {
     public class WorldEntity : IBaseEntity
     {

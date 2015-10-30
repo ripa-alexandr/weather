@@ -4,7 +4,7 @@ using System;
 using Weather.Common.Enums;
 using Weather.Common.Interfaces;
 
-namespace Weather.Common.Entities
+namespace Weather.DAL.Entities
 {
     public class WeatherDataEntity : IBaseEntity
     {

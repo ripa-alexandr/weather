@@ -7,7 +7,7 @@ using AutoMapper;
 
 using EntityFramework.BulkInsert.Extensions;
 
-using Weather.Common.Entities;
+using Weather.DAL.Entities;
 using Weather.DAL.Repository.Interface;
 using Weather.Utilities.Extensions;
 

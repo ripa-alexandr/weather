@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\CityEntity.cs" />
+    <Compile Include="Entities\CountryEntity.cs" />
+    <Compile Include="Entities\LinkEntity.cs" />
+    <Compile Include="Entities\RegionEntity.cs" />
+    <Compile Include="Entities\WeatherDataEntity.cs" />
+    <Compile Include="Entities\WorldEntity.cs" />
     <Compile Include="EntityMapping\CountryMapping.cs" />
     <Compile Include="EntityMapping\LinkMapping.cs" />
     <Compile Include="EntityMapping\RegionMapping.cs" />

@@ -55,17 +55,11 @@
     <Compile Include="Dto\WeatherDataBaseDto.cs" />
     <Compile Include="Dto\WeatherDataDto.cs" />
     <Compile Include="Dto\WorldDto.cs" />
-    <Compile Include="Entities\CityEntity.cs" />
-    <Compile Include="Entities\CountryEntity.cs" />
-    <Compile Include="Entities\LinkEntity.cs" />
-    <Compile Include="Entities\RegionEntity.cs" />
     <Compile Include="Enums\CloudyType.cs" />
     <Compile Include="Enums\Precipitation.cs" />
     <Compile Include="Enums\Provider.cs" />
     <Compile Include="Enums\StrengthPrecipitation.cs" />
     <Compile Include="Enums\WindDirection.cs" />
-    <Compile Include="Entities\WeatherDataEntity.cs" />
-    <Compile Include="Entities\WorldEntity.cs" />
     <Compile Include="Enums\Day.cs" />
     <Compile Include="Enums\TimeOfDay.cs" />
     <Compile Include="Exceptions\HtmlDocumentNotExistAttributeException.cs" />
