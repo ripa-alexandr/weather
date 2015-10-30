@@ -1,15 +1,15 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
-using System.Linq.Expressions;
 
 using AutoMapper;
 
 using Weather.AverageWeatherDataCalculator.Interfaces;
 using Weather.Common.Dto;
-using Weather.Common.Entities;
 using Weather.Common.Enums;
+using Weather.DAL.Entities;
 using Weather.DAL.Repository.Interface;
 
 namespace Weather.Facade

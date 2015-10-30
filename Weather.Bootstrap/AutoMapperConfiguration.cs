@@ -2,7 +2,7 @@
 using AutoMapper;
 
 using Weather.Common.Dto;
-using Weather.Common.Entities;
+using Weather.DAL.Entities;
 
 namespace Weather.Bootstrap
 {

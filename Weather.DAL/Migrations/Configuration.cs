@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
-using Weather.Common.Entities;
+using Weather.DAL.Entities;
 using Weather.Common.Enums;
 
 namespace Weather.DAL.Migrations

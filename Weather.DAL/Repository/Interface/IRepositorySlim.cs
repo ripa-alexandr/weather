@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-using Weather.Common.Entities;
+using Weather.DAL.Entities;
 
 namespace Weather.DAL.Repository.Interface
 {
